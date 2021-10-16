@@ -1,0 +1,230 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>状态机dp | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634391748301">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="状态机dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="状态机dp
+基本概念
+此处的状态机dp，特指那些状态转移时同一个阶段有很多种状态的dp。
+举个例子，比如股票买卖中，同一个阶段就会有当前不持有股票，当前持有股票，当前刚出售股票处于冷却期这么几个状态。
+在发现可以用dp解决某个题目的时候，如..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634391748301" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              状态机dp
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-16
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="状态机dp">状态机dp</h1>
+<h2 id="基本概念">基本概念</h2>
+<p>此处的状态机dp，特指那些状态转移时同一个阶段有很多种状态的dp。</p>
+<p>举个例子，比如股票买卖中，同一个阶段就会有当前不持有股票，当前持有股票，当前刚出售股票处于冷却期这么几个状态。</p>
+<p>在发现可以用dp解决某个题目的时候，如果发现按照起初的状态定义，在状态转移的时候发现转移的情况可以继续细分，就可以考虑加一维来区分同一阶段同一属性的不同状态。</p>
+<p>这类问题的转移过程比其他的dp复杂一些，需要考虑全面状态与状态之间的关系。</p>
+<h2 id="几个例子">几个例子</h2>
+<h3 id="区间翻转最长非递减子序列">区间翻转最长非递减子序列</h3>
+<p><a href="https://www.acwing.com/problem/content/3552/">3549. 最长非递减子序列 - AcWing题库</a></p>
+<p>这也是前几年CF的一道原题（Round 462 div2 C）</p>
+<h4 id="题目大意">题目大意</h4>
+<p>给你一个只有1和2组成的序列，长度在<code>1e6</code>之内，你可以至多选择任何一个区间做一次区间反转，问翻转（或者不翻转）之后的最长非递减子序列的长度最长是多少。</p>
+<h4 id="思路">思路</h4>
+<p>不难发现一些性质：</p>
+<ul>
+<li>题目中说数列中只有1和2这两种数字，所以最长非递减子序列一定是1....12....2这种二段式的，可以没有第一段或者第二段。</li>
+<li>假设我们要翻转区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>，那么，要是想要这次翻转有意义，那么最长非递减子序列中1和2的分界线应该出现在这个区间内部，否则的话不翻转也能统计得到相同的结果。</li>
+<li>由上一条性质可以知道，1和2的分界线在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>中，那么在翻转之前，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>中应该取一个最长的2...21...1序列。所以在整个序列中，我们要找的是一个形如1...12....21....12....2的最长的子序列，或者说匹配出这么一个子序列。</li>
+</ul>
+<p>当然，我们最后找到的最长的结果不一定包含上面那4段，比如假如不需要反转，中间两段中至少有一段是没有的。假设我们从左往右匹配，那么匹配阶段可以用以第<code>i</code>个字符结尾，以及当前匹配的子序列的结尾属于第<code>j</code>段（<code>0 &lt; j &lt; 5</code>）表示，即<code>dp[i][j]</code>。可以看出来相比于裸的最长非递减子序列，其状态定义多了一维，表示匹配阶段，这就可以看成是一个状态机dp了。</p>
+<p>下面思考关键的状态转移：</p>
+<ul>
+<li>1111...1状态，只可以由111...1状态转移过来</li>
+<li>111..12...2状态，可以由111..1状态和111..12...2转移过来</li>
+<li>111..12...21..1状态，可以由111...12...2状态和111..12...21...1转移过来</li>
+<li>111..12...21..12..2状态，可以由111..12...21...1状态和11...12...21...12...2转移过来</li>
+</ul>
+<p>故</p>
+<pre><code class="language-cpp">if (a[i] == 1) {
+    dp[i][1] = dp[i - 1][1] + 1;
+    dp[i][2] = dp[i - 1][2];
+    dp[i][3] = max(dp[i - 1][2], dp[i - 1][3]) + 1;
+    dp[i][4] = dp[i - 1][4];
+} else {
+    dp[i][1] = dp[i - 1][1];
+    dp[i][2] = max(dp[i - 1][1], dp[i - 1][2]) + 1;
+    dp[i][3] = dp[i - 1][3];
+    dp[i][4] = max(dp[i - 1][3], dp[i - 1][4]) + 1;
+}
+</code></pre>
+<p>初始化全部为0即可。最后的答案只要统计<code>max(dp[n][3], dp[n][4])</code>即可。</p>
+<p>使用原地滚动数组优化的时候，注意状态刷新的顺序。不过略加观察可以发现这个问题无论以什么顺序刷新都能保证滚动数组的正确性。</p>
+<blockquote>
+<p>其实这个题还有另一种做法：考虑到要求的是最长的1...12...21..12...2子序列，</p>
+</blockquote>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E7%8A%B6%E6%80%81%E6%9C%BAdp">状态机dp</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a href="#%E5%87%A0%E4%B8%AA%E4%BE%8B%E5%AD%90">几个例子</a>
+<ul>
+<li><a href="#%E5%8C%BA%E9%97%B4%E7%BF%BB%E8%BD%AC%E6%9C%80%E9%95%BF%E9%9D%9E%E9%80%92%E5%87%8F%E5%AD%90%E5%BA%8F%E5%88%97">区间翻转最长非递减子序列</a>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F">题目大意</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/ping-heng-shu/">
+              <h3 class="post-title">
+                平衡树
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

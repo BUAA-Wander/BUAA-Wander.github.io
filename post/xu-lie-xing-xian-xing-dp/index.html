@@ -1,0 +1,199 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>序列型线性dp | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634391748301">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="序列型线性dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="序列型线性dp
+问题定义
+此处的“序列型线性dp”，指的是以最长上升子序列（LIS）为代表的dp类问题（LIS问题应该都比较熟悉了吧）。
+此类问题会给定一个序列，需要我们选出一个子序列或者去掉一些数，使得取出的部分或者剩下的部分，元素与元素..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634391748301" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              序列型线性dp
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-16
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="序列型线性dp">序列型线性dp</h1>
+<h2 id="问题定义">问题定义</h2>
+<p>此处的“序列型线性dp”，指的是以最长上升子序列（<code>LIS</code>）为代表的dp类问题（<code>LIS</code>问题应该都比较熟悉了吧）。</p>
+<p>此类问题会给定一个序列，需要我们选出一个子序列或者去掉一些数，使得取出的部分或者剩下的部分，元素与元素之间满足一定的性质，且“评分最高”。</p>
+<p>仍然以最长上升子序列问题为例子，根据上一段的描述，我们可以发现这个问题需要我们选出一些数，使得它们具有单调递增的性质，且选出来的数的个数作为评分，希望最大化这个评分。</p>
+<blockquote>
+<p>在这里插一层楼，记录一下LIS问题的贪心解法。</p>
+<p>假设现在分析到了 <code>a[i]</code>， 我们不妨看一看之前的子序列们的情况，显然，如果前面有一个子序列以 <code>x</code> 结尾，且 <code>x &gt;= a[i]</code>，那么把 <code>x</code> 替换成 <code>a[i]</code> 不会使得答案更差。如果 <code>a[i]</code> 比所有的结尾都大，那么可以把 <code>a[i]</code> 连接到最长的那个子序列后面。</p>
+<p>下面我们证明这种贪心的做法构造出的最长上升子序列的长度 <code>ans</code> 和实际的最长上升子序列 <code>max</code> 的长度是相等的。利用判断两个数相等的策略，只要证明 <code>ans &lt;= max</code> 且 <code>ans &gt;= max</code> 即可。显然有 <code>ans &lt;= max</code>，只要证明 <code>ans &gt;= max</code> 即可。我们在这里使用调整法，考虑如何把最优解去调整成贪心解。</p>
+<p>假设最优解不是按照我们的贪心策略来的，那么最优解的最长上升子序列中，我们考虑这两个策略的第一个不同的元素，由于最优解不是用贪心策略得到的，假设这个位置贪心解是 <code>x</code>，最优解是 <code>y</code>，前一个数是 <code>z</code>，那么 <code>x &gt;= z</code> 且 <code>y &gt;= z</code> 且 <code>x &lt;= y</code> ，显然，如果把最优解中这里的 <code>y</code> 换成 <code>x</code>，那么最优解中后面的部分不需要改变，仍然是一个上升子序列，且是最长的。一直这样做下去，我们可以把最优解调整成贪心解，且二者长度相同。所以贪心解就是其中一个最优解。</p>
+<p>考虑需要用几个单调不增的子序列才能覆盖整个序列，我们可以采用类似的贪心思路：对于一个数 <code>a[i]</code> ，如果前面有比它大的，那么就接到比它大的最小的数后面，否则就单开一个序列。假设贪心出来发现需要的子序列个数是 <code>ans</code>，最优解是 <code>min</code>，那么我们也可以从左往右去找到第一个贪心解与最优解不同的位置，那么在最优解中，这个数后面跟着的子序列肯定可以接到前面任何大于等于这个数的数后面，特别的，可以接到比这个数大的最小的数后面，转化为贪心解，结果不会变差，一直这样做下去会发现贪心解其实确实是一个最优解。</p>
+</blockquote>
+<h2 id="建模与求解方法归纳">建模与求解方法归纳</h2>
+<p>通过总结可以发现，此类问题拥有类似的状态设计方式，下面我们用几个问题分析一下此类问题的建模方式。</p>
+<p><a href="https://www.acwing.com/problem/content/3502/">3499. 序列最大收益 - AcWing题库</a></p>
+<p>这个是夏季每日一题第三天的题目，题目大意是有一个序列，序列中所有的元素都在<code>1-n</code>之间，可以把这些元素的值看成图的结点号。然后给出了含有<code>n</code>个点的完全图的所有边的边权。接下来，题目希望我们按照序列描述的结点顺序沿着边走，可以途中跳过至多<code>k</code>次结点，问这样走完边权之和最大是多少。</p>
+<p>这个问题相当于要我们选出一些数，然后按照顺序去走图（性质），计算边权之和（评分），希望边权之和最大。</p>
+<p>状态设计上，可以考虑设<code>dp[i][j]</code>为以序列中第<code>i</code>个结点结尾的，之前跳过过<code>j</code>个结点的走法集合中，经过的边权之和最大的那个走法的边权和。考虑其能够从哪些类状态转移过来，容易发现似乎小于<code>i</code>的序列中的前面那些结点都有可能转移过来，类似朴素的<code>LIS</code>求法的转移。不过这里有跳过次数的限制，所以<code>j</code>不能超过<code>k</code>。</p>
+<p>状态转移方程为：<code>dp[i][j] = max(dp[l][j - (i - l - 1)] + w[a[l]][a[i]]), l &lt; i j - (i - l - 1) &gt;= 0</code></p>
+<p>考虑一下初始化，<code>dp[1][0] = dp[1][1] = 0</code>无疑问，<code>dp[1][i] i &gt; 1</code> 都没意义，应该设成负无穷大。至于其他的<code>dp</code>数组，也设为负无穷大即可，不影响计算，这样边界条件就搞好了。</p>
+<p>对于最后要求的答案，由于非法的状态我们不做转移，且跳跃操作可以跳过任何结点，所以我们可以求<code>dp</code>数组中的最大值，将其作为答案。这样就可以写代码了。</p>
+<blockquote>
+<p>前女友在去年同期曾经给我发过一个类似的dp问题，可是我自己做不出来，还因为“简单”这个词和她吵了一架，呵呵，可能当时我还是太弱了吧。</p>
+</blockquote>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%BA%8F%E5%88%97%E5%9E%8B%E7%BA%BF%E6%80%A7dp">序列型线性dp</a>
+<ul>
+<li><a href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89">问题定义</a></li>
+<li><a href="#%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95%E5%BD%92%E7%BA%B3">建模与求解方法归纳</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/zhuang-tai-ji-dp/">
+              <h3 class="post-title">
+                状态机dp
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

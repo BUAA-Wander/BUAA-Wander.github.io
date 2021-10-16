@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>树形dp | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634390174283">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634391748301">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="树形dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -11,12 +11,12 @@
 
 
 
-    <meta name="description" content="树形dp
+    <meta name="description" content="记录树形dp的常见考法与需要注意的细节，目前包含树的直径与中心，树上背包，父子结点选择限制型dp，二次扫描与换根。
+
+树形dp
 概述
 dp在树形结构上的实现。
-一般使用记忆化搜索实现，dp的计算与dfs记忆化保证拓扑序是分开的，所以dfs的时候不需要传递dp的状态参数（但是阶段肯定是要传的）。
-树结构上想不到做法的时候，可以考虑退化成链的情况。
-常见考法与..." />
+一般使用记忆化搜索实现，dp的计算与dfs记忆化保证拓扑序是分开的，所以dfs的..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -26,7 +26,7 @@ dp在树形结构上的实现。
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634390174283" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634391748301" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -86,14 +86,16 @@ dp在树形结构上的实现。
                 2021-06-30
               </span>
               <span>
-                11 min read
+                12 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h1 id="树形dp">树形dp</h1>
+                <p>记录树形dp的常见考法与需要注意的细节，目前包含树的直径与中心，树上背包，父子结点选择限制型dp，二次扫描与换根。</p>
+<!--more-->
+<h1 id="树形dp">树形dp</h1>
 <h2 id="概述">概述</h2>
 <p>dp在树形结构上的实现。</p>
 <p>一般使用记忆化搜索实现，<code>dp</code>的计算与<code>dfs</code>记忆化保证拓扑序是分开的，所以<code>dfs</code>的时候不需要传递<code>dp</code>的状态参数（但是阶段肯定是要传的）。</p>

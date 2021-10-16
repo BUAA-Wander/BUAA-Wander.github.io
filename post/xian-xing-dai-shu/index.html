@@ -1,0 +1,271 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>线性代数 | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634391748301">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="线性代数 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="线性代数
+高斯消元
+模板（可以求唯一解，判无解和无穷多组解）：
+#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 110;
+const double ep..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634391748301" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              线性代数
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-16
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="线性代数">线性代数</h1>
+<h2 id="高斯消元">高斯消元</h2>
+<p>模板（可以求唯一解，判无解和无穷多组解）：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 110;
+const double eps = 1e-5;
+
+double a[N][N];
+int n;
+
+void calc(int x, int y, double c) {
+    for (int i = 1; i &lt;= n + 1; i++) {
+        a[y][i] += (a[x][i] * c);
+    }
+}
+
+int main() {
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= n + 1; j++) {
+            cin &gt;&gt; a[i][j];
+        }
+    }
+
+    for (int i = 1; i &lt;= n; i++) {
+        // 如果第i行第i列是0，则找下面其他行的第i列非0的行，交换一下
+        if (fabs(a[i][i]) &lt; eps) {
+            for (int j = i + 1; j &lt;= n; j++) {
+                if (fabs(a[j][i]) &gt; eps) {
+                    swap(a[j], a[i]);
+                    break;
+                }
+            }
+        }
+
+        // 如果第i列都是0，就不管了，最后再说
+        if (fabs(a[i][i]) &lt; eps) {
+            continue;
+        }
+
+        // 把除了本行之外的其他行的第i列都消成0
+        for (int j = 1; j &lt; i; j++) {
+            if (fabs(a[j][i]) &gt; eps) {
+                calc(i, j, -a[j][i] / a[i][i]);
+            }
+        }
+
+        for (int j = i + 1; j &lt;= n; j++) {
+            if (fabs(a[j][i]) &gt; eps) {
+                calc(i, j, -a[j][i] / a[i][i]);
+            }
+        }
+    }
+
+    bool flag = true;
+    for (int i = 1; i &lt;= n; i++) {
+        if (fabs(a[i][i]) &lt; eps) {
+            flag = false;
+        }
+    }
+
+    if (flag) {
+        for (int i = 1; i &lt;= n; i++) {
+            printf(&quot;%.2lf\n&quot;, a[i][n + 1] / a[i][i]);
+        }
+    } else {
+        bool s = true;
+        for (int i = 1; i &lt;= n; i++) {
+            if (fabs(a[i][i]) &lt; eps) {
+                if (fabs(a[i][n + 1]) &gt; eps) {
+                    puts(&quot;No solution&quot;);
+                    s = false;
+                    break;
+                }
+            }
+        }
+        if (s) {
+            puts(&quot;Infinite group solutions&quot;);
+        }
+    }
+
+    return 0;
+}
+</code></pre>
+<p>具体应用就是解方程组，求行列式，求矩阵的逆等。对于解方程组，需要对问题进行转化获得解方程组的需求，构造出正确的需要求解的方程组。</p>
+<h2 id="矩阵乘法">矩阵乘法</h2>
+<p>本题要求的是某个给定的串在多少个长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的串中没出现过，是一个带有相对禁止位置的排列问题。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0">线性代数</a>
+<ul>
+<li><a href="#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83">高斯消元</a></li>
+<li><a href="#%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95">矩阵乘法</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/rong-chi-yuan-li/">
+              <h3 class="post-title">
+                容斥原理
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

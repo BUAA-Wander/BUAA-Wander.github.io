@@ -1,0 +1,267 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>扫描线 | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634391748301">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="扫描线 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="扫描线
+从直观上讲，扫描线算法就是拿一条线，扫过整个图形，从而计算出图形的周长或面积。
+最经典的例子：平面上有很多个矩形，矩形的长宽要么平行于xxx轴，要么平行于yyy轴，矩形可以互相重叠，问这些矩形覆盖了多大的面积。
+
+如图就是一组符合要..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634391748301" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              扫描线
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-16
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="扫描线">扫描线</h1>
+<p>从直观上讲，扫描线算法就是拿一条线，扫过整个图形，从而计算出图形的周长或面积。</p>
+<p>最经典的例子：平面上有很多个矩形，矩形的长宽要么平行于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>轴，要么平行于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>轴，矩形可以互相重叠，问这些矩形覆盖了多大的面积。</p>
+<figure data-type="image" tabindex="1"><img src="../pic/%E6%89%AB%E6%8F%8F%E7%BA%BF.png" alt="扫描线" loading="lazy"></figure>
+<p>如图就是一组符合要求的矩形，假设我们要计算的就是这个的面积。</p>
+<p>我们考虑用一条垂直于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>轴的直线，从所有矩形中最左边那条边开始向右移动，一直到最右边的那条边，则这条直线和被覆盖区域存在一些交点，并且在一定范围内，这些交点的纵坐标是不变的。例如，图中标注<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的横轴部分，在这一段移动直线的时候，纵向的覆盖始终是不变的，所以可以直接长<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span></span></span></span>宽去统计贡献。</p>
+<p>接下来考虑到底在什么条件下纵向的覆盖长度不变。通过看图可以发现，<strong>每当扫描线经过一条矩形的垂直于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>轴的边的时候，覆盖就可能改变</strong>。具体来说，<strong>经过某个矩形的左边的时候，一般会增加覆盖（不增加可能是因为之前就覆盖过了），经过某个矩形的右边的时候，可能会减少覆盖（不减少可能是因为还有其他矩形在覆盖）</strong>。这样不变量以及变化时机就都找到了。</p>
+<p>那么我们解决这个问题的扫描线算法就来了：</p>
+<ul>
+<li>
+<p>对于读入的矩形，分成两条线段存储其两条垂直于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>轴的边，标记是左边还是右边，这样会得到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">n</span></span></span></span>条边。</p>
+</li>
+<li>
+<p>对边进行排序，保证等会儿扫描线是按照从左到右的顺序扫过的。</p>
+</li>
+<li>
+<p>开一个统计纵向贡献的数组，初始化为全<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，从左到右枚举边</p>
+<ul>
+<li>
+<p>先计算一下刚扫过的部分的面积，具体来说是<code>(seg[i].x - seg[i - 1].x) * cnt</code>，<code>cnt</code>表示贡献数组中不是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>的项数</p>
+</li>
+<li>
+<p>如果是左边，则在相应的纵坐标范围增加<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的贡献（区间加）</p>
+</li>
+<li>
+<p>如果是右边，则在相应的纵坐标范围减少<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的贡献（区间减）</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>最终答案就算出来了。</p>
+<p>容易看出，在实现的时候存在两个问题：</p>
+<ul>
+<li>如果真的按照纵坐标去修改贡献数组，无法处理超大值域以及浮点数，所以需要离散化。</li>
+<li>修改和统计贡献可以使用线段树优化。</li>
+</ul>
+<p>最基础的扫描线算法就是这样了。</p>
+<p>基于<a href="https://www.acwing.com/problem/content/description/1230/">本题</a>给出不加优化的代码模板：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 10010;
+const int M = 10010;
+
+typedef struct {
+	int x, y1, y2, flag;
+} Seg;
+
+Seg segs[2 * N];
+int n, c[M], segcnt = 0;
+
+void add_seg(int x, int y1, int y2, int flag) {
+	segs[++segcnt].x = x;
+	segs[segcnt].y1 = y1;
+	segs[segcnt].y2 = y2;
+	segs[segcnt].flag = flag;
+}
+
+bool cmp(const Seg &amp;a, const Seg &amp;b) {
+	return a.x &lt; b.x;
+}
+
+int main() {
+	int x1, y1, x2, y2;
+	scanf(&quot;%d&quot;, &amp;n);
+	for (int i = 1; i &lt;= n; i++) {
+		scanf(&quot;%d%d%d%d&quot;, &amp;x1, &amp;y1, &amp;x2, &amp;y2);
+		add_seg(x1, y1, y2, 1);
+		add_seg(x2, y1, y2, -1);
+	}
+	
+	sort(segs + 1, segs + segcnt + 1, cmp);
+	
+	for (int i = segs[1].y1; i &lt; segs[1].y2; i++) { // 注意边界
+		c[i] += segs[1].flag;
+	}
+	
+	int ans = 0;
+	for (int i = 2; i &lt;= segcnt; i++) {
+		int high = 0;
+		for (int j = 0; j &lt; M; j++) {
+			if (c[j] &gt; 0) {
+				high++;
+			}
+		}
+		ans += (high * (segs[i].x - segs[i - 1].x));
+		for (int j = segs[i].y1; j &lt; segs[i].y2; j++) {
+			c[j] += segs[i].flag;
+		}
+	}
+	
+	printf(&quot;%d\n&quot;, ans);
+	return 0;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%89%AB%E6%8F%8F%E7%BA%BF">扫描线</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/te-shu-shu-lie/">
+              <h3 class="post-title">
+                特殊数列
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,419 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>图的连通性问题 | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634391748301">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="图的连通性问题 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="图的连通性
+有向图的连通性
+算法流程稍复杂，细节很多。
+难点在于缩点之后做什么，为什么答案是这样，猜出或者证明出需要统计的答案的表达式比较困难
+有向图的极大强连通子图叫做强连通分量
+求强连通分量能把有向图转化为有向无环图
+有向无环图有优秀的..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634391748301" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              图的连通性问题
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-16
+              </span>
+              <span>
+                10 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="图的连通性">图的连通性</h1>
+<h2 id="有向图的连通性">有向图的连通性</h2>
+<p>算法流程稍复杂，细节很多。</p>
+<p>难点在于缩点之后做什么，为什么答案是这样，猜出或者证明出需要统计的答案的表达式比较困难</p>
+<p>有向图的极大强连通子图叫做强连通分量</p>
+<p>求强连通分量能把有向图转化为有向无环图</p>
+<p>有向无环图有优秀的性质：有向无环图可以拓扑排序，可以做dp、递推</p>
+<p>按照dfs的顺序求强连通分量</p>
+<p>图中的四类边：</p>
+<ul>
+<li>树枝边，是搜索树中的边</li>
+<li>前向边(x,y)，在搜索树中x是y的祖先</li>
+<li>后向边（反之，一定是向上走）</li>
+<li>横叉边，在图中横叉边总是指向“左”，指向“右”的边会在dfs中马上被搜到</li>
+</ul>
+<p>存在后向边指向祖先节点时存在一个强连通分量（直接走到某个祖先）</p>
+<p>存在横叉边，然后横叉边可以走到祖先节点（间接走到某个祖先）</p>
+<p>时间戳：</p>
+<p><code>dfn[u]</code>遍历到<code>u</code>的时间</p>
+<p><code>low[u]</code>，从<code>u</code>开始走所能够遍历到的最小的时间戳</p>
+<p><code>u</code>是某个强连通分量中的最高点等价于<code>dfn[u] = low[u]</code>（即不能够再往上走了）</p>
+<p><mark><strong>下面是个错的板子</strong></mark></p>
+<pre><code class="language-c++">void tarjan(int u) {
+    dfn[u] = low[u] = ++timestamp;
+    s[++top] = u, instack[u] = true;
+    for (int i = head[u]; i &gt;= 0; i = edge[i].nxt) {
+        int j = edge[i].to;
+        if (!dfn[j]) {
+            tarjan(j);
+            low[u] = min(low[u], low[j]);
+        } else if (instack[j]){
+            low[u] = min(low[u], dfn[j]);
+        }
+    }
+    if (dfn[u] == low[u]) {
+        ++scccnt;
+        int t;
+        do {
+            t = s[top--];
+            instack[t] = false;
+            id[t] = scccnt;
+        } while (u != t);
+    }
+}
+</code></pre>
+<p>缩点：遍历所有点，遍历所有邻边，如果x,y不在同一个连通块，就在id(x)和id(y)之间加一条边</p>
+<p>连通分量编号<strong>递减</strong>的顺序就是拓扑序</p>
+<p>有时候缩点没有必要显式建出来新的图</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 1e4 + 9;
+const int M = 5e4 + 9;
+
+vector&lt;int&gt; g[N];
+stack&lt;int&gt; s;
+int dfn[N], low[N], id[N], sz[N], timestamp = 0;
+int outdeg[N];
+bool vis[N], instack[N];
+int n, m, scc_cnt = 0;
+
+void tarjan(int u) {
+    vis[u] = true;
+    instack[u] = true;
+    s.push(u);
+    dfn[u] = low[u] = ++timestamp;
+    int size = g[u].size();
+    for (int i = 0; i &lt; size; i++) {
+        int j = g[u][i];
+        if (!dfn[j]) {
+            tarjan(j);
+            low[u] = min(low[u], low[j]);
+        } else if (instack[j]) {
+            low[u] = min(low[u], dfn[j]);
+        }
+    }
+    if (dfn[u] == low[u]) {
+        scc_cnt++;
+        int v;
+        do {
+            v = s.top();
+            s.pop();
+            id[v] = scc_cnt;
+            instack[v] = false;
+            sz[scc_cnt]++;
+        } while (u != v);
+    } 
+}
+
+int main() {
+    int x, y;
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+    for (int i = 1; i &lt;= m; i++) {
+        scanf(&quot;%d %d&quot;, &amp;x, &amp;y);
+        g[x].push_back(y);
+    }
+    for (int i = 1; i &lt;= n; i++) {
+        if (!vis[i]) {
+            tarjan(i);
+        }
+    }
+    for (int i = 1; i &lt;= n; i++) {
+        int size = g[i].size();
+        for (int j = 0; j &lt; size; j++) {
+            int u = g[i][j];
+            if (id[i] != id[u]) {
+                outdeg[id[i]]++;
+            }
+        }
+    }
+    int cnt = 0, ans = 0;
+    for (int i = 1; i &lt;= scc_cnt; i++) {
+        if (!outdeg[i]) {
+            cnt++;
+            ans += sz[i];
+            if (cnt &gt; 1) {
+                ans = 0;
+                break;
+            }
+        }
+    }
+    printf(&quot;%d\n&quot;, ans);
+    return 0;
+}
+</code></pre>
+<h2 id="无向图的连通性">无向图的连通性</h2>
+<p>类似强连通分量，无向图拥有双连通分量，分为边双连通分量和点双连通分量。</p>
+<h3 id="边双连通分量">边双连通分量</h3>
+<h4 id="基本概念">基本概念</h4>
+<p>桥：如果无向图中存在一条边，删去该边之后整个图不再连通，那么这条边叫做桥。</p>
+<p>边双连通分量：极大的不含有桥的连通子图叫做边双连通分量。</p>
+<p>边双连通分量的几条简单的性质：</p>
+<ul>
+<li>由于边双连通分量不存在桥，所以不管删掉边双中的哪条边都能保证分量连通。</li>
+<li>一个图是边双<strong>等价于</strong>该图的任意两点之间存在至少两条不包括公共边的路径。</li>
+<li>树上的每条边都是桥；按照边双对图进行缩点之后所有的边都是桥。通过加边使得树中没有度为1的点，即可使得得到的图为边双。</li>
+</ul>
+<h4 id="桥的判定">桥的判定</h4>
+<p>我们仍然采用上面求强连通分量的<code>dfn, low</code>的定义。</p>
+<p>考虑一条边<code>(x, y)</code>，从<code>x</code>遍历到<code>y</code>，<code>y</code>是还没有访问过的点。</p>
+<ul>
+<li>倘若<code>dfn[x] &lt; low[y]</code> ，就意味着<code>y</code>结点不可能回溯到<code>x</code>以及<code>x</code>的上方，所以如果删除<code>(x, y)</code>，那么图必然不会连通。所以这个时候<code>(x, y)</code>就是桥。</li>
+<li>倘若<code>dfn[x] &gt;= low[y]</code>，那么意味着<code>y</code>能够回溯到<code>x</code>甚至更上面，那么删除<code>(x, y)</code>也不影响<code>x</code>和<code>y</code>的连通性，图当然还是连通的，所以这个时候不是桥。</li>
+</ul>
+<p>如果使用的是链式前向星存图的话，我们可以使用一个<code>bool</code>数组标记一下哪些边是桥。</p>
+<p><strong>如果x是从边from到达的，那么在从x走向别的点的时候，不能再走from的反边!</strong></p>
+<p>重边？</p>
+<blockquote>
+<p>可以画图模拟一下，如果能走反边的话，那么我可以刚走完<code>(x, y)</code>就走<code>(y, x)</code>，用<code>x</code>更新<code>y</code>，对于每个点都这么办，那么最后在原图上连通的所有的<code>low[x]</code>都是相等的，这样就判不出来桥了。</p>
+</blockquote>
+<h4 id="求边双">求边双</h4>
+<p>有两种思路：</p>
+<ul>
+<li>删除所有的桥，则剩下的都是边双。</li>
+<li>利用类似求强连通分量的做法，使用栈来存储边双中的点。</li>
+</ul>
+<p>对于第二种思路，仍然以<code>dfn[u] == low[u]</code>作为该点是边双“顶点”的标志（因为这个时候说明<code>u</code>最多只能回溯到他自己，所以<code>u</code>就是顶点）。</p>
+<h4 id="缩点">缩点</h4>
+<p>如果判断桥的时候已经完成了标记桥，且求边双的时候求得了每个结点归属于哪个边双，那么缩点只需要遍历一遍全图，如果<code>id[x] != id[y]</code>，则连接一条无向边<code>(id[x], id[y])</code>即可。当然，根据题目的要求，我们有时候可能可以不把缩点之后的图建出来，只需要统计缩点之后的图的一些信息即可。</p>
+<p>按照边双进行缩点之后，会形成森林（如果原来的图是连通的，那么得到的就是树）。</p>
+<h4 id="代码模板">代码模板</h4>
+<pre><code class="language-cpp">void tarjan(int u, int from) {
+    // from是u的入边
+    dfn[u] = low[u] = ++timestamp;
+    s.push(u);
+
+    for (int i = head[u]; i &gt;= 0; i = edge[i].nxt) {
+        int j = edge[i].to;
+        if (!dfn[j]) {
+            tarjan(j, i);
+            low[u] = min(low[u], low[j]);
+            // 桥的判定条件
+            if (dfn[u] &lt; low[j]) {
+                isbridge[i] = isbridge[i ^ 1] = true;
+            }
+        } else if (i != (from ^ 1)) {
+            // 不能够用父亲的时间戳更新孩子的时间戳
+            low[u] = min(low[u], dfn[j]);
+        }
+    }
+
+    // 边双顶点的判定条件
+    if (dfn[u] == low[u]) {
+        dcc_cnt++;
+        int v;
+        do {
+            v = s.top();
+            s.pop();
+            id[v] = dcc_cnt;
+        } while (v != u);
+    }
+}
+</code></pre>
+<h3 id="点双连通分量">点双连通分量</h3>
+<h4 id="基本概念-2">基本概念</h4>
+<p>割点：如果把无向图中某个点及其边删去之后图变得不连通，那么这个点叫做割点。</p>
+<p>点双连通分量：<mark>TODO</mark></p>
+<p>割点和点双的几条简单的性质与常见误解：</p>
+<ul>
+<li>每个割点在缩点时至少属于两个点双。</li>
+<li>两个割点之间的边<strong>不一定</strong>是桥。</li>
+<li>桥的两个端点<strong>不一定</strong>是割点。（点双和边双没有本质关联）</li>
+</ul>
+<h4 id="割点的判定">割点的判定</h4>
+<p>感性思考一下，目前有一条边<code>(x, y)</code>，从<code>x</code>走到<code>y</code>，类似边双，考虑<code>dfn[x]</code>和<code>low[y]</code>的关系。若<code>dfn[x] &lt;= low[y]</code> ，那么说明<code>y</code>只能回溯到<code>x</code>或者<code>x</code>的下面，那么，删去<code>x</code>之后，似乎<code>y</code>和其他的部分没法连通了。可是，倘若<code>x</code>为根节点，且只和<code>y</code>相连，那么事实上剩下的部分还是连通的，所以并不能简单的只看<code>dfn[x]</code>和<code>low[y]</code>的关系，还要考虑<code>x</code>是否是根节点。倘若<code>x</code>真的是根节点，那么，什么时候<code>x</code>才是割点呐？显然需要其有至少两个“孩子”<code>y1, y2</code>，满足<code>dfn[x] &lt;= low[y1] &amp;&amp; dfn[x] &lt;= low[y2]</code>，这样才能保证删除<code>x</code>之后整个图不再连通。</p>
+<p>综上，判断割点是这样做的：</p>
+<p>考虑边<code>(x, y)</code>，从<code>x</code>走到<code>y</code></p>
+<ul>
+<li>若<code>x</code>是“根节点”，则当至少存在两个“孩子”<code>y1, y2</code>，满足<code>dfn[x] &lt;= low[y1] &amp;&amp; dfn[x] &lt;= low[y2]</code>时，<code>x</code>是割点。</li>
+<li>若<code>x</code>不是“根节点”，则当<code>dfn[x] &lt;= low[y]</code>时，<code>x</code>是割点。</li>
+</ul>
+<p>在代码实现时，遍历从<code>x</code>出发的所有出边的时候，可以考虑统计满足<code>dfn[x] &lt;= low[y]</code>的<code>y</code>的个数，最后根据是否为根节点以及统计结果判断<code>x</code>是不是割点。</p>
+<blockquote>
+<p><strong>在维护<code>low[x]</code>的时候，如果<code>y</code>是已经访问过的点，一定要用<code>dfn[y]</code>去更新<code>low[x]</code>，否则会导致一些割点找不出来</strong>。而在求<code>Scc</code>和<code>e-Dcc</code> 时，使用<code>low[y]</code>和<code>dfn[y]</code>是一样的。可以画图模拟一下。</p>
+<p>在判定割点的时候，走入边的反向边是不影响结果的。因为走反向边的时候，刷新时为<code>low[x] = min(low[x], dfn[y])</code> ，倘若本来<code>low[x] &lt;= dfn[y]</code>，那没啥；倘若<code>low[x] &gt; dfn[y]</code>，且不存在其他的小于<code>dfn[y]</code>的可以更新的值了，由于我们最后统计的是有多少小于等于，这样一来至多是小于变成小于等于，不影响结果。</p>
+</blockquote>
+<h4 id="求点双">求点双</h4>
+<h4 id="缩点-2">缩点</h4>
+<h4 id="代码模板-2">代码模板</h4>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%9B%BE%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7">图的连通性</a>
+<ul>
+<li><a href="#%E6%9C%89%E5%90%91%E5%9B%BE%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7">有向图的连通性</a></li>
+<li><a href="#%E6%97%A0%E5%90%91%E5%9B%BE%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7">无向图的连通性</a>
+<ul>
+<li><a href="#%E8%BE%B9%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F">边双连通分量</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a href="#%E6%A1%A5%E7%9A%84%E5%88%A4%E5%AE%9A">桥的判定</a></li>
+<li><a href="#%E6%B1%82%E8%BE%B9%E5%8F%8C">求边双</a></li>
+<li><a href="#%E7%BC%A9%E7%82%B9">缩点</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF">代码模板</a></li>
+</ul>
+</li>
+<li><a href="#%E7%82%B9%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F">点双连通分量</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-2">基本概念</a></li>
+<li><a href="#%E5%89%B2%E7%82%B9%E7%9A%84%E5%88%A4%E5%AE%9A">割点的判定</a></li>
+<li><a href="#%E6%B1%82%E7%82%B9%E5%8F%8C">求点双</a></li>
+<li><a href="#%E7%BC%A9%E7%82%B9-2">缩点</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF-2">代码模板</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/sao-miao-xian/">
+              <h3 class="post-title">
+                扫描线
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,314 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Codeforces Round 729 div2 | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634391748301">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Codeforces Round 729 div2 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="CF Round 729 div2补题
+
+Codeforces Round 729 div2
+D
+题目大意
+给一个序列aaa和一个空集TTT，序列aaa的元素有两种形式，分别代表对集合 TTT 不同的操作：
+
++ x，向多重集合 TTT 中..." />
+    <meta name="keywords" content="Contest" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634391748301" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Codeforces Round 729 div2
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-07-04
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://BUAA-Wander.github.io/tag/vGPlAgfuK/" class="post-tag">
+                  # Contest
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>CF Round 729 div2补题</p>
+<!--more-->
+<h1 id="codeforces-round-729-div2">Codeforces Round 729 div2</h1>
+<h2 id="d">D</h2>
+<h3 id="题目大意">题目大意</h3>
+<p>给一个序列<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>和一个空集<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>，序列<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>的元素有两种形式，分别代表对集合 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 不同的操作：</p>
+<ul>
+<li><code>+ x</code>，向多重集合 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 中插入一个元素<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span></li>
+<li><code>-</code>，删除多重集合中最小的元素，如果是空集，则什么都不做。</li>
+</ul>
+<p>考虑<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>的所有子序列，这些子序列分别对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 进行操作，各自可以得到最终的集合 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>T</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">T&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span> ，求所有的 $ T'$ 的所有元素的和。</p>
+<h3 id="思路">思路</h3>
+<p>能看出很多重复计算，所以容易想到dp。</p>
+<p>dp时不是统计每个子序列的和，而是统计每个元素在多少个子序列中出现过（考虑每个元素的贡献次数），这算是一个比较常用的技巧。</p>
+<p>考虑<code>a[i]</code>如何才能贡献在一个序列中：在选了<code>a[i]</code>之后，后面出现的<code>-</code>不能把<code>a[i]</code>排除掉。</p>
+<p>即在<code>a[i]</code>之前出现的小于等于<code>a[i]</code>的数的个数随着选择<code>a[i]</code>之后元素时，始终保证存在小于等于<code>a[i]</code>的数。</p>
+<p>下面是dp的设计：</p>
+<ul>
+<li>
+<p>设<code>dp[i][j]</code>的集合是分析到第<code>i</code>个元素为止，目前维护的集合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>中还剩下<code>j</code>个比<code>x</code>（我们枚举所有的<code>x = a[i]</code>）小的数的子序列的集合</p>
+</li>
+<li>
+<p><code>dp[i][j]</code>表示的集合的属性是集合的大小</p>
+</li>
+<li>
+<p>考虑第<code>i</code>个元素是什么：</p>
+<ul>
+<li>第<code>i</code>个元素是<code>-</code>，则<code>dp[i][j] = dp[i - 1][j + 1] + dp[i - 1][j]</code>  ，这两项分别代表选择这个<code>-</code>以及不选这两种情况。<strong>另外</strong>，如果是<code>j == 0</code>且当前还没枚举到<code>x</code>那个位置，那么还可以再加一个<code>dp[i - 1][j]</code>，因为删了也不影响。</li>
+<li>第<code>i</code>个元素是<code>+ y</code>，考虑<code>x</code>和<code>y</code>的大小关系
+<ul>
+<li><code>y &gt; x</code> （先比较值，值相同比较rank，rank小的按照大于处理），则<code>dp[i][j] = dp[i - 1][j] + dp[i - 1][j]</code> ，两项分别代表不选和选。</li>
+<li><code>y &lt; x</code>，则<code>dp[i][j] = dp[i - 1][j] + dp[i - 1][j - 1]</code>，两项分别代表不选和选，如果这个时候<code>j == 0</code> ，那么就不能算选择该数的情况，不然就转移到状态<code>-1</code>了，而状态<code>-1</code>也代表了我们目标的那个数已经被删掉了。</li>
+<li><code>y == x</code>，恰好是我们要选的这个元素，那只能选，所以<code>dp[i][j] = dp[i - 1][j]</code> 。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>初始化的考虑：</p>
+<ul>
+<li>本题的边界情况是<code>dp[i][0]</code> ，其含义是分析到第<code>i</code>个元素为止，目前维护的集合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>中没有比<code>x</code>小的子序列的集合。显然<code>dp[0][0] = 1</code>，为空集。</li>
+</ul>
+</li>
+<li>
+<p>答案的计算：</p>
+<ul>
+<li>显然，对于<code>x</code>来说，算出来的每个<code>dp[n][i]</code>中的序列都是包含有<code>x</code>的，所以每枚举一个<code>x</code>，就可以贡献<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><mi>x</mi><mo>×</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">\sum_{i = 0} ^{n}x \times dp[n][i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.104002em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">n</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span></li>
+</ul>
+</li>
+</ul>
+<h3 id="代码">代码</h3>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 510;
+const int M = 510;
+const int mod = 998244353;
+
+typedef long long ll;
+
+ll n, dp[N][M], a[N];
+bool is_del[N];
+
+int main() {
+    scanf(&quot;%lld&quot;, &amp;n);
+
+    char op[2];
+    for (int i = 1; i &lt;= n; i++) {
+        scanf(&quot;%s&quot;, op);
+        if (op[0] == '+') {
+            scanf(&quot;%lld&quot;, &amp;a[i]);
+        } else {
+            is_del[i] = true;
+        }
+    }
+
+    ll ans = 0;
+    for (int k = 1; k &lt;= n; k++) {
+        if (is_del[k]) continue;
+
+        ll x = a[k];
+        memset(dp, 0, sizeof dp);
+        dp[0][0] = 1;
+        for (int i = 1; i &lt;= n; i++) {
+            for (int j = 0; j &lt;= i; j++) {
+                if (is_del[i]) {
+                    dp[i][j] = (dp[i - 1][j + 1] + dp[i - 1][j]) % mod;
+                    if (i &lt; k &amp;&amp; j == 0) {
+                        dp[i][j] = (dp[i][j] + dp[i - 1][j]) % mod;
+                    }
+                } else {
+                    if (a[i] &lt; x) {
+                        dp[i][j] += dp[i - 1][j];
+                        if (j &gt;= 1) {
+                            dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % mod;
+                        }
+                    } else if (a[i] &gt; x) {
+                        dp[i][j] = (dp[i - 1][j] + dp[i - 1][j]) % mod;
+                    } else {
+                        if (k == i) {
+                            dp[i][j] = dp[i - 1][j] % mod;
+                        } else if (i &lt; k) {
+                            dp[i][j] = (dp[i - 1][j] + dp[i - 1][j]) % mod;
+                        } else {
+                            dp[i][j] = dp[i - 1][j];
+                            if (j &gt;= 1) {
+                                dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % mod;
+                            }
+                        }
+                    }
+                }
+                // printf(&quot;(%d, %d) = %lld\n&quot;, i, j, dp[i][j]);
+            }
+        }
+
+        for (int i = 0; i &lt;= n; i++) {
+            ans = (ans + dp[n][i] * x) % mod;
+        }
+    }
+
+    printf(&quot;%lld\n&quot;, ans);
+
+    return 0;
+} 
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#codeforces-round-729-div2">Codeforces Round 729 div2</a>
+<ul>
+<li><a href="#d">D</a>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F">题目大意</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/单调队列优化dp/">
+              <h3 class="post-title">
+                单调队列优化dp
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

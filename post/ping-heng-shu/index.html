@@ -1,0 +1,451 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>平衡树 | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634391748301">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="平衡树 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="二叉搜索树 &amp;&amp; 平衡二叉树
+二叉搜索树用于动态维护一个有序序列。
+普通二叉搜索树
+下面介绍一些二叉搜索树的基本操作。
+创建
+思来想去，还是有必要先讲一下二叉搜索树的创建。
+最最朴素的创建就是置根节点为空，而有过一定思考之后..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634391748301" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              平衡树
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-16
+              </span>
+              <span>
+                13 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="二叉搜索树-平衡二叉树">二叉搜索树 &amp;&amp; 平衡二叉树</h1>
+<p>二叉搜索树用于动态维护一个有序序列。</p>
+<h2 id="普通二叉搜索树">普通二叉搜索树</h2>
+<p>下面介绍一些二叉搜索树的基本操作。</p>
+<h3 id="创建">创建</h3>
+<p>思来想去，还是有必要先讲一下二叉搜索树的创建。</p>
+<p>最最朴素的创建就是置根节点为空，而有过一定思考之后的做法可能是最开始建立最小结点和最大结点这两个哨兵结点，这样做插入操作就不用特别处理整棵树为空的情况了（不过，哨兵结点要保证其确实会是最大和最小的，不然会影响正确性）。</p>
+<h3 id="遍历">遍历</h3>
+<p>对于二叉搜索树来说，我们关心它的前序遍历，中序遍历，后序遍历以及层次遍历。对于前三种遍历，我们可以使用递归或者非递归的方式进行实现。这部分内容蛮基础和重要的，笔试面试的时候经常出现，但竞赛中似乎没见过太多次，这导致我对这些基础内容的掌握一般。</p>
+<p>TODO</p>
+<h3 id="插入">插入</h3>
+<p>二叉搜索树的插入需要保证其本身应该遵守的序关系，假设当前结点为<code>p</code>，要插入的值为<code>x</code>：</p>
+<ul>
+<li>如果<code>p</code>是空，则创建一个新的结点，其值为<code>x</code>，并维护好新结点与父亲节点的关系。</li>
+<li>如果<code>p</code>不为空
+<ul>
+<li>如果<code>x == p.value</code> ，那么直接增加该结点的重复次数即可。</li>
+<li>如果<code>x &lt; p.value</code>，则要递归地插入到左子树中，即<code>ins(p.left, x)</code></li>
+<li>如果<code>x &gt; p.value</code>，则要递归地插入到右子树中，即<code>ins(p.right, x)</code></li>
+</ul>
+</li>
+</ul>
+<p>插入结束之后，可能需要<strong>自下而上更新信息</strong>，比如子树大小等信息。</p>
+<p>在实现上，对于<code>p</code>为空的情况，一个优雅的处理方式是传递结点参数时传递<strong>结点的引用或者指针</strong>，这样在<code>p</code>为空的时候，创建新结点时直接用<code>p</code>来指向新的结点，那么新的结点和父亲之间的关系就自然建立了。另外多说一句，传递引用的话在旋转调整树的形态的时候也会很方便。</p>
+<p>代码模板（使用内存池的方式进行实现）：</p>
+<pre><code class="language-cpp">void ins(int &amp;p, int x) {
+    if (!p) {
+        p = newNode(x);
+    } else if (x == node[p].value) {
+        node[p].cnt++;
+    } else if (x &lt; node[p].value) {
+        ins(node[p].l, x); 
+        // 如果是平衡树，此处可能会有一些树形态的调整操作
+    } else {
+        ins(node[p].r, x);
+    }
+    // 自下而上更新信息,根据题意去实现相应的pushup函数即可
+    pushup(p);
+}
+</code></pre>
+<h3 id="删除">删除</h3>
+<p>个人认为删除操作是所有操作中最复杂的一个操作，需要考虑的情况比较多，并且删除的实现方式很多。</p>
+<p>二叉搜索树上的删除的总体思路是这样的：首先需要找到要删除的结点，然后我们要分情况讨论该怎么删除该结点。</p>
+<p>其中一个思路是这样的：</p>
+<ul>
+<li>利用二叉搜索树的性质，递归查找要删除的结点，直到找到或者最终没找到</li>
+<li>如果上一步找到了，那么要考虑下面几种情况：
+<ul>
+<li>如果当前结点重复次数大于1，则减小该结点的重复次数即可</li>
+<li>否则，需要讨论当前结点的左右子树的情况
+<ul>
+<li>如果左右子树都为空，则直接将当前结点变成空即可</li>
+<li>如果只有左子树为空，则直接让当前结点变成它的右儿子</li>
+<li>如果只有右子树为空，则直接让当前结点变成它的左儿子</li>
+<li>如果都不为空，则可以根据自己的爱好，将当前结点左旋或者右旋，然后递归删除左儿子或者右儿子</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>自下而上更新树的信息</strong>。</li>
+</ul>
+<p>当然，对于删除非叶子结点，其实可以通过循环找左子树中的最大的结点或者右子树中最小的结点（必然是一个叶子结点），然后<strong>交换</strong>当前结点以及刚找到的那个结点，最后递归下去删除它就好了。算法本身和上面提供的思路一样，只是实现上一个是递归一个是循环，一个旋转多次另一个只交换一次罢了。</p>
+<p>代码模板：</p>
+<pre><code class="language-cpp">void del(int &amp;p, int x) {
+    if (!p) return;
+    else if (node[p].key == x) {
+        if (node[p].cnt &gt; 1) {
+            node[p].cnt--;
+        } else if (node[p].l &amp;&amp; node[p].r) {
+            // 左旋还是右旋可以自行决定
+            // 平衡树中根据调整策略的不同而选择不同的旋转方法
+            zig(p); // 右旋
+            del(node[p].r, x);
+            // zag(p); // 左旋
+            // del(node[p].l, x);
+        } else if (node[p].l) {
+            p = node[p].l;
+        } else if (node[p].r) {
+            p = node[p].r;
+        } else {
+            p = 0;
+        }
+    } else if (x &lt; node[p].key) {
+        del(node[p].l, x);
+    } else {
+        del(node[p].r, x);
+    }
+    // 自下而上更新信息
+    pushup(p);
+}
+</code></pre>
+<h3 id="查找前驱和后继">查找前驱和后继</h3>
+<p>这个就是比较简单的递归地去做了，注意考虑等于的情况到底归到哪边，实在不行就单独写等于的情况。</p>
+<p>查找前驱：</p>
+<ul>
+<li>如果<code>x &lt;= p.value</code>，则查左子树</li>
+<li>如果<code>x &gt; p.value</code>，则查右子树，返回右子树递归查找结果和当前结点中较大的那个</li>
+</ul>
+<p>查找后继：</p>
+<ul>
+<li>如果<code>x &lt; p.value</code>，则查左子树，返回当前结点和左子树递归查找结果中较小的那个</li>
+<li>如果<code>x &gt;= p.value</code>，则查右子树</li>
+</ul>
+<p>插入，删除，找前驱和后继，找最大最小值，查排名，查排名为rank的结点</p>
+<p>代码模板：</p>
+<pre><code class="language-cpp">int getPrev(int &amp;p, int x) {
+    if (!p) return -INF;
+    if (x &lt;= node[p].key) {
+        return getPrev(node[p].l, x);
+    } else {
+        return max(node[p].key, getPrev(node[p].r, x));
+    }
+}
+
+int getNext(int &amp;p, int x) {
+    if (!p) return INF;
+    if (x &lt; node[p].key) {
+        return min(node[p].key, getNext(node[p].l, x));
+    } else {
+        return getNext(node[p].r, x);
+    }
+}
+</code></pre>
+<h3 id="旋转">旋转</h3>
+<p><strong>旋转操作可以在不会破坏二叉搜索树的序的性质的情况下改变树的形态</strong>，这意味着我们可以在任何时候对树中某个结点做旋转操作。当然，无目标的旋转一般是没有意义的，但有目的地在“合适的时候”做树的旋转，可以减小树的深度，使之变得更平衡。</p>
+<p>旋转操作口诀：左旋拎右左挂右，右旋拎左右挂左（鸣谢不分解的<code>AgOH</code>）</p>
+<p>意思是：如果要将一个结点<strong>右旋</strong>，那么你需要把这个节点的<strong>左子树“拎起来”</strong>，交换该结点和左儿子的父子关系，然后把原来的这个<strong>左子树的右子树</strong>作为该结点的左子树（因为拎起来的时候该结点的左儿子变成了父亲，该结点没有左儿子了）。</p>
+<p>代码模板：</p>
+<pre><code class="language-cpp">void zig(int &amp;p) { // 右旋
+    int q = node[p].l;
+    node[p].l = node[q].r;
+    node[q].r = p;
+    p = q;
+    // 一般旋转完了之后需要更新一下信息
+    pushup(node[p].r);
+    pushup(p);
+}
+
+void zag(int &amp;p) { // 左旋
+    int q = node[p].r;
+    node[p].r = node[q].l;
+    node[q].l = p;
+    p = q;
+    pushup(node[p].l);
+    pushup(p);
+}
+</code></pre>
+<h3 id="查找排名为k的结点">查找排名为k的结点</h3>
+<p>对于二叉搜索树来说，由于其拥有良好的顺序的关系，所以可以借助这个性质来快速查询第k大的结点。</p>
+<p>基本思路是这样的：</p>
+<p>假设当前结点为<code>p</code>：</p>
+<ul>
+<li>如果<code>p</code>的左子树的大小 &gt;= k，说明待查的结点在左子树中，所以递归查左子树中的第k大</li>
+<li>在不满足上一条时，如果<code>p</code>的左子树大小 + <code>p</code>的重复次数 &gt;= k，说明待查的结点就是当前结点</li>
+<li>在不满足上一条时，说明待查的结点在右边，所以需要查询右子树中的第<code>k - p.l.size - p.cnt</code>大的结点。</li>
+</ul>
+<p>代码模板：</p>
+<pre><code class="language-cpp">int get_node_by_rank(int &amp;p, int k) {
+    if (node[node[p].l].size &gt;= k) {
+        return get_node_by_rank(node[p].l, k);
+    } else if (node[node[p].l].size + node[p].cnt &gt;= k) {
+        return node[p].value;
+    } else {
+        return get_node_by_rank(node[p].r, k - node[node[p].l].size - node[p].cnt);
+    }
+}
+</code></pre>
+<p>在调用这个函数的时候，<strong>要注意自己最开始是否设置了哨兵结点</strong>。如果设置了，那么查询的时候应该是查询第<code>k + 1</code>大的结点。</p>
+<h3 id="查找某个值x在树中的排名">查找某个值x在树中的排名</h3>
+<p>利用二叉搜索树的性质进行查找：</p>
+<ul>
+<li>如果当前结点的值等于<code>x</code>，那么返回左子树大小 + 1</li>
+<li>如果当前结点的值大于<code>x</code>，那么递归在左子树中查找排名</li>
+<li>如果当前结点的值小于<code>x</code>，那么递归在右子树中查找<code>x</code>的排名，并最终返回左子树大小 + 当前结点重复数 + 右子树中的排名</li>
+</ul>
+<p>代码模板：</p>
+<pre><code class="language-cpp">int getRankByKey(int &amp;p, int x) {
+    if (x == node[p].key) {
+        return node[node[p].l].size + 1;
+    } else if (x &lt; node[p].key) {
+        return getRankByKey(node[p].l, x); 
+    } else {
+        return node[node[p].l].size + node[p].cnt + getRankByKey(node[p].r, x);
+    }
+}
+</code></pre>
+<p>在调用这个函数的时候，<strong>要注意自己最开始是否设置了哨兵结点</strong>，如果设置了 ，那么最后查到的排名应该减去1。</p>
+<h2 id="平衡二叉树">平衡二叉树</h2>
+<p>对于各种不同的平衡树来说，其不同点不在于二叉树通用的操作（增删改查与旋转），而在于维持树的平衡性的算法。</p>
+<h3 id="单旋treap">单旋Treap</h3>
+<p><code>Treap</code>是最简单的且效率较高的一种平衡二叉树。由于其调整树形态的方式是<strong>单旋</strong>，所以在代码上和普通二叉树的代码实现相差无几，且非常好理解，属于入门级平衡树之一（虽然我的入门平衡树是<code>AVL</code>树）。</p>
+<h4 id="保持平衡性的方法">保持平衡性的方法</h4>
+<p><code>Treap</code>维持平衡的想法是：结点中不仅存储我们关心的<code>key</code>值，还在结点中开一个域，存储一个叫做<code>value</code>的随机数。在结构上，我们要保证<code>Treap</code>是一个二叉搜索树，在此基础上还要让其关于<code>value</code>值是一个大根或者小根堆。同时满足二者是不矛盾的，因为树的旋转是不破坏二叉搜索树性质的，所以我们可以先插入或者删除结点使之成为二叉搜索树，然后进行树旋转来使得其又是关于<code>value</code>的一个堆。在同时满足这两个条件的情况下，会出现什么样的事情呐？由于<code>value</code>是随机数，所以即便输入的<code>key</code>有序，最终的效果也和随机打乱一样，所以<code>Treap</code>是期望平衡的。</p>
+<p>具体来说，<code>Treap</code>是这样保持平衡的：在插入时，从<code>ins</code>函数回溯上来之后，判断当前结点<code>p</code>和刚刚操作过的那棵子树的<code>value</code>做比较，如果不满足堆的性质，就做相应的旋转；或者在删除操作之前，如果两个子树都存在，则把大的儿子旋转上去，然后递归删除。所以，<code>Treap</code>相比普通的二叉搜索树，代码上总共也就多10行左右，仅仅是在<code>ins</code>和<code>del</code>函数中增加简单的旋转操作即可。</p>
+<h4 id="代码模板">代码模板</h4>
+<pre><code class="language-cpp">int newNode(int x) { // 使用内存池实现时创建一个新的结点的方法
+    node[++idx].key = x;
+    node[idx].value = rand();
+    node[idx].l = node[idx].r = 0;
+    node[idx].size = node[idx].cnt = 1;
+    return idx;
+}
+
+void ins(int &amp;p, int x) {
+    if (!p) {
+        p = newNode(x);
+    } else if (x == node[p].key) {
+        node[p].cnt++;
+        node[p].size++;
+        return;
+    } else if (x &lt; node[p].key) {
+        ins(node[p].l, x);
+        if (node[node[p].l].value &gt; node[p].value) { // 比普通BST多的代码
+            zig(p);
+        } 
+    } else {
+        ins(node[p].r, x);
+        if (node[node[p].r].value &gt; node[p].value) { // 比普通BST多的代码
+            zag(p);
+        }
+    }
+    pushup(p);
+} 
+
+void del(int &amp;p, int x) {
+    if (!p) return;
+    else if (node[p].key == x) {
+        if (node[p].cnt &gt; 1) {
+            node[p].cnt--;
+        } else if (node[p].l &amp;&amp; node[p].r) {
+            if (node[node[p].l].value &gt; node[node[p].r].value) { // 比普通BST多的代码
+                zig(p);
+                del(node[p].r, x);
+            } else {
+                zag(p);
+                del(node[p].l, x);
+            }
+        } else if (node[p].l) {
+            p = node[p].l;
+        } else if (node[p].r) {
+            p = node[p].r;
+        } else {
+            p = 0;
+        }
+    } else if (x &lt; node[p].key) {
+        del(node[p].l, x);
+    } else {
+        del(node[p].r, x);
+    }
+
+    pushup(p);
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91">二叉搜索树 &amp;&amp; 平衡二叉树</a>
+<ul>
+<li><a href="#%E6%99%AE%E9%80%9A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91">普通二叉搜索树</a>
+<ul>
+<li><a href="#%E5%88%9B%E5%BB%BA">创建</a></li>
+<li><a href="#%E9%81%8D%E5%8E%86">遍历</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5">插入</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4">删除</a></li>
+<li><a href="#%E6%9F%A5%E6%89%BE%E5%89%8D%E9%A9%B1%E5%92%8C%E5%90%8E%E7%BB%A7">查找前驱和后继</a></li>
+<li><a href="#%E6%97%8B%E8%BD%AC">旋转</a></li>
+<li><a href="#%E6%9F%A5%E6%89%BE%E6%8E%92%E5%90%8D%E4%B8%BAk%E7%9A%84%E7%BB%93%E7%82%B9">查找排名为k的结点</a></li>
+<li><a href="#%E6%9F%A5%E6%89%BE%E6%9F%90%E4%B8%AA%E5%80%BCx%E5%9C%A8%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8E%92%E5%90%8D">查找某个值x在树中的排名</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91">平衡二叉树</a>
+<ul>
+<li><a href="#%E5%8D%95%E6%97%8Btreap">单旋Treap</a>
+<ul>
+<li><a href="#%E4%BF%9D%E6%8C%81%E5%B9%B3%E8%A1%A1%E6%80%A7%E7%9A%84%E6%96%B9%E6%B3%95">保持平衡性的方法</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF">代码模板</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/zui-duan-lu-ji-qi-ying-yong-/">
+              <h3 class="post-title">
+                最短路及其应用
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

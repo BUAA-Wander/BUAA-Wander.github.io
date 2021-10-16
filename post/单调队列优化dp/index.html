@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>单调队列优化dp | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634390174283">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634391748301">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="单调队列优化dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -11,10 +11,11 @@
 
 
 
-    <meta name="description" content="单调队列优化dp
+    <meta name="description" content="记录单调队列优化dp的原理、常见模型以及编码需要注意的细节。
+ 
+单调队列优化dp
 概述
-单调队列本质上只能解决一类问题：滑动窗口的最值问题。滑动窗口不要求大小固定，只要求端点单调往一个方向移动，所以其可以优化的dp一般存在明显的求滑动窗口最值的步骤。
-dp的优化是在想清楚朴素dp之后才要考虑的，要把dp..." />
+单调队列本质上只能解决一类问题：滑动窗口的最值问题。滑动窗口不要求大小固定，只要求端点单调往一个方向移动，所以其可以优化的dp一般存在明显的求滑动窗口..." />
     <meta name="keywords" content="DP" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -24,7 +25,7 @@ dp的优化是在想清楚朴素dp之后才要考虑的，要把dp..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634390174283" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634391748301" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -87,7 +88,7 @@ dp的优化是在想清楚朴素dp之后才要考虑的，要把dp..." />
                 3 min read
               </span>
               
-                <a href="https://BUAA-Wander.github.io/tag/kd7BRg8GY/" class="post-tag">
+                <a href="https://BUAA-Wander.github.io/tag/7zWaClcqC/" class="post-tag">
                   # DP
                 </a>
               
@@ -95,7 +96,9 @@ dp的优化是在想清楚朴素dp之后才要考虑的，要把dp..." />
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h1 id="单调队列优化dp">单调队列优化dp</h1>
+                <p>记录单调队列优化dp的原理、常见模型以及编码需要注意的细节。</p>
+<!--more--> 
+<h1 id="单调队列优化dp">单调队列优化dp</h1>
 <h2 id="概述">概述</h2>
 <p>单调队列本质上只能解决一类问题：滑动窗口的最值问题。滑动窗口不要求大小固定，只要求端点单调往一个方向移动，所以其可以优化的dp一般存在明显的求滑动窗口最值的步骤。</p>
 <p>dp的优化是在想清楚朴素dp之后才要考虑的，要把dp的功能设计以及dp的优化分开来考虑，先保证正确性，再提高性能。</p>
@@ -127,9 +130,9 @@ dp的优化是在想清楚朴素dp之后才要考虑的，要把dp..." />
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://BUAA-Wander.github.io/post/状压dp/">
+            <a href="https://BUAA-Wander.github.io/post/背包dp/">
               <h3 class="post-title">
-                状压dp
+                背包dp
               </h3>
             </a>
           </div>
