@@ -1,0 +1,309 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linux基础 | Gridea</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634379078710">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Linux基础 | Gridea - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="Linux基础
+概述
+基本命令
+不太用管，基本都会了。
+读书学习技术可能会介绍大部分技术，但是这大部分技术中的极小一部分才是我们经常用的，所以看书学习一个技术不是很好。
+跟着官网的入门教程进行学习比较好，之后可以用到之后边用边查。
+所有的千..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634379078710" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Linux基础
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-16
+              </span>
+              <span>
+                8 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="linux基础">Linux基础</h1>
+<h2 id="概述">概述</h2>
+<h2 id="基本命令">基本命令</h2>
+<p>不太用管，基本都会了。</p>
+<p>读书学习技术可能会介绍大部分技术，但是这大部分技术中的极小一部分才是我们经常用的，所以看书学习一个技术不是很好。</p>
+<p>跟着官网的入门教程进行学习比较好，之后可以用到之后边用边查。</p>
+<p>所有的千奇百怪的应用的前端的后面都有一个server，所以做一切项目的基础是后端对服务器的操作。大部分server是Linux系统。</p>
+<p>AcWing课程提供的是ubuntu（一种Linux的发行版）。</p>
+<p>实用主义。</p>
+<p>学习技术不能求全，学会常用的，然后现查就好了。</p>
+<h2 id="tmux">tmux</h2>
+<h2 id="vim">vim</h2>
+<h2 id="shell">shell</h2>
+<h2 id="管道">管道</h2>
+<h2 id="环境变量">环境变量</h2>
+<h2 id="其他常用指令">其他常用指令</h2>
+<h2 id="终端">终端</h2>
+<p>有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个主机（可能是物理的，也可能是虚拟的），终端就是一块屏幕。打开一个终端就是一个小黑框，这个终端和某个主机“连接了一根线”。如果打开多个终端，意思是打开了多个屏幕，这些终端可以连接到同一个主机上，在一个终端中对主机做一些修改，那么另外一个连接到同一个主机的终端上也是可以看到这个改变的。</p>
+<p>终端是联网的，可以连接到任何一个服务器（？）。比如使用ssh登录。</p>
+<p>关掉终端只是把屏幕关掉了，而主机是不会关掉的。但是关掉终端之后，你正在运行的程序会停止运行。</p>
+<blockquote>
+<p>如果使用的是tmux，那么退出之后程序也不会关掉。比如登录到你的服务器之后打开tmux，在里面下载docker，那么你关闭终端不会影响下载过程。</p>
+</blockquote>
+<p>所以只要有一个终端就可以了，我们只要学会如何使用终端，即学习终端中的各种命令，就能操作各种服务器。</p>
+<p>服务器向终端发送信息会占用带宽，如果是好多人用一个服务器且没有设置带宽限制的话会感觉到。</p>
+<h2 id="linux文件系统概述">Linux文件系统概述</h2>
+<p>根目录的名字为<code>/</code> ，<code>/</code> 就是一个文件夹。</p>
+<p><code>/</code> 文件夹下面可能会有 <code>bin</code> （里面放一些可执行文件，比如一些指令就是在这个里面，我们敲命令其实就是执行 <code>bin</code> 下面的对应名字的可执行文件），<code>etc</code> ，<code>lib</code>，<code>boot</code>，<code>home</code>（用户的家目录），<code>proc</code> 等各种各样的文件夹，acs acwing server</p>
+<p>登录之后看到的目录是 <code>home</code> 目录下的一个目录，如果这个服务器上不只有你一个用户，那么不同的用户在 <code>home</code> 的目录下有对应的目录名字。</p>
+<p>Linux下描述路径：</p>
+<ul>
+<li>绝对路径，从 <code>/</code> 开始描述</li>
+<li>相对路径，不以 <code>/</code> 开头就是相对路径。<code>.</code> 表示当前目录，<code>..</code> 表示上一级目录。</li>
+</ul>
+<p><code>~</code> 为家目录，是相对某个用户来说，比如 <code>/home/zcx</code> 就是 <code>zcx</code> 的家目录。</p>
+<h2 id="ssh">ssh</h2>
+<h3 id="ssh登录">ssh登录</h3>
+<h4 id="背景">背景</h4>
+<p>未来工作的时候我们可能会用到多个服务器，比如有管web的服务器，有管评测机的服务器等。有些时候我们需要到这些服务器上做一些开发和维护，这个时候我们就可以使用ssh进行服务器的免密登录（需要先配置一下）。</p>
+<p><code>user</code> <code>hostname</code> <code>password</code>，租用服务器之后一般会获得这三个信息。</p>
+<p><code>hostname</code> 一般来说是一个 ip 地址。</p>
+<h4 id="登录服务器">登录服务器</h4>
+<p>使用命令 <code>ssh user@hostname</code> 即可实现登录。如果是第一次登陆的话，可能会提醒我们从来没有登陆过这个服务器，这是因为我们从来没见过这个服务器的 ip 地址的哈希值（如果之前登陆过的话，那么这个哈希值会存储到 <code>~/.ssh/known_hosts</code> 这个文件里面）。</p>
+<p>如果没有配置免密码登录，那么每次登录的时候都需要使用密码才可以登录。</p>
+<p>完成之后，我们就进入了一个全新的服务器。</p>
+<p>使用 <code>exit</code> 或者 <code>ctrl + d</code> 命令可以退出这个服务器。</p>
+<p><code>ssh</code> 登录的时候使用的端口默认为 <code>22</code> ，可以用 <code>-p number</code> 来指定端口号。</p>
+<h4 id="配置文件">配置文件</h4>
+<p>如果感觉每次登录的时候需要敲 <code>user@hostname</code> 太长了且背不下来，那么可以创建一个配置文件，给这个服务器创建一个别名。</p>
+<p>配置文件名叫 <code>config</code> ，需要放在 <code>~/.ssh/</code> 目录下。<code>config</code> 配置文件的内部的信息的格式是：</p>
+<pre><code>Host myserver1
+	HostName IP地址或者域名
+	User 用户名
+	
+Host myserver2
+	HostName IP地址或者域名
+	User 用户名
+</code></pre>
+<h4 id="使用密钥免密登录">使用密钥免密登录</h4>
+<p><code>ssh</code> 使用的是 <code>rsa</code> 密钥。</p>
+<p>如果之前没有生成过密钥，那么需要使用命令 <code>ssh-keygen</code> 命令生成密钥和公钥，都放在 <code>~/.ssh</code> 目录下。其中 <code>id_rsa</code> 是密钥，<code>id_rsa.pub</code> 是公钥。</p>
+<p>如果想免密登录哪个服务器，那么只需要把这个公钥复制到那台服务器的 <code>~/.ssh</code> 目录下的 <code>authorized_keys</code> 文件中。</p>
+<p>这样就可以直接通过 <code>ssh server_name</code> 登录到对应的服务器了。</p>
+<h3 id="scp传文件">scp传文件</h3>
+<p>命令格式 <code>scp src dst</code> ，把 <code>src</code> 位置的文件复制到 <code>dst</code> 里面。</p>
+<p>复制文件夹的话，可以使用 <code>-r</code> 参数，但是要放到 <code>scp</code> 后面紧接着。</p>
+<p><code>src</code> 如果是本地的，那只需要写正常的路径就好了。</p>
+<p><code>dst</code> 如果是其他服务器，那就特殊一点，需要先加上 <code>server_name:</code> ，然后再跟上这个 <code>server</code> 内的地址才可以。</p>
+<p>比如 <code>scp -r ~/tmp server1:~/</code> ，意思就是把我现在所在的服务器上的 <code>~/tmp</code> 目录传到 <code>server1</code> 上的 <code>~/</code> 目录下。</p>
+<p><code>src</code> 是远程服务器，<code>dst</code> 是本地服务器同理。</p>
+<p>如果 <code>src</code> 和 <code>dst</code> 都不是本地，可以先把 <code>src</code> 拷贝到本地，然后再拷贝到 <code>dst</code> 里面。直接拷贝虽然也可以，但是需要有一些权限。</p>
+<p>scp传文件的一个重要应用就是把远程服务器的开发环境做一个配置，比如把 vim 和 tmux 的配置文件拷贝上去。</p>
+<p>比如 <code>scp ~/.vimrc server1:~/</code> 就可以把本地的 <code>.vimrc</code> 拷贝到 server1 服务器上。</p>
+<h2 id="git">git</h2>
+<h3 id="背景-2">背景</h3>
+<h3 id="几个基本概念">几个基本概念</h3>
+<p>可以把代码（也可以是其他你工作中用到的文件）的每个版本看成一个结点，这样的话代码的所有版本就可以根据其修改过程形成一颗树。（可持久化）</p>
+<h3 id="指令">指令</h3>
+<p><code>git log</code> 打印从初始到 <code>HEAD</code> 指针的这条路径的版本信息。</p>
+<h2 id="thrift">thrift</h2>
+<h2 id="云服务器的购买与环境配置">云服务器的购买与环境配置</h2>
+<p>跑通比完美更重要。</p>
+<h3 id="云服务器的选择">云服务器的选择</h3>
+<p>如果是学生机的话，似乎别无选择，很多东西都给定死了。我的阿里云服务器默认是2核2GB的，Ubuntu 20.04 LTS，每个月9元，给了公网ip，有一个默认密码。</p>
+<p>如果不是学生机的话，TODO。</p>
+<h3 id="环境配置">环境配置</h3>
+<p>主要是一些比较基础的环境配置。对于具体的开发环境，我们会使用 <code>docker</code> 。</p>
+<h4 id="免密登录">免密登录</h4>
+<p>这部分在 <code>ssh</code> 中讲过。</p>
+<p>把本机的 <code>id_rsa.pub</code> 中的内容复制到服务器的 <code>.ssh/authorized_keys</code> 里即可。</p>
+<p>然后回到本机，给服务器起一个别名，放到 <code>.ssh/config</code> 里面，以后可以直接别名登录。</p>
+<blockquote>
+<p>我在bash里面尝试了多次起别名，但是都失败了，但是在AC Terminal 和 windows terminal 上都成功了，很迷惑。</p>
+</blockquote>
+<h4 id="vim和tmux配置">vim和tmux配置</h4>
+<p>这部分在 <code>ssh</code> 中也讲过，使用 <code>scp</code> 命令把配置文件从本机拷贝到服务器上即可。</p>
+<p>在之后如果要开发的话，就可以去配置 <code>docker</code> 了。</p>
+<h2 id="docker">docker</h2>
+<p>一般开发不是直接在毛坯服务器上开发，而是再加一层中间层，在这个中间层开发。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#linux%E5%9F%BA%E7%A1%80">Linux基础</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4">基本命令</a></li>
+<li><a href="#tmux">tmux</a></li>
+<li><a href="#vim">vim</a></li>
+<li><a href="#shell">shell</a></li>
+<li><a href="#%E7%AE%A1%E9%81%93">管道</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4">其他常用指令</a></li>
+<li><a href="#%E7%BB%88%E7%AB%AF">终端</a></li>
+<li><a href="#linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0">Linux文件系统概述</a></li>
+<li><a href="#ssh">ssh</a>
+<ul>
+<li><a href="#ssh%E7%99%BB%E5%BD%95">ssh登录</a>
+<ul>
+<li><a href="#%E8%83%8C%E6%99%AF">背景</a></li>
+<li><a href="#%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8">登录服务器</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95">使用密钥免密登录</a></li>
+</ul>
+</li>
+<li><a href="#scp%E4%BC%A0%E6%96%87%E4%BB%B6">scp传文件</a></li>
+</ul>
+</li>
+<li><a href="#git">git</a>
+<ul>
+<li><a href="#%E8%83%8C%E6%99%AF-2">背景</a></li>
+<li><a href="#%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">几个基本概念</a></li>
+<li><a href="#%E6%8C%87%E4%BB%A4">指令</a></li>
+</ul>
+</li>
+<li><a href="#thrift">thrift</a></li>
+<li><a href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%B4%AD%E4%B9%B0%E4%B8%8E%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">云服务器的购买与环境配置</a>
+<ul>
+<li><a href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%80%89%E6%8B%A9">云服务器的选择</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">环境配置</a>
+<ul>
+<li><a href="#%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95">免密登录</a></li>
+<li><a href="#vim%E5%92%8Ctmux%E9%85%8D%E7%BD%AE">vim和tmux配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#docker">docker</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
