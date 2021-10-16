@@ -1,0 +1,511 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>树形dp | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634390174283">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="树形dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="树形dp
+概述
+dp在树形结构上的实现。
+一般使用记忆化搜索实现，dp的计算与dfs记忆化保证拓扑序是分开的，所以dfs的时候不需要传递dp的状态参数（但是阶段肯定是要传的）。
+树结构上想不到做法的时候，可以考虑退化成链的情况。
+常见考法与..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634390174283" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              树形dp
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-06-30
+              </span>
+              <span>
+                11 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="树形dp">树形dp</h1>
+<h2 id="概述">概述</h2>
+<p>dp在树形结构上的实现。</p>
+<p>一般使用记忆化搜索实现，<code>dp</code>的计算与<code>dfs</code>记忆化保证拓扑序是分开的，所以<code>dfs</code>的时候不需要传递<code>dp</code>的状态参数（但是阶段肯定是要传的）。</p>
+<p>树结构上想不到做法的时候，可以考虑退化成链的情况。</p>
+<h2 id="常见考法与细节">常见考法与细节</h2>
+<h3 id="树的直径">树的直径</h3>
+<p>最简单的做法就是两次<code>dfs</code>，找最远点，之前已经比较熟悉了。</p>
+<p>除此之外还有一个树形dp的做法。我们考虑每个结点，把它想象成一个钉子，路径想象成绳子，然后把路径挂在这个钉子上，则挂的路径的最长距离就是这个结点往下走的最大距离以及次大距离之和。根据这个特点，只要在<code>dfs</code>的时候自底向上维护往下走的最大值和次大值，就可以计算出每个点的挂在这个点上的路径的最大值，最后对所有点的这个最大值取<code>max</code>就是树的直径的长度。</p>
+<p>参考代码如下：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 10010;
+
+typedef long long ll;
+
+typedef struct {
+    ll to, nxt, w;
+} Edge;
+
+Edge edge[2 * N];
+ll head[N], cnt, n;
+ll ans = 0;
+
+void add(ll x, ll y, ll z) {
+    edge[cnt].to = y;
+    edge[cnt].nxt = head[x];
+    edge[cnt].w = z;
+    head[x] = cnt++;
+}   
+
+ll dfs(ll u, ll fa) {
+    // d1为最大，d2为次大
+    ll dist = 0, d1 = 0, d2 = 0;
+
+    for (int i = head[u]; i &gt;= 0; i = edge[i].nxt) {
+        if (edge[i].to != fa) {
+            ll d = dfs(edge[i].to, u) + edge[i].w;
+            dist = max(dist, d);
+            if (d &gt;= d1) {
+                d2 = d1;
+                d1 = d;
+            } else if (d &gt; d2) {
+                d2 = d;
+            } 
+        }
+    }
+
+    ans = max(ans, d1 + d2);
+    return dist;
+}
+
+int main() {
+    ll x, y, z;
+    scanf(&quot;%lld&quot;, &amp;n);
+    for (int i = 1; i &lt;= n; i++) {
+        head[i] = -1;
+    }
+    for (int i = 1; i &lt; n; i++) {
+        scanf(&quot;%lld%lld%lld&quot;, &amp;x, &amp;y, &amp;z);
+        add(x, y, z);
+        add(y, x, z);
+    }
+
+    dfs(1, 0);
+
+    printf(&quot;%lld\n&quot;, ans);
+    return 0;
+}
+</code></pre>
+<p>如果想要具体知道直径上究竟有哪些点，一个可行的方法是在维护往下走的最大和次大值的同时，维护二者的结点。</p>
+<h3 id="父结点更新子结点">父结点更新子结点</h3>
+<p>有时候树形dp更新时使用父结点更新子结点的，有时候父子会互相更新不同的信息。在这种情况下，一般就是自底向上做一次<code>dfs</code>，自顶向下做一次<code>dfs</code>，才能计算出所有的信息。</p>
+<p>比较典型的例子就是求出某棵树中到所有点的最大距离最小的那个点的最大距离，除了直接拿树的直径”中点“硬莽，还可以使用树形dp。</p>
+<p>我们考虑维护每个结点的到其他结点的最大值，这个值的计算还需要其他一些辅助的信息，比如我们可以通过每个结点往下走的最长路以及往上走的最长路这两个信息来更新最大距离，而对于往上走的最长路，又得考虑其父亲结点的往下或者往上走的最长路，故结点<code>u</code>到其他结点的最大距离由以下几个部分组成：</p>
+<ul>
+<li><code>u</code>往下走的最大距离</li>
+<li><mark><strong><code>u</code>往上走的最大距离</strong></mark>
+<ul>
+<li><code>u</code>到父亲<code>fa</code>的距离加上<code>fa</code>往上走的最大距离</li>
+<li><code>u</code>到父亲<code>fa</code>的距离加上<code>fa</code>往下走且不经过<code>u</code>的最大距离
+<ul>
+<li><code>fa</code>往下走最大距离的方案经过<code>u</code>，则取次大距离</li>
+<li>否则取最大距离</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>对于第一部分，类似于求树的直径的dp做法即可计算，对于第二部分，需要从父亲转移到儿子，且要用到第一次dp的结果，所以只能做两次更新方向不同的dp。从上往下推也没什么特别的，只是之前一直都没太注意过而已。话说，二次扫描与换根法就需要我们用父亲结点更新子节点。</p>
+<p>代码如下：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 10010;
+const int INF = 1e9;
+
+typedef long long ll;
+
+typedef struct {
+    ll to, nxt, w;
+} Edge;
+
+Edge edge[2 * N];
+ll head[N], cnt, n;
+ll d1[N], d2[N], up[N], p1[N], p2[N];
+
+void add(ll x, ll y, ll z) {
+    edge[cnt].to = y;
+    edge[cnt].nxt = head[x];
+    edge[cnt].w = z;
+    head[x] = cnt++;
+}   
+
+ll dfs_d(ll u, ll fa) {
+    for (int i = head[u]; i &gt;= 0; i = edge[i].nxt) {
+        if (edge[i].to != fa) {
+            ll d = dfs_d(edge[i].to, u) + edge[i].w;
+            if (d &gt;= d1[u]) {
+                d2[u] = d1[u];
+                p2[u] = p1[u];
+                d1[u] = d;
+                p1[u] = edge[i].to;
+            } else if (d &gt; d2[u]) {
+                d2[u] = d;
+                p2[u] = edge[i].to;
+            }
+        }
+    }
+
+    return d1[u];
+}
+
+void dfs_u(ll u, ll fa) {
+    for (int i = head[u]; i &gt;= 0; i = edge[i].nxt) {
+        if (edge[i].to != fa) {
+            int j = edge[i].to;
+            if (p1[u] != j) {
+                up[j] = max(up[u], d1[u]) + edge[i].w;
+            } else {
+                up[j] = max(up[u], d2[u]) + edge[i].w;
+            }
+            dfs_u(j, u);
+        }
+    }
+}
+
+int main() {
+    ll x, y, z;
+    scanf(&quot;%lld&quot;, &amp;n);
+    memset(head, -1, sizeof head);
+    for (int i = 1; i &lt; n; i++) {
+        scanf(&quot;%lld%lld%lld&quot;, &amp;x, &amp;y, &amp;z);
+        add(x, y, z);
+        add(y, x, z);
+    }
+
+    dfs_d(1, 0);
+    dfs_u(1, 0);
+
+    ll res = INF;
+    for (int i = 1; i &lt;= n; i++) {
+        res = min(res, max(up[i], d1[i]));
+    }
+
+    printf(&quot;%lld\n&quot;, res);
+    return 0;
+}
+</code></pre>
+<h3 id="树上背包">树上背包</h3>
+<p>体现为在树上选择一个连通块（对于树上的一个连通块，块内的所有点的LCA也在这些点当中），使得最大/最小化某个属性等。</p>
+<p>在设计状态的时候，为了保证连通，所以<code>dp[u][j]</code>表示在<code>u</code>为根的子树中选择容量不超过<code>j</code>，<strong>且<code>u</code>必选</strong>的balabala。需要初始化一下<code>dp[u][volume(u)]</code>或者在转移的时候特殊处理一下。</p>
+<p>在转移的时候，用到的前置知识是分组背包，相关注意事项见笔记《背包dp》</p>
+<p>给出一道模板题：有一棵无向带权树，从中选择一个大小为<code>m</code>的连通块，必选结点1，使得连通块所有边的边权之和最大。</p>
+<p>代码模板如下：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 110;
+
+typedef struct {
+    int to, nxt, w;
+} Edge;
+
+Edge edge[2 * N];
+int n, m, cnt, head[N], dp[N][N];
+
+void add(int x, int y, int z) {
+    edge[cnt].to = y;
+    edge[cnt].nxt = head[x];
+    edge[cnt].w = z;
+    head[x] = cnt++;
+}
+
+void dfs(int u, int fa) {
+    for (int i = head[u]; i &gt;= 0; i = edge[i].nxt) {
+        if (edge[i].to != fa) {
+            dfs(edge[i].to, u);
+
+            for (int j = m; j &gt;= 0; j--) {
+                for (int k = 0; k &lt; j; k++) {
+                    dp[u][j] = max(dp[u][j],
+                                   dp[edge[i].to][k] + dp[u][j - k - 1] + edge[i].w);
+                }
+            }
+        }
+    }
+} 
+
+int main() {
+    int x, y, z;
+    cin &gt;&gt; n &gt;&gt; m;
+
+    memset(head, -1, sizeof head);
+
+    for (int i = 1; i &lt; n; i++) {
+        cin &gt;&gt; x &gt;&gt; y &gt;&gt; z;
+        add(x, y, z);
+        add(y, x, z);
+    }
+
+    dfs(1, 0);
+
+    printf(&quot;%d\n&quot;, dp[1][m]);
+    return 0;
+}
+</code></pre>
+<h3 id="父子结点选择限制型dp">父子结点选择限制型dp</h3>
+<p>典型代表就是没有上司的舞会。除了该题中的父子结点不能同时出现的情况，可能还会有父子结点至少得出现一个，或者其他更复杂的关系。对于此类问题，可以按照选与不选本结点来设计状态。对于更复杂的关系，可能要根据本结点的父亲或者儿子的选法设计更加细致的状态（状态机dp！）分情况讨论转移。</p>
+<h3 id="二次扫描与换根法">二次扫描与换根法</h3>
+<p>这个技巧一般用在需要使用常数次<code>dfs</code>去统计所有点的某个信息/以每个结点为根时的所有信息。</p>
+<p>比如最经典的，求树上一个点，使得以这个点为根的树的各个结点深度之和最大，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn><mi>e</mi><mn>6</mn></mrow><annotation encoding="application/x-tex">n = 1e6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault">e</span><span class="mord">6</span></span></span></span>。</p>
+<p>可以注意到，以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>为根和以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>的亲儿子<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>为根时，计算的结果有很多是可以重用的：</p>
+<ul>
+<li>原来以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>为根的子树中的所有节点，相对于以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>为根的树，在以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>为根的时候，这<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>[</mo><mi>v</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">size[v]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span></span></span></span>个结点的深度全部都减一</li>
+<li>除此之外的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>[</mo><mi>v</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">n - size[v]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span></span></span></span>个结点，深度都加一</li>
+</ul>
+<p>所以设<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[u]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span></span></span></span>为以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>为根的树的深度之和，那么<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>=</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>−</mo><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>+</mo><mi>n</mi><mo>−</mo><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>[</mo><mi>v</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[v] = dp[u] - size[v] + n - size[v]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span></span></span></span></p>
+<p>预处理出以某个结点为根的树深度之和以及子树大小即可。</p>
+<p>参考代码实现：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 1e6 + 9;
+
+typedef struct {
+    int to, ne;
+} Edge;
+
+typedef long long ll;
+
+Edge edge[2 * N];
+ll dp[N], head[N], cnt, n, d[N], sz[N];
+
+void add(ll x, ll y) {
+    edge[cnt].to = y;
+    edge[cnt].ne = head[x];
+    head[x] = cnt++;
+}
+
+ll read() {
+    char ch = getchar();
+    ll f = 1, v = 0;
+    while (ch &lt; '0' || ch &gt; '9') {
+        if (ch == '-') {
+            f *= -1;
+        }
+        ch = getchar();
+    }
+    while (ch &gt;= '0' &amp;&amp; ch &lt;= '9') {
+        v = 10 * v + ch - '0';
+        ch = getchar();
+    }
+    return v * f;
+}
+
+void dfs1(ll u, ll fa, ll depth) {
+    d[u] = depth;
+    dp[1] += d[u];
+    sz[u]++;
+    
+    for (int i = head[u]; i &gt;= 0; i = edge[i].ne) {
+        int j = edge[i].to;
+        if (j != fa) {
+            dfs1(j, u, depth + 1);
+            sz[u] += sz[j];
+        }
+    }
+}
+
+void dfs2(ll u, ll fa) {
+    for (int i = head[u]; i &gt;= 0; i = edge[i].ne) {
+        int v = edge[i].to;
+        if (v != fa) {
+            dp[v] = dp[u] + n - 2 * sz[v];
+            dfs2(v, u);
+        }
+    }
+}
+
+int main() {
+    n = read();
+    
+    ll x, y;
+    memset(head, -1, sizeof head);
+    for (int i = 1; i &lt; n; i++) {
+        x = read();
+        y = read();
+        add(x, y);
+        add(y, x);
+    }
+    
+    dfs1(1, 0, 0);
+    dfs2(1, 0);
+    
+    ll ans = 0, maxd = 0;
+    for (int i = 1; i &lt;= n ; i++) {
+        if (dp[i] &gt; maxd) {
+            maxd = dp[i];
+            ans = i;
+        }
+    }
+    
+    printf(&quot;%lld\n&quot;, ans);
+    
+    return 0;
+}
+</code></pre>
+<p>可以看出，之所以叫二次扫描，是因为需要一次预处理，先把以某个结点为根的所有信息算出来。</p>
+<p>之所以叫换根法，是因为我们第二次扫描的时候基于父子关系与预处理的结果快速计算以儿子为根时的信息。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%A0%91%E5%BD%A2dp">树形dp</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E8%80%83%E6%B3%95%E4%B8%8E%E7%BB%86%E8%8A%82">常见考法与细节</a>
+<ul>
+<li><a href="#%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84">树的直径</a></li>
+<li><a href="#%E7%88%B6%E7%BB%93%E7%82%B9%E6%9B%B4%E6%96%B0%E5%AD%90%E7%BB%93%E7%82%B9">父结点更新子结点</a></li>
+<li><a href="#%E6%A0%91%E4%B8%8A%E8%83%8C%E5%8C%85">树上背包</a></li>
+<li><a href="#%E7%88%B6%E5%AD%90%E7%BB%93%E7%82%B9%E9%80%89%E6%8B%A9%E9%99%90%E5%88%B6%E5%9E%8Bdp">父子结点选择限制型dp</a></li>
+<li><a href="#%E4%BA%8C%E6%AC%A1%E6%89%AB%E6%8F%8F%E4%B8%8E%E6%8D%A2%E6%A0%B9%E6%B3%95">二次扫描与换根法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

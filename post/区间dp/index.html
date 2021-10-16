@@ -1,0 +1,286 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>区间dp | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634390174283">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="区间dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="区间dp
+概述
+区间dp也是一类线性dp，因为状态转移的时候也是线性变化的。
+区间dp以区间长度为阶段，使用能足够表示区间的坐标表示状态（最常见的是使用(l,r)(l, r)(l,r)表示一维区间，但也有的题目需要使用(x1,y1,x2,y..." />
+    <meta name="keywords" content="DP" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634390174283" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              区间dp
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-16
+              </span>
+              <span>
+                7 min read
+              </span>
+              
+                <a href="https://BUAA-Wander.github.io/tag/kd7BRg8GY/" class="post-tag">
+                  # DP
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="区间dp">区间dp</h1>
+<h2 id="概述">概述</h2>
+<p>区间dp也是一类线性dp，因为状态转移的时候也是线性变化的。</p>
+<p>区间dp以区间长度为阶段，使用能足够表示区间的坐标表示状态（最常见的是使用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(l, r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span>表示一维区间，但也有的题目需要使用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>y</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>y</mi><mn>2</mn></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">(x_1, y_1, x_2, y_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>表示二维的区间状态）。</p>
+<p>对于区间dp中最朴素的问题（比如序列上的石子合并等）此处就不多加介绍了，下面主要讲一些区间dp中常见的技巧和考法。</p>
+<h2 id="技巧与考法">技巧与考法</h2>
+<h3 id="破环为链">破环为链</h3>
+<p>这个技巧常常用来做转移时需要表示环形区间的区间dp问题。</p>
+<p>对于环形的石子合并问题，如果想用链上的石子合并做，一种朴素的想法是枚举环的起点，然后把环看成长度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>的链，然后在这个链上做区间dp，这样下来时间复杂度会高达<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>4</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^4)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
+<p>我们不妨考虑一下在做环上的dp的时候到底实质上算过哪些状态：除了所有的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>≤</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">l\leq r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span>的状态，还计算了所有的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>&gt;</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">l &gt; r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span>的状态。而枚举环的起点再做链上的dp的方式导致很多状态实际上被重复计算了。所以，实际上我们只要在倍长的链上做dp，把这条链上面<strong>所有的状态</strong>都算出来，所计算出来的结果和朴素做法是一样的，但是复杂度却是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>3</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
+<p>使用这个技巧的时候，需要特别注意的地方是：</p>
+<ul>
+<li>
+<p>开数组的时候，所有空间按照2倍来开。</p>
+</li>
+<li>
+<p>记得倍长链，把数组往后复制一遍。</p>
+</li>
+<li>
+<p>初始化<code>dp</code>数组以及做前缀和预处理等操作的时候，都需要考虑长度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">n</span></span></span></span>的链。</p>
+</li>
+<li>
+<p>dp转移的时候枚举左右端点的时候二者的范围都是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mi>n</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1, 2n]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mord mathdefault">n</span><span class="mclose">]</span></span></span></span>。</p>
+</li>
+</ul>
+<p>注意到这几点，那么剩下的和普通的链上做法就没什么两样了。</p>
+<p>附上一段环形石子合并求最大与最小值的示例代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+const int N = 420, INF = 0x3f3f3f3f;
+
+ll w[N], s[N], dp_max[N][N], dp_min[N][N], n;
+
+int main() {
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; w[i];
+        w[i + n] = w[i];
+    }
+
+    for (int i = 1; i &lt;= 2 * n; i++) {
+        s[i] = s[i - 1] + w[i];
+    }
+
+    memset(dp_min, 0x3f, sizeof dp_min);
+    memset(dp_max, 0, sizeof dp_max);
+
+    for (int i = 1; i &lt;= 2 * n; i++) {
+        dp_min[i][i] = 0;
+    }
+    for (int len = 2; len &lt;= n; len++) {
+        for (int l = 1; l &lt;= 2 * n; l++) {
+            int r = l + len - 1;
+            if (r &gt; 2 * n) break;
+            for (int k = l; k &lt; r; k++) {
+                dp_max[l][r] = max(dp_max[l][r], 
+                                  dp_max[l][k] + dp_max[k + 1][r] + s[r] - s[l - 1]);
+                dp_min[l][r] = min(dp_min[l][r],
+                                  dp_min[l][k] + dp_min[k + 1][r] + s[r] - s[l - 1]);
+            }
+        }
+    }
+    ll ans_max = -INF, ans_min = INF;
+    for (int i = 1; i &lt;= n; i++) {
+        ans_max = max(ans_max, dp_max[i][i + n - 1]);
+        ans_min = min(ans_min, dp_min[i][i + n - 1]);
+    }
+    cout &lt;&lt; ans_min &lt;&lt; endl &lt;&lt; ans_max &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<h3 id="开闭区间状态设计">开/闭区间状态设计</h3>
+<p>最符合人的思考习惯的区间dp的状态设计是设<code>dp[l][r]</code>为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l, r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>状态下某个决策集合的某个属性，但是也有一些问题不适合使用闭区间来表示状态，反而使用半开半闭或者全开区间更加符合人的习惯，当然，这个时候要注意几件事情：</p>
+<ul>
+<li>初始化</li>
+<li>转移方程的中间如何划分（<code>dp[k][r]</code>还是<code>dp[k + 1][r]</code>）</li>
+<li>右端点到底枚举到多少</li>
+<li>最后的结果到底是多少（<code>dp[i][i + n - 1]</code>还是<code>dp[i][i + n]</code>）</li>
+</ul>
+<h3 id="方案记录">方案记录</h3>
+<p>类似于一般的线性dp，对于每个状态<code>dp[l][r]</code>，维护一个转移变量<code>mark[l][r]</code>，记录该状态是由哪个<code>dp[l][k]</code>和<code>dp[k + 1][r]</code>（也可能是<code>dp[k][r]</code>，看自己的状态定义了）转移过来的。这样对于<code>dp[1][n]</code>，可以找到划分点，然后递归地去划分，最终输出结果。可以看到这个过程隐含着一个树形结构，所以有时候题目会让我们按照前序（或者其他序）遍历输出最终结果。</p>
+<p>注意对于<strong>元区间</strong>的方案的初始化。</p>
+<h3 id="与高精度结合">与高精度结合</h3>
+<p>其实啥dp都可以和高精度结合，只要数够大。</p>
+<p>一般的做法是先用<code>int</code>或者<code>long long</code>做对转移，然后写几个高精度计算和比较的函数，最后把<code>dp</code>数组以及计算过程逐个替换就好了。</p>
+<p>在实现上，一个高精度数可以用一个<code>vector&lt;int&gt;</code>来表示，对高精度数的运算的实现确保能用高精乘低精就用高精乘低精，不行了再写双高精。</p>
+<h3 id="二维高维区间dp">二维/高维区间dp</h3>
+<p>这里就是最开始提到的，需要用好几个坐标才能表示一个<strong>高维区间</strong>，比如一个矩形块。除了状态升维之外，转移的方向也变多了，可能可以横着划分转移，可以竖着划分转移。</p>
+<p>其实高维区间是一个抽象概念，指的是单纯用一个数没法描述一个端点的所有信息的区间。涉及到高维区间的时候，可能状态转移的顺序上会笔记较难考虑。</p>
+<p>在实现上，从元区间到更大的区间不容易确定枚举顺序时，可以考虑<strong>记忆化搜索</strong>实现dp。</p>
+<blockquote>
+<p>在做这种记忆化搜索好实现的dp题目的时候，我总是能深深地感受到dp和图论之间的深刻联系。事实上，dp的状态 + 转移构成了一个DAG，我们平时的递推就是在这个DAG上沿着边做的。我们见过的相当一部分dp题目的DAG很简单，甚至我们感受不到它的存在，但是当问题复杂的时候，从图的角度去思考和实现可能会更有利于解决问题，比如显式地维护状态之间的关系，用图存起来合法的转移，在枚举转移时只需要枚举合法的转移即可。而记忆化的话，自带寻找其拓扑序中的前序的性质。</p>
+</blockquote>
+<h3 id="石子合并类">石子合并类</h3>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%8C%BA%E9%97%B4dp">区间dp</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E6%8A%80%E5%B7%A7%E4%B8%8E%E8%80%83%E6%B3%95">技巧与考法</a>
+<ul>
+<li><a href="#%E7%A0%B4%E7%8E%AF%E4%B8%BA%E9%93%BE">破环为链</a></li>
+<li><a href="#%E5%BC%80%E9%97%AD%E5%8C%BA%E9%97%B4%E7%8A%B6%E6%80%81%E8%AE%BE%E8%AE%A1">开/闭区间状态设计</a></li>
+<li><a href="#%E6%96%B9%E6%A1%88%E8%AE%B0%E5%BD%95">方案记录</a></li>
+<li><a href="#%E4%B8%8E%E9%AB%98%E7%B2%BE%E5%BA%A6%E7%BB%93%E5%90%88">与高精度结合</a></li>
+<li><a href="#%E4%BA%8C%E7%BB%B4%E9%AB%98%E7%BB%B4%E5%8C%BA%E9%97%B4dp">二维/高维区间dp</a></li>
+<li><a href="#%E7%9F%B3%E5%AD%90%E5%90%88%E5%B9%B6%E7%B1%BB">石子合并类</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/ji-chu-ji-qiao/">
+              <h3 class="post-title">
+                基础技巧
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1238 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>基础数据结构 | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634390174283">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="基础数据结构 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="基础数据结构
+
+Base is not easy.
+并不复杂的基础数据结构可以在各种地方灵活应用，所以从某种程度来说，这部分的应用是很难的。
+本菜狗苦基础算法和基础数据结构久矣，这个总结还是非常有必要的。
+
+栈
+栈的基础知识就不再总结了，大..." />
+    <meta name="keywords" content="数据结构" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634390174283" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              基础数据结构
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-07-15
+              </span>
+              <span>
+                41 min read
+              </span>
+              
+                <a href="https://BUAA-Wander.github.io/tag/Xl8pIJPz9h/" class="post-tag">
+                  # 数据结构
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="基础数据结构">基础数据结构</h1>
+<blockquote>
+<p>Base is not easy.</p>
+<p>并不复杂的基础数据结构可以在各种地方灵活应用，所以从某种程度来说，这部分的应用是很难的。</p>
+<p>本菜狗苦基础算法和基础数据结构久矣，这个总结还是非常有必要的。</p>
+</blockquote>
+<h2 id="栈">栈</h2>
+<p>栈的基础知识就不再总结了，大家都会。下面总结一下栈这种数据结构的高级玩法。</p>
+<h3 id="维护更多信息的栈">维护更多信息的栈</h3>
+<p>典型的形如边维护栈边维护栈中元素的最值，这种有查询历史信息意味，且看起来和栈的状态息息相关的，一般要另开一个栈，和原来的栈同步工作，以维护我们想要的信息。当然，也不一定非得用栈，有时候查询的信息并不一定是“从栈顶到栈底”的信息，这个时候可能得用数组等可以访问中间元素的容器去维护那些额外的信息。</p>
+<h3 id="对顶栈">对顶栈</h3>
+<p>我不仅能操作，还能撤销，还能撤销我的撤销。像这种操作，可以使用“对顶栈”去建模，两个栈互相传递数据，就可以实现左右横跳。在这个基础上使用上一个标题中提到的技巧，就可以维护反复横跳的状态下的更多信息。</p>
+<h3 id="出栈序列卡特兰数">出栈序列（卡特兰数）</h3>
+<p>这个问题抽象出来就是数学中的卡特兰数，由于其应用场合多得离谱且好多看起来一点关系都没有，所以我会把它放到数学专题或者具体数学读书笔记中进行专门整理。</p>
+<p>upd：离散数学昨天（<code>2021/5/11</code>）似乎刚讲了卡特兰数，然而我翘了，这就去数学部分补上这部分知识点。</p>
+<h3 id="单调栈">单调栈</h3>
+<blockquote>
+<p>这可能是我在系统补基础之前，制裁我次数最多的一个数据结构。</p>
+</blockquote>
+<p>单调栈的原理就是每次压栈之前，都维护栈中元素的单调性，使得压栈之后从栈顶到栈底的元素要么单调递增要么单调递减，具体咋样由题目决定。</p>
+<p>通过单调栈，我们可以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>求出每个位置的元素的左边（或者右边）第一个比它大（小）的数的<strong>位置</strong>。这个就是单调栈最最常用的地方了。</p>
+<p>我们一般是往单调栈中<strong>压入位置，维护的是这些位置的数的单调性</strong>。</p>
+<p>给一个求最左边第一个比自己小的数的位置的模板：</p>
+<pre><code class="language-cpp">int h[N], q[N], tt = 0, l[N];
+h[0] = -INF;
+for (int i = 1; i &lt;= n; i++) {
+    l[i] = 0;
+    while (h[q[tt]] &gt;= h[i]) {
+        tt--;
+    }
+    l[i] = q[tt];
+    q[++tt] = i;
+}
+</code></pre>
+<p>这个玩意本身不难，但是考察的相关题目不简单，主要是题目的包装比较多，模型一层包着一层，比如<a href="https://www.acwing.com/problem/content/3519/">3516. 最大面积 - AcWing题库</a>。如果没有见识过一定的模型，只是知道单调栈模板的话，基本不太可能做出来这个问题。要想做这个问题，先要知道单调栈的一个比较裸的应用，求直方图中的最大矩形，然后，推广到求网格图中的最大的全都是1的矩形，最后加上一点点trick来解决这个带单点修改的网格图中的最大全1矩形问题。</p>
+<h3 id="表达式计算">表达式计算</h3>
+<p>把中缀表达式转化成后缀表达式，进而求出表达式的结果，也是栈的一个重要的应用。</p>
+<p>中缀转后缀的基本思路是：</p>
+<ul>
+<li>遇到数字，就算出来整个数，丢到后缀表达式的后面</li>
+<li>遇到符号
+<ul>
+<li>如果是左括号，入栈</li>
+<li>如果是右括号，不断出栈并把出栈元素放到后缀表达式后面，直到栈空或者遇到左括号，然后把左括号弹了</li>
+<li>如果是运算符，在栈空或者遇到括号之前，需要把所有的优先级大于等于本运算符的算符弹出并放到后缀表达式后面。特别的，对于减号，要判断是负号还是减号。</li>
+</ul>
+</li>
+</ul>
+<p>后缀表达式计算思路：</p>
+<p>建立一个数栈，遇到数就放进去，遇到运算符，就取出来两个数（<strong>注意顺序</strong>），计算完之后压栈回去。最后剩下的那个元素就是答案了。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 100010;
+
+typedef struct {
+    int type;
+    int value;
+    char op;
+} Node;
+
+char s[N + 1];
+Node infix[N];
+stack&lt;char&gt; op_stack;
+stack&lt;int&gt; ans;
+int idx = 0;
+
+int main() {
+    cin &gt;&gt; s;
+    
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (isdigit(s[i])) {
+            int val = 0;
+            while (s[i] != '\0' &amp;&amp; isdigit(s[i])) {
+                val = 10 * val + s[i] - '0';
+                i++;
+            }
+            i--;
+            infix[idx].type = 0;
+            infix[idx++].value = val;
+        } else {
+            if (s[i] == '(') {
+                op_stack.push(s[i]);
+            } else if (s[i] == ')') {
+                while (!op_stack.empty() &amp;&amp; op_stack.top() != '(') {
+                    char now = op_stack.top();
+                    op_stack.pop();
+                    infix[idx].type = 1;
+                    infix[idx++].op = now;
+                }
+                if (!op_stack.empty()) {
+                    op_stack.pop();
+                }
+            } else if (s[i] == '+' || s[i] == '-') {
+                if (s[i] == '-') {
+                    // 处理负数而不是减号的情况
+                    if (i == 0) {
+                        infix[idx].type = 0;
+                        infix[idx++].value = 0;
+                    } else {
+                        if (!(isdigit(s[i - 1]) || s[i - 1] == ')')) {
+                            infix[idx].type = 0;
+                            infix[idx++].value = 0;
+                        }
+                    }
+                }
+                while (!op_stack.empty()) {
+                    char now = op_stack.top();
+                    if (now == '+' || now == '-' || now == '*' || now == '/' || now == '^') {
+                        infix[idx].type = 1;
+                        infix[idx++].op = now;
+                        op_stack.pop();
+                    } else {
+                        break;
+                    }
+                }
+                op_stack.push(s[i]);
+            } else if (s[i] == '*' || s[i] == '/') {
+                while (!op_stack.empty()) {
+                    char now = op_stack.top();
+                    if (now == '*' || now == '/' || now == '^') {
+                        infix[idx].type = 1;
+                        infix[idx++].op = now;
+                        op_stack.pop();
+                    } else {
+                        break;
+                    }
+                }    
+                op_stack.push(s[i]);
+            } else if (s[i] == '^') {
+                while (!op_stack.empty()) {
+                    char now = op_stack.top();
+                    if (now == '^') {
+                        infix[idx].type = 1;
+                        infix[idx++].op = now;
+                        op_stack.pop();
+                    } else {
+                        break;
+                    }
+                } 
+                op_stack.push(s[i]);
+            } else {
+                puts(&quot;fuck&quot;);
+                break;
+            }
+        }
+    }
+    
+    while (!op_stack.empty()) {
+        if (op_stack.top() == '(' || op_stack.top() == ')') {
+            op_stack.pop();
+            continue;
+        }
+        infix[idx].type = 1;
+        infix[idx++].op = op_stack.top();
+        op_stack.pop();
+    }
+    
+    for (int i = 0; i &lt; idx; i++) {
+        if (infix[i].type == 0) {
+            ans.push(infix[i].value);
+        } else {
+            int v2 = ans.top();
+            ans.pop();
+            int v1 = ans.top();
+            ans.pop();
+            if (infix[i].op == '+') {
+                ans.push(v1 + v2);            
+            } else if (infix[i].op == '-') {
+                ans.push(v1 - v2);
+            } else if (infix[i].op == '*') {
+                ans.push(v1 * v2);
+            } else if (infix[i].op == '/') {
+                ans.push(v1 / v2);
+            } else {
+                ans.push(pow(v1, v2));
+            }
+        }
+    }
+    cout &lt;&lt; ans.top() &lt;&lt; endl;
+    
+    return 0;
+}
+</code></pre>
+<p>表达式计算还有递归下降法：</p>
+<p>首先，对于左递归的文法，先把递归转成迭代。</p>
+<p><strong>每一个解析函数只解析属于自己这部分的东西</strong>，如果解析到不是这部分的内容，则下标需要回退或者只有发现是这部分的内容才移动下标继续解析。</p>
+<p>递归下降需要考虑会不会越界。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 100010;
+
+int idx, len;
+char s[N];
+
+int parse_expr();
+int parse_term();
+int parse_factor();
+
+int parse_expr() {
+	int res = parse_term();
+
+	while (idx &lt; len) {
+		char op = s[idx];
+		if (op == '+') {
+			idx++;
+			res += parse_term(); 
+		} else if (op == '-') {
+			idx++;
+			res -= parse_term();
+		} else {
+			break;
+		}
+	}
+
+	return res;
+}
+
+int parse_term() {
+	int res = parse_factor();
+
+	while (idx &lt; len) {
+		char op = s[idx];
+		if (op == '*') {
+			idx++;
+			res *= parse_factor(); 
+		} else if (op == '/') {
+			idx++;
+			res /= parse_factor();
+		} else if (op == '^') {
+			idx++;
+			res = pow(res, parse_factor());
+		} else {
+			break;
+		}
+	}
+
+	return res;
+}
+
+int parse_factor() {
+	int res = 0;
+
+	if (s[idx] == '(') {
+		idx++;
+		res = parse_expr();
+		idx++;
+	} else {
+		while (idx &lt; len &amp;&amp; s[idx] &gt;= '0' &amp;&amp; s[idx] &lt;= '9') {
+			res = 10 * res + s[idx++] - '0';
+		}
+	}
+	return res;
+}
+
+int main() {
+	cin &gt;&gt; s;
+	len = strlen(s);
+	cout &lt;&lt; parse_expr() &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+<p>另外还有中缀表达式直接求值的算法：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 1e5 + 9;
+char expr[N], n;
+
+int calc(int l, int r) {
+    int pos1 = -1, pos2 = -1, pos3 = -1, cnt = 0;
+    for (int i = l; i &lt;= r; i++) {
+        if (expr[i] == '(') {
+            cnt++;
+        } else if (expr[i] == ')') {
+            cnt--;
+        } else {
+            if (cnt == 0 &amp;&amp; (expr[i] == '+' || expr[i] == '-')) {
+                pos1 = i;
+            } else if (cnt == 0 &amp;&amp; (expr[i] == '*' || expr[i] == '/')) {
+                pos2 = i;
+            } else if (cnt == 0 &amp;&amp; expr[i] == '^') {
+                pos3 = i;
+            }
+        }
+    }
+    
+    if (pos1 != -1) {
+        if (expr[pos1] == '+') {
+            return calc(l, pos1 - 1) + calc(pos1 + 1, r);
+        } else {
+            return calc(l, pos1 - 1) - calc(pos1 + 1, r);
+        }
+    } else if (pos2 != -1) {
+        if (expr[pos2] == '*') {
+            return calc(l, pos2 - 1) * calc(pos2 + 1, r);
+        } else {
+            return calc(l, pos2 - 1) / calc(pos2 + 1, r);
+        }
+    } else if (pos3 != -1) {
+        int val1 = calc(l, pos3 - 1);
+        int val2 = calc(pos3 + 1, r);
+        return (int) pow(val1, val2);
+    } else {
+        if (expr[l] == '(' &amp;&amp; expr[r] == ')') {
+            return calc(l + 1, r - 1);
+        } else if (expr[l] == '(') {
+            return calc(l + 1, r);
+        } else if (expr[r] == ')') {
+            return calc(l, r - 1);
+        } else {
+            int flag = 1;
+            int val = 0;
+            for (int i = l; i &lt;= r; i++) {
+                if (expr[i] == '-') {
+                    flag *= -1;
+                } else {
+                    val = 10 * val + expr[i] - '0';
+                }
+            }
+            return val * flag;
+        }
+    }
+}
+
+int main() {
+    scanf(&quot;%s&quot;, expr);
+    n = strlen(expr);
+    printf(&quot;%d\n&quot;, calc(0, n - 1));
+    return 0;
+}
+</code></pre>
+<h3 id="括号序列匹配">括号序列匹配</h3>
+<p>栈也常常用来进行括号序列的匹配，很多与括号序列相关的计数问题可以按照匹配关系进行组合计数/dp计数，这时就需要先使用栈预处理出匹配情况（有时候只需要用一个变量来处理即可）。</p>
+<p>一个合法括号序列的性质：</p>
+<ul>
+<li>左右括号数量相同</li>
+<li>任何一个前缀中左括号数量不少于右括号数量</li>
+<li>去掉一对括号，得到的仍然是合法括号序列</li>
+</ul>
+<p>由于单纯的进行括号序列的检查和匹配过于简单，所以就不介绍了。</p>
+<blockquote>
+<p>有一个有趣的问题：给一个括号序列，要你尽可能少的添加括号，使之变得合法。求有多少本质不同的添加结果（即添加完成之后这个括号序列和其他添加结果至少有一个位置不一样）。<a href="https://www.acwing.com/problem/content/3423/">括号序列</a></p>
+<p>首先，不难统计出原括号序列到底有多少个括号没有匹配好，那么我们最终至少要添加的括号数量就是这么多了。</p>
+<p>之后添加括号的话，就是在原括号序列的每个空里插括号了。我们不能保证每个空里面只能添加一个括号，也不能保证每个空里面添加的是相同类型的括号。但是由于合法括号序列的第三个性质，我们知道每个空里面新添加的括号的排布一定是 <code>))...)((...(</code> ，否则我们就加入了可以配对的括号，那么删去这一对括号原括号序列的合法性不会变化，且会变得更短。所以同一个空里面插入的左右括号不会互相影响，所以我们可以分别去考虑左右括号的补全方案数，然后做乘法得到最终方案数。</p>
+<p>假设我们现在要做添加左括号的方案数，那么我们考虑在每个右括号上画一条竖线，把整个括号序列用这些竖线分成好几段，那么每段中显然都是左括号或者没有括号，每段的括号添加的方案数，其实就只和这一段的左括号数量有关系。考虑 <code>dp[i][j]</code> 表示原括号序列的前 <code>i</code> 个括号并考虑新加的括号之后，左括号比右括号多 <code>j</code> 个的加左括号的方案数，那么可以发现：</p>
+<ul>
+<li>如果第 <code>i</code> 个为左括号，那么 <code>dp[i][j] = dp[i - 1][j - 1]</code></li>
+<li>如果第 <code>i</code> 个为右括号，那么 <code>dp[i][j] = dp[i - 1][j + 1] + dp[i - 1][j] + ... + dp[i - 1][0]</code>，右边各项的意思分别是在第 <code>i</code> 和第 <code>i - 1</code> 个括号之间不加括号、加一个左括号... 加 <code>j + 1</code> 个左括号。这里可以使用完全背包的trick优化，变成 <code>dp[i][j] = dp[i][j - 1] + dp[i - 1][j + 1]</code></li>
+</ul>
+<p>统计加右括号的方案的话，直接做需要从右往左扫描，比较反人类，所以可以翻转字符串，然后反转左右括号，再做一遍左括号的匹配。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long LL;
+
+const int N = 5010;
+const int MOD = 1e9 + 7;
+
+LL dp[N][N], n;
+char s[N];
+
+LL solve() {
+    memset(dp, 0, sizeof dp);
+    dp[0][0] = 1;
+    for (int i = 1; i &lt;= n; i++) {
+        if (s[i] == '(') {
+            for (int j = 1; j &lt;= n; j++) {
+                dp[i][j] = dp[i - 1][j - 1] % MOD;
+            }
+        } else {
+            dp[i][0] = (dp[i - 1][0] + dp[i - 1][1]) % MOD;
+            for (int j = 1; j &lt;= n; j++) {
+                dp[i][j] = (dp[i - 1][j + 1] + dp[i][j - 1]) % MOD;
+            }
+        }
+    }
+    
+    for (int i = 0; i &lt;= n; i++) {
+        if (dp[n][i]) {
+            return dp[n][i];
+        }
+    }
+    return -1;
+}
+
+int main() {
+    cin &gt;&gt; (s + 1);
+    n = strlen(s + 1);
+    LL l = solve();
+    reverse(s + 1, s + n + 1);
+    for (int i = 1; i &lt;= n; i++) {
+        if (s[i] == ')') {
+            s[i] = '(';
+        } else {
+            s[i] = ')';
+        }
+    }
+    LL r = solve();
+    cout &lt;&lt; l * r % MOD &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+</blockquote>
+<h2 id="队列">队列</h2>
+<h3 id="普通队列">普通队列</h3>
+<p>先入先出的一种数据结构。基本操作过于简单，就不说了。</p>
+<h3 id="循环队列">循环队列</h3>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 100010;
+
+int q[N], hh, tt, m;
+
+int main() {
+    string op;
+    
+    cin &gt;&gt; m;
+    
+    int x;
+    while (m--) {
+        cin &gt;&gt; op;
+        if (op == &quot;push&quot;) {
+            cin &gt;&gt; x;
+            q[tt++] = x;
+            if (tt == N) {
+                tt = 0;
+            }
+        } else if (op == &quot;pop&quot;) {
+            hh++;
+        } else if (op == &quot;empty&quot;) {
+            if (hh == tt) {
+                cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
+            } else {
+                cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;
+            }
+        } else if (op == &quot;query&quot;) {
+            cout &lt;&lt; q[hh] &lt;&lt; endl;
+        }
+    }
+    
+    return 0;
+}
+</code></pre>
+<h3 id="单调队列">单调队列</h3>
+<p>单调队列中存储的元素是某个数组<code>a[]</code>中的元素的<strong>下标</strong>。</p>
+<p>单调队列维护的单调性是：从队头到队尾，对应的在序列<code>a[]</code>中的元素的值单调递增/递减。</p>
+<h3 id="双端队列">双端队列</h3>
+<h2 id="链表">链表</h2>
+<p>本部分主要介绍如何使用数组模拟单链表与双链表。</p>
+<p>TODO</p>
+<h2 id="trie-字典树">Trie 字典树</h2>
+<blockquote>
+<p>早就学过但是一直没咋用过，所以掌握很垃圾。2021.5.10每日一题当天专门系统整理了下面的内容。</p>
+</blockquote>
+<p>字典树是一个多叉树，又名<code>Trie</code>树，常用于处理字符串相关问题。传统的<code>Trie</code>有26个叉，分别代表字符<code>a</code>到<code>z</code>，而算法竞赛中使用<code>Trie</code>时一个很常用的用法就是<code>01Trie</code>，即只有表示<code>0</code>和<code>1</code>的两个儿子，且常用于贪心地处理异或问题。</p>
+<p><code>Trie</code>在竞赛中常用的存储方式的思路类似二叉树，其每个结点拥有记录指向其所有儿子的指针，除此之外其每个结点会标明以从根到自己的路径上的所有边组成的串是否是一个完整的串及其出现次数。当然，为了避免动态分配内存，一般在竞赛中我们使用内存池的方式去实现这个数据结构。这里需要注意，由于每个字符串中的每个字符都可能是之前树中没有的，且树中的边只能表达一个字符的信息，所以树中的结点个数最多是<strong>输入的总字符数</strong>而不是输入的字符串数。</p>
+<p>以<a href="https://www.acwing.com/problem/content/837/">Trie字符串统计</a>为例子，本题要求写一个数据结构，能够支持快速插入一个字符串，以及快速统计某个字符串出现的次数。使用字典树可以这样去实现：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 2e4 + 9;
+const int SIZE = 1e5 + 9;
+
+int trie[SIZE][30], idx, cnt[SIZE];
+bool ed[SIZE];
+int n;
+
+// 根节点和空结点用0表示
+void insert(char str[]) {
+    int p = 0;
+    for (int i = 0; str[i] != '\0'; i++) { 
+        int ch = str[i] - 'a'; //算出来该走哪条边
+        if (trie[p][ch] == 0) { // 下个结点不存在就从内存池中分配一个
+            trie[p][ch] = ++idx;
+        }
+        p = trie[p][ch];
+    }
+	cnt[p]++;
+}
+
+int query(char str[]) {
+    int p = 0; 
+    for (int i = 0; str[i] != '\0'; i++) {
+        int ch = str[i] - 'a';
+        if (trie[p][ch] == 0) {
+            trie[p][ch] = ++idx;
+        }
+        p = trie[p][ch];
+    }
+    return cnt[p];
+}
+
+int main() {
+    char op[2], str[SIZE];
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 1; i &lt;= n; i++) {
+        scanf(&quot;%s %s&quot;, op, str);
+        if (op[0] == 'I') {
+            insert(str);
+        } else {
+            printf(&quot;%d\n&quot;, query(str));
+        }
+    }
+    return 0;
+}
+</code></pre>
+<p>这份代码中拥有几个值得探讨的细节：</p>
+<ul>
+<li>本题中，我们使用了<code>cnt</code>数组，来表示<strong>从根走到该结点的字符串曾经被插入的个数</strong>。可以注意到，我们只在最后一位增加了次数，原因就是防止出现前缀匹配的情况。比如空树中插入字符串<code>abc</code>，查询<code>ab</code>字符串的次数，虽然<code>ab</code>没有被插入过，但是它是之前插入的字符串的前缀，所以如果我们在插入时把路径上所有经过的结点的<code>cnt</code>值都增加的话，那么会出现上面的错误。类似地，如果中间结点不是终点但统计了次数，删除字符串时，可能也会出现插入了<code>abc</code>但是删除<code>ab</code>串却可以成功执行的错误情况。</li>
+<li>实现<code>Trie</code>树时，我们把<code>0</code>号结点当作初始根节点，并且以<code>trie[i][j]</code>存储的值为<code>0</code>来表示树上不能走这条边，所以<code>idx</code>应该使用前置加法。</li>
+</ul>
+<p>下面再专门介绍一下<code>01Trie</code>:</p>
+<p><code>01Trie</code>，常用来解决数的异或问题，且常用到贪心的思想去在树上走想要的路径（异或问题的贪心也不一定非得用到这个数据结构，有时候就是单纯统计每位1出现的奇偶）。这里常用的贪心一般是从高位到低位的贪心，为了保证正确性，<strong>一般我们要在前面补上前导0以保证对齐</strong>。</p>
+<p>贪心地异或时，我们的思路是，先算一下当前自己的二进制位，然后看看这个位取反表示的那条边能不能走到合法结点，如果能走到，则下一位异或完就是<code>1</code>，结果<code>res = 2 * res + 1</code>。如果位取反表示的那条边不能走到合法结点，就只能走该位表示的边了，<code>res = 2 * res</code>。对于其他更复杂的路径信息，可能我们需要用<code>path[N]</code>数组才能记录下来，这个根据题意的不同而不同。</p>
+<p>做异或问题的时候，<code>01Trie</code>面临一个很大的问题：如何删除结点。如果要硬上普通字典树的模板代码的话，会出现下面一个问题：<strong>直到贪心地走到叶子结点，我才发现这个串已经不合法了</strong>。为了解决这个问题，我们可以利用好所有数字二进制位数相同的性质，<strong>对路径上所有的结点都统计出现次数</strong>。由于每个数都是<strong>对齐存储</strong>的，所以我们完全不用担心上面提到的前缀的问题。这样我们可以每走一步就判断一下是不是能贪心的走，不能则走另一条路。只要树不是空的，那么一定就可以走到叶子，得到一个合法的答案。</p>
+<p>仅仅使用上一段提到的技巧会引入新的问题：如何正确的判断某个结点是否是存在的。如果仍然判断<code>trie[i][j]</code>是否为0的话，考虑插入一个数之后把它删除，其虽然不存在了，但是<code>trie[i][j]</code>也已经不是0了。为了解决这个问题，我们应该<strong>通过<code>cnt[trie[i][j]]</code>来判断某个结点是否有效</strong>。</p>
+<p>做异或问题时还容易遇到一些其他的细节问题，比如如果要求区间异或的一些东西，我们可能会想到把区间异或转化为前缀异或。做前缀的话，<strong>首先要在树中插入<code>s[0]</code></strong>，否则在查询的时候<code>01Trie</code>不能正常工作。</p>
+<h2 id="并查集">并查集</h2>
+<p>并查集是一种树形数据结构。</p>
+<h3 id="普通并查集">普通并查集</h3>
+<p>普通并查集支持快速维护一系列集合之间的合并操作与查询是否在同一个集合中的操作。普通并查集之所以快，是因为有<strong>路径压缩</strong>（各个子节点直接连到根节点上，很短很好写）与<strong>按秩合并</strong>（让小的集合合并到大的集合中，需要额外维护集合大小）两种优化。</p>
+<p>确实没什么好说的。</p>
+<h3 id="带权并查集">带权并查集</h3>
+<p>带权并查集中，每个结点除了维护<code>fa[x]</code>以外，还要维护一个<strong>和<code>fa[x]</code>之间相连的边的权值<code>d[x]</code></strong>。</p>
+<p>这个<code>d[x]</code>的意义随题目要求的不同而不同。一个典型的例子是在保证原顺序合并的情况下维护<code>x</code>到<code>fa[x]</code>的距离。</p>
+<p>通常，<strong>在调用<code>find</code>操作之后</strong>，<code>fa[x]</code>都会变成最终的根，所以<code>d[x]</code>也应该在<code>find</code>的过程中被更新成<code>x</code>到新的 <code>fa[x]</code>（即最终的根）的距离，且我们还可能要维护集合的大小<code>sz[x]</code>。而我们使用<code>d[x]</code>的值的时候，一般也是在调用完<code>find</code>之后（毕竟只是记录随便一个<code>fa[x]</code>的也没啥使用价值）。</p>
+<p>通过使用**<code>find</code>之后的<code>d[x]</code>**（即<code>x</code>到根的<code>d[x]</code>），可以高效维护同一个集合中的任意两个元素之间的”关系“。</p>
+<p>带权并查集维护的本质上是一个相对关系。</p>
+<p>拿一个例题来看吧：<a href="https://www.acwing.com/problem/content/241/">奇偶游戏</a></p>
+<p>题目大意是有一个长度为<code>n</code>的01序列，<code>m</code>条已知信息，每条信息回答了这个序列的<code>[l, r]</code>中存在的1的个数是奇数还是偶数。这些信息可能会互相矛盾，故需要我们找出第一次出现矛盾的那条信息。</p>
+<p>分析一下题目，使用前缀和的思想，将区间信息转化成前缀<code>s[l - 1]</code>和<code>s[r]</code>之间的关系，显然，<code>[l, r]</code>中有奇数个1，则<code>s[l - 1]</code>和<code>s[r]</code>奇偶性不同，否则则相同。并且容易发现，只要满足奇偶关系不出矛盾，就能构造出一个合法的原序列；奇偶关系出现问题则信息一定自相矛盾。所以判定信息是否自相矛盾只要判定奇偶关系是否自相矛盾即可。</p>
+<p>注意到，如果知道<code>s[i]</code>和<code>s[j]</code>的关系，以及<code>s[j]</code>和<code>s[k]</code>的关系，<strong>假如关系具有传递性</strong>，那么我们可以直接推导出<code>s[i]</code>和<code>s[k]</code>之间的关系，所以我们可以维护若干个集合，维护集合中每个元素和其集合代表元之间的关系（同奇偶或不同）。这样在给出位于同一个集合中的两个元素的关系的时候，我们可以检查推导结果和给出的结果是否矛盾；若两个元素不在同一个集合中，说明根据前面的条件不足以完成推导，此时可以进行集合合并，在合并的时候需要注意合并时增加的那条边的边权是多少，这是通过我们当前这条给定的信息确定的。</p>
+<p>在本题中，我们可以这样处理：</p>
+<ul>
+<li>
+<p>我们规定，<code>d[x]</code>表示<code>x</code>和<code>fa[x]</code>的关系。在本题中存在两种关系：同奇偶性或者不同，其中同奇偶性可以用0表示，不同可以用1表示。</p>
+</li>
+<li>
+<p>如果给出的当前信息说明<code>l - 1</code>和<code>r</code>奇偶相同</p>
+<ul>
+<li>如果<code>l - 1</code>和<code>r</code>当前在同一个集合中，<strong>先让<code>l - 1</code>和<code>r</code>都指向根，并维护途中遇到的<code>d[x]</code></strong>，然后检查<code>d[l - 1]</code>和<code>d[r]</code>，如果<code>d[l - 1] ^ d[r] == 0</code>，则无矛盾，否则有矛盾</li>
+<li>如果<code>l - 1</code>和<code>r</code>不在同一个集合中，说明目前无法推导出二者的关系，所以合并两个集合。由于<code>l - 1</code>和<code>r</code>奇偶性相同，所以我们希望<code>d[x] ^ d[y] ^ new relation == 0</code>  ，解得<code>new relation = d[x] ^ d[y]</code> ，所以合并的时候加入的新的边权为<code>d[x] ^ d[y]</code></li>
+</ul>
+</li>
+<li>
+<p>如果给出的当前信息说明<code>l - 1</code>和<code>r</code>奇偶不同，类比相同的情况，不难发现应该怎么维护。</p>
+</li>
+</ul>
+<p>本题数据范围较大，所以还需要离散化，偷懒可以使用哈希表在线离散化。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 10010;
+
+typedef pair&lt;int, int&gt; PII;
+
+int d[N], fa[N], n, m, idx;
+unordered_map&lt;int, int&gt; h;
+
+// 在线离散化
+int get(int x) {
+    if (!h.count(x)) {
+        h[x] = ++idx;
+    }
+    return h[x];
+}
+
+int find(int x) {
+    if (fa[x] != x) {
+        int root = find(fa[x]);
+        // 调用了find(fa[x])之后，fa[fa[x]]已经是最终的根了
+        // d[fa[x]]此时就是从fa[x]到最终的根的关系
+        // 这个时候使用d[fa[x]]更新d[x]，就可以让d[x]也表示x到最终的根的关系
+        d[x] ^= d[fa[x]];
+        fa[x] = root;
+    }
+
+    return fa[x];
+}
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+
+    for (int i = 0; i &lt;= 2 * m; i++) {
+        fa[i] = i;
+    }
+
+    int a, b, res = 0;
+    string opt;
+    for (int i = 1; i &lt;= m; i++) {
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; opt;
+        int x = get(a - 1), y = get(b);
+        if (opt == &quot;even&quot;) {
+            // 必须先让x和y的父亲都变成根，不然使用的d[x]和d[y]意义不大
+            int px = find(x), py = find(y);
+
+            if (px != py) {
+                fa[px] = py;
+                d[px] = d[x] ^ d[y];
+                res++;
+            } else {
+                if (d[x] ^ d[y] != 0) {
+                    break;
+                } else {
+                    res++;
+                }
+            }
+        } else {
+            int px = find(x), py = find(y);
+            if (px != py) {
+                fa[px] = py;
+                d[px] = 1 ^ d[x] ^ d[y];
+                res++;
+            } else {
+                if (d[x] ^ d[y] != 1) {
+                    break;
+                } else {
+                    res++;
+                }
+            }
+        }
+    }
+
+    cout &lt;&lt; res &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+<p>带权并查集也可以解决更多更复杂的关系，比如<a href="https://www.acwing.com/problem/content/242/">食物链</a> 。思考方式和奇偶游戏完全相同，只不过本题需要维护模3意义下的3种关系。</p>
+<h3 id="扩展域并查集">扩展域并查集</h3>
+<p>TODO，还没看懂啥意思。</p>
+<h2 id="二叉堆">二叉堆</h2>
+<p>二叉堆分为大根堆和小根堆两种，两种都是完全二叉树。</p>
+<p>以大根堆为例子，大根堆满足：对于所有结点来说，其存储的值一定不小于其两个儿子结点存储的值。</p>
+<p>二叉堆的传统操作有查询堆顶，插入一个数以及删除堆顶。一般的实现方法是使用数组模拟堆，插入删除都是在堆的“尾部”进行（不是的话则交换到尾部），然后通过向上或者向下调整来保持二叉堆的性质。</p>
+<p>基本的堆操作已经在《基础技巧》一文记录过，所以下面介绍点不一样的。</p>
+<h3 id="支持修改和随机删除的堆">支持修改和随机删除的堆</h3>
+<p>TODO 一般不用实现这个需求。</p>
+<h3 id="对顶堆">对顶堆</h3>
+<p>维护一个大顶堆和一个小顶堆，二者适时交换一些元素，这样可以实现动态维护中位数等操作。</p>
+<h3 id="stl-priority_queue的使用">STL <code>priority_queue</code>的使用</h3>
+<p><code>priority_queue</code> 默认是大根堆。</p>
+<p>常用的操作如下：</p>
+<pre><code>priority_queue&lt;Type&gt; q; 创建一个内部存储Type类型的堆，且是大根堆
+q.empty() q.top() q.pop() q.push(element) 测试是否为空，看堆顶而不取，弹出堆顶，插入元素
+bool operator&lt;(const Type &amp;a, const Type &amp;b) {
+	// return something
+} 重载运算符以实现小根堆，把‘&lt;’的行为定义成‘&gt;’的
+插入相反数元素也可以实现小根堆，记得取出来之后取反就好了
+对于已经定义了大小关系的Type，可以使用 priority_queue&lt;Type, vector&lt;Type&gt;, greater&lt;Type&gt; &gt; 来实现小根堆
+</code></pre>
+<h2 id="哈希表">哈希表</h2>
+<p>哈希表在算法竞赛中常用两种处理哈希冲突的方式：拉链法与线性探测法。</p>
+<h3 id="拉链法">拉链法</h3>
+<p>对于拉链法，其思路就是把相同的哈希值的元素串成链表，这样看起来就像一个邻接表，所以我们可以照搬存图的那一套做法，使用静态邻接表存储哈希表，首先通过哈希函数计算出该挂到哪个结点上，然后再挂上去。在查找的时候，也是先算出来它在哪个结点挂着，然后遍历那条链表即可。图的建立和遍历的代码大家都已经写习惯了，所以一般情况下写拉链法更不容易写错，尤其是在很久没实现过哈希的时候。</p>
+<p>拉链法的代码实现：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 100010;
+const int mod = 100003;
+
+typedef struct {
+    int to, ne;
+} Edge;
+
+Edge edge[2 * N];
+int h[N], head[N], cnt, n;
+
+void add(int x, int y) {
+    edge[cnt].to = y;
+    edge[cnt].ne = head[x];
+    head[x] = cnt++;
+}
+
+bool query(int u, int x) {
+    for (int i = head[u]; i &gt;= 0; i = edge[i].ne) {
+        int j = edge[i].to;
+        if (x == j) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int main() {
+    cin &gt;&gt; n;
+
+    memset(head, -1, sizeof head);
+
+    string opt;
+    int x;
+    for (int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; opt &gt;&gt; x;
+        if (opt == &quot;I&quot;) {
+            int u = (x % mod + mod) % mod;
+            add(u, x);
+        } else {
+            int u = (x % mod + mod) % mod;
+            if (query(u, x)) {
+                puts(&quot;Yes&quot;);
+            } else {
+                puts(&quot;No&quot;);
+            }
+        }
+    }
+
+    return 0;
+}
+</code></pre>
+<h3 id="线性探测法">线性探测法</h3>
+<p>本方法的思路是，遇到冲突之后，顺延往后找空位，遇到第一个空位便放下。</p>
+<p>在查询时，先在哈希值处查找，查找失败则往后顺延查找，直到遇到空位，说明没找到。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 100010;
+const int mod = 100003;
+
+int h[N], n;
+
+void add(int u, int x) {
+    if (h[u] == -1) {
+        h[u] = x;
+    } else if (h[u] == x) {
+        return;
+    } else {
+        for (int i = u; ; i++) {
+            if (i == N) i = 0; 
+            if (h[i] == -1) {
+                h[i] = x;
+                return;
+            } else if (h[i] == x) {
+                return;
+            }
+        }
+    }
+}
+
+bool query(int u, int x) {
+    if (h[u] == x) return true;
+    
+    for (int i = u; h[i] != -1; i++) {
+        if (i == N) i = 0;
+        if (h[i] == x) return true;
+    }
+    
+    return false;
+}
+
+int main() {
+    cin &gt;&gt; n;
+    
+    memset(h, -1, sizeof h);
+    
+    string opt;
+    int x;
+    for (int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; opt &gt;&gt; x;
+        if (opt == &quot;I&quot;) {
+            int u = (x % mod + mod) % mod;
+            add(u, x);
+        } else {
+            int u = (x % mod + mod) % mod;
+            if (query(u, x)) {
+                puts(&quot;Yes&quot;);
+            } else {
+                puts(&quot;No&quot;);
+            }
+        }
+    }
+    
+    return 0;
+}
+</code></pre>
+<hr>
+<p>下面再介绍一下将比较一般化的信息转化成整数信息的字符串哈希。</p>
+<h3 id="字符串哈希">字符串哈希</h3>
+<p>字符串哈希是将字符串转化为整数的一种思想。</p>
+<p>常用的字符串哈希是P进制自然溢出字符串哈希。这个的原理是将字符串看成一个P进制数，然后每个字符映射到一个<strong>正整数</strong>上。一般地，取P = 131或者13331，这个时候产生哈希冲突的概率非常低，可以认为无冲突。</p>
+<p>由于ASCII码总共也就255个，所以取P = 13331，且取所有的字符映射到的整数为其ASCII码 + 1，可以满足P进制数的要求。</p>
+<p>在计算字符串的哈希值时，我们采用类似快读的处理方法，即假如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>串的哈希值为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>(</mo><mi>S</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">h(S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>，则<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>后面加上字符<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">ch</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span></span></span></span>之后得到的串的哈希值为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>∗</mo><mi>h</mi><mo>(</mo><mi>S</mi><mo>)</mo><mo>+</mo><mi>c</mi><mi>h</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">P * h(S) + ch + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p>由于最后得到的哈希值可以看成是一个P进制数，所以只要预处理出字符串所有前缀的哈希值，那么可以快速求出字符串任意一个子串的哈希值，具体操作是：假设已知字符串<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>的哈希值是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>(</mo><mi>S</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">h(S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>+</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">S + T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>的哈希值为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>(</mo><mi>S</mi><mo>+</mo><mi>T</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">h(S + T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span>，加号代表拼接操作，那么<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>的哈希值可以这样求：先把<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>后面补P进制数0，直到位数和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>(</mo><mi>S</mi><mo>+</mo><mi>T</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">h(S + T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span>相同（即P进制意义下左移<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>t</mi><mi>r</mi><mi>l</mi><mi>e</mi><mi>n</mi><mo>(</mo><mi>T</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">strlen(T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span>位），此时得到的哈希值是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>(</mo><mi>S</mi><mo>)</mo><mo>×</mo><msup><mi>P</mi><mrow><mi>s</mi><mi>t</mi><mi>r</mi><mi>l</mi><mi>e</mi><mi>n</mi><mo>(</mo><mi>T</mi><mo>)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">h(S) \times P^{strlen(T)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span>，那么<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>(</mo><mi>S</mi><mo>+</mo><mi>T</mi><mo>)</mo><mo>−</mo><mi>h</mi><mo>(</mo><mi>S</mi><mo>)</mo><mo>×</mo><msup><mi>P</mi><mrow><mi>s</mi><mi>t</mi><mi>r</mi><mi>l</mi><mi>e</mi><mi>n</mi><mo>(</mo><mi>T</mi><mo>)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">h(S+ T) - h(S) \times P^{strlen(T)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span>就是<code>T</code>的哈希值了。</p>
+<p>由于计算机存储数字的位数有限，所以哈希值一般是要对一个数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span>取模的。如果我们取<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mo>=</mo><msup><mn>2</mn><mn>64</mn></msup></mrow><annotation encoding="application/x-tex">M = 2^{64}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span> ，那么如果我们使用<code>unsigned long long</code>存储哈希值的话，就不用显式进行取模了。</p>
+<p>上面两个步骤加起来，就叫做P进制自然溢出字符串哈希。</p>
+<p>代码实现如下：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef unsigned long long ull;
+
+const int N = 100010;
+const ull P = 13331;
+
+char s[N];
+int n, m;
+ull h[N];
+
+ull get(int len) {
+    ull res = 0;
+    if (len == 1) {
+        // 必须保证正整数，不然对于a...a这种串会无法区分
+        res = s[1] + 1;
+    } else {
+        res = P * h[len - 1] + s[len] + 1;
+    }
+    return res;
+}
+
+void pre() {
+    for (int i = 1; i &lt;= n; i++) {
+        h[i] = get(i);
+    }
+}
+
+ull quick_power(ull a, ull b) {
+    ull base = a, res = 1;
+
+    while (b) {
+        if (b &amp; 1) {
+            res *= base;
+        }
+
+        base *= base;
+        b &gt;&gt;= 1;
+    }
+
+    return res;
+}
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+
+    cin &gt;&gt; (s + 1);
+
+    pre();
+
+    int l1, r1, l2, r2;
+    for (int i = 1; i &lt;= m; i++) {
+        cin &gt;&gt; l1 &gt;&gt; r1 &gt;&gt; l2 &gt;&gt; r2;
+
+        ull str1 = h[r1] - h[l1 - 1] * quick_power(P, r1 - l1 + 1);
+        ull str2 = h[r2] - h[l2 - 1] * quick_power(P, r2 - l2 + 1);
+
+        if (str1 == str2) {
+            puts(&quot;Yes&quot;);
+        } else {
+            puts(&quot;No&quot;);
+        }
+    }
+
+    return 0;
+}
+</code></pre>
+<p>自然溢出可能会被卡，所以改变一下模数，使用比较大比较著名的质数作为模数，比如那位大人的生日<code>19260817</code>，<code>998244353</code>等。</p>
+<p>字符串哈希的真正威力似乎在于<strong>在不写其他字符串算法的情况下骗部分分</strong>：</p>
+<ul>
+<li>在字符串匹配时，可以直接预处理主串的所有前缀的哈希值，预处理模式串的哈希值，然后枚举主串中长度等于模式串的字符串，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>快速计算出哈希值，就基本可以判断这一段是不是等于模式串了。如果怕自然溢出被卡掉，可以尝试一下其他模数或者双哈希。</li>
+</ul>
+<h3 id="stl-map和unordered_map的使用">STL <code>map</code>和<code>unordered_map</code>的使用</h3>
+<p>其实也没有太多可以说的。</p>
+<p><code>map</code> 是基于红黑树实现的，<code>unordered_map</code> 则是基于 <code>hash</code> 实现的，二者提供的基本的增删改查函数都一样，所以只要把声明中的 <code>map</code> 和 <code>unordered_map</code> 换一下即可。不过 <code>map</code> 中有一些用到平衡树特性的函数，这些就不能给 <code>unordered_map</code> 使用了。</p>
+<p><code>map</code> 的遍历需要使用迭代器：</p>
+<pre><code class="language-cpp">for (map&lt;int, int&gt;::iterator i = h.begin(); i != h.end(); i++) {
+    printf(&quot;%d &quot;, i -&gt; second); // i -&gt; second是值，i -&gt; first是键
+}
+</code></pre>
+<p>清空 <code>map</code> 中的所有键值对：</p>
+<pre><code class="language-cpp">map&lt;int, int&gt; a;
+a.clear();
+</code></pre>
+<h2 id="字符串">字符串</h2>
+<h3 id="kmp字符串匹配">kmp字符串匹配</h3>
+<h4 id="原理与代码模板">原理与代码模板</h4>
+<p>kmp算法的核心：每次失配的时候，模式串的某个子串和模板串的某个前缀是相等的。</p>
+<p>考虑模式串 <code>abcabd</code> 和模板串 <code>abd</code>，下标从 <code>0</code> 开始算，那么可以注意到最开始会在 <code>2</code> 处发现不相等，即：</p>
+<pre><code>abcabd
+abd
+</code></pre>
+<p>按理说下次应该这样匹配：</p>
+<pre><code>abcabd
+ abd
+</code></pre>
+<p>但是显然这个上来就会错，这样的原因是没有从上一次匹配失败中吸取教训。</p>
+<p>如果要吸取教训，我们要如何吸取呐？注意到每次失配的时候，模式串的某个子串和模板串的某个前缀是相等的。而下次匹配的时候，为了最大化利用这个信息，我们需要知道<strong>这个前缀串自身的前缀和后缀最多能重合多少</strong>。下次匹配的时候，我们就把模板串往后移动到和他重合的最长后缀的位置即可最大化利用这个信息。</p>
+<p>对于模板串的每个前缀串最多能和这个前缀串的多长的后缀串重合这个信息（特别的，<strong>不能是整个串等于整个串</strong>），可以预处理出来。</p>
+<p>假设我们预处理出来了，那么我们每次就可以往后尽可能多且有效的跳，尽可能地去匹配成功，能够证明匹配复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n + m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span> 的。</p>
+<p>我们从下标 <code>1</code> 开始存储字符串，假设模式串 <code>s</code> 的长度为 <code>m</code> ，模板串 <code>p</code> 长度为 <code>n</code>，则<strong>匹配</strong>过程可以这样实现：</p>
+<pre><code class="language-c++">for (int i = 1, j = 0; i &lt;= m; i++) {
+	while (j &amp;&amp; s[i] != p[j + 1]) {
+        j = ne[j]; // 把整根模板串往右平移
+    }	
+    if (s[i] == p[j + 1]) {
+        j++; // 匹配则看模板串和模式串的下一位，此处是后移模板串指针
+    }
+    if (j == n) {
+       	// 匹配成功
+        j = ne[j];
+    }
+}
+</code></pre>
+<p>解释：<code>ne[i]</code> 表示模板串 <code>p</code> 的以 <code>i</code> 结尾的非前缀子串 <code>p[k ... i]</code> 和 <code>p</code> 的前缀能够匹配的最长长度，或者说是 <code>p[1 .. i]</code> 的后缀（不包含整个串）和 <code>p[1 .. i]</code> 的前缀最大相等长度。</p>
+<p>使用图解这段代码就是：</p>
+<figure data-type="image" tabindex="1"><img src="https://cdn.acwing.com/media/article/image/2021/08/22/59442_8ca65a9903-kmp.png" alt="kmp.png" loading="lazy"></figure>
+<p>下面回到前面的一个问题，咋预处理前缀串的前后缀相等信息？一个朴素的方法是，枚举每个前缀串，然后对于每个前缀串，暴力枚举前后缀，看看是不是相等的，从长向短枚举，遇到的第一个相等的就是最长的重合的，这样假设模板串长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> ，则复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>3</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> ，在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 比较大的时候就不好用了。</p>
+<p>在求 <code>ne[i]</code> 的时候，我们完全可以使用前面计算出来的 <code>ne[1...i - 1]</code> 。具体思路是考虑 <code>p</code> 和自己的前缀做匹配：</p>
+<pre><code class="language-cpp">for (int i = 2, j = 0; i &lt;= n; i++) {
+    // 这一段和匹配时的意义一样
+    // i从2开始是因为要保证ne[1] = 0
+    while (j &amp;&amp; p[i] != p[j + 1]) {
+        j = ne[j];
+    }
+    if (p[i] == p[j + 1]) {
+        j++;
+    }
+    // 如果发现匹配上了一个字符，说明ne[i] = j
+    // 否则，说明j = 0退出来的，所以ne[i] = 0
+    ne[i] = j;
+}
+</code></pre>
+<h4 id="对ne数组的深入理解与灵活运用">对ne数组的深入理解与灵活运用</h4>
+<p>为了充分理解kmp算法的 <code>ne[]</code> 数组以及移动规则，可以做一下这个题目<a href="https://www.acwing.com/problem/content/3826/">3823. 寻找字符串 - AcWing题库</a></p>
+<p>本题考察对 <code>ne[]</code> 数组的理解。</p>
+<p>在 <code>kmp</code> 算法中，<code>ne[i]</code> 表示对于串 <code>s[1 ... i]</code> 来说，其最长的和前缀相等的后缀的长度是 <code>ne[i]</code>。</p>
+<p>所以如果本题没有必须要在非前后缀位置出现过的话，那么最长的就是 <code>s[1 ... ne[n]]</code></p>
+<p>但是本题有上述条件，所以就没法直接拿到答案了，要尝试一遍所有可能的前后缀。</p>
+<p>考虑一下如何快速求出来相等的前后缀，这个其实是 <code>kmp</code> 算法中的内容。回忆 <code>kmp</code> 算法，当 <code>s[i] != s[j + 1]</code> 的时候，我们令 <code>j = ne[j]</code>，其意义便是往后移动一下字符串，直到现在的 <code>j</code> 的 <code>ne[j]</code> 和 <code>i - 1</code>对齐，这一步便是快速求出来 <code>s[1 ... j]</code> 的最长前后缀。所以枚举相等的前后缀，只需要不断往前找 <code>ne</code>就好了：</p>
+<pre><code class="language-cpp">for (int i = ne[n]; i &gt; 0; i = ne[i]) {
+    
+}
+</code></pre>
+<p>下面考虑怎么快速判断我们上面枚举的串在中间某个位置出现过。</p>
+<p>因为是判断其是否在中间出现过，所以它不是后缀（这不废话嘛），假设这个后缀的长度为 <code>len</code>，我们想一下，假设在子串 <code>s[1 .. k], 1 &lt;= k &lt; n</code>中，<code>ne[k] = len</code>，那么就说明 <code>s[1 ... k]</code> 的最长前后缀长度是 <code>len</code>，所以 <code>s[1 ... len]</code> 等于 <code>s[k - len + 1... k]</code>，而 <code>k &lt; n</code>，所以这就说明 <code>s[k - len + 1 .. k]</code> 就是在中间出现的情况。为了快速判断这一点，使用 <code>hash</code> 即可。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 1e6 + 9;
+
+char s[N];
+int T, ne[N], n;
+bool st[N];
+
+int main() {
+    scanf(&quot;%d&quot;, &amp;T);
+    
+    while (T--) {
+        scanf(&quot;%s&quot;, s + 1);
+        n = strlen(s + 1);
+        for (int i = 2, j = 0; i &lt;= n; i++) {
+            while (j &amp;&amp; s[i] != s[j + 1]) {
+                j = ne[j];
+            }
+            if (s[i] == s[j + 1]) {
+                j++;
+            }
+            ne[i] = j;
+        }
+        
+        memset(st, 0, sizeof st);
+        for (int i = 1; i &lt; n; i++) {
+            st[ne[i]] = true;
+        }
+        
+        int res = 0;
+        for (int i = ne[n]; i &gt; 0; i = ne[i]) {
+            if (st[i]) {
+                res = i;
+                break;
+            }
+        }
+        
+        if (!res) {
+            printf(&quot;not exist\n&quot;);
+        } else {
+            for (int i = 1; i &lt;= res; i++) {
+                printf(&quot;%c&quot;, s[i]);
+            }
+            puts(&quot;&quot;);
+        }
+    }
+    
+    return 0;
+}
+</code></pre>
+<h3 id="最小表示法">最小表示法</h3>
+<h3 id="manacher算法">manacher算法</h3>
+<h3 id="c-string类">C++ string类</h3>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">基础数据结构</a>
+<ul>
+<li><a href="#%E6%A0%88">栈</a>
+<ul>
+<li><a href="#%E7%BB%B4%E6%8A%A4%E6%9B%B4%E5%A4%9A%E4%BF%A1%E6%81%AF%E7%9A%84%E6%A0%88">维护更多信息的栈</a></li>
+<li><a href="#%E5%AF%B9%E9%A1%B6%E6%A0%88">对顶栈</a></li>
+<li><a href="#%E5%87%BA%E6%A0%88%E5%BA%8F%E5%88%97%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0">出栈序列（卡特兰数）</a></li>
+<li><a href="#%E5%8D%95%E8%B0%83%E6%A0%88">单调栈</a></li>
+<li><a href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97">表达式计算</a></li>
+<li><a href="#%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97%E5%8C%B9%E9%85%8D">括号序列匹配</a></li>
+</ul>
+</li>
+<li><a href="#%E9%98%9F%E5%88%97">队列</a>
+<ul>
+<li><a href="#%E6%99%AE%E9%80%9A%E9%98%9F%E5%88%97">普通队列</a></li>
+<li><a href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97">循环队列</a></li>
+<li><a href="#%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97">单调队列</a></li>
+<li><a href="#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97">双端队列</a></li>
+</ul>
+</li>
+<li><a href="#%E9%93%BE%E8%A1%A8">链表</a></li>
+<li><a href="#trie-%E5%AD%97%E5%85%B8%E6%A0%91">Trie 字典树</a></li>
+<li><a href="#%E5%B9%B6%E6%9F%A5%E9%9B%86">并查集</a>
+<ul>
+<li><a href="#%E6%99%AE%E9%80%9A%E5%B9%B6%E6%9F%A5%E9%9B%86">普通并查集</a></li>
+<li><a href="#%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86">带权并查集</a></li>
+<li><a href="#%E6%89%A9%E5%B1%95%E5%9F%9F%E5%B9%B6%E6%9F%A5%E9%9B%86">扩展域并查集</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C%E5%8F%89%E5%A0%86">二叉堆</a>
+<ul>
+<li><a href="#%E6%94%AF%E6%8C%81%E4%BF%AE%E6%94%B9%E5%92%8C%E9%9A%8F%E6%9C%BA%E5%88%A0%E9%99%A4%E7%9A%84%E5%A0%86">支持修改和随机删除的堆</a></li>
+<li><a href="#%E5%AF%B9%E9%A1%B6%E5%A0%86">对顶堆</a></li>
+<li><a href="#stl-priority_queue%E7%9A%84%E4%BD%BF%E7%94%A8">STL <code>priority_queue</code>的使用</a></li>
+</ul>
+</li>
+<li><a href="#%E5%93%88%E5%B8%8C%E8%A1%A8">哈希表</a>
+<ul>
+<li><a href="#%E6%8B%89%E9%93%BE%E6%B3%95">拉链法</a></li>
+<li><a href="#%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95">线性探测法</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C">字符串哈希</a></li>
+<li><a href="#stl-map%E5%92%8Cunordered_map%E7%9A%84%E4%BD%BF%E7%94%A8">STL <code>map</code>和<code>unordered_map</code>的使用</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a>
+<ul>
+<li><a href="#kmp%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D">kmp字符串匹配</a>
+<ul>
+<li><a href="#%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF">原理与代码模板</a></li>
+<li><a href="#%E5%AF%B9ne%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E4%B8%8E%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8">对ne数组的深入理解与灵活运用</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA%E6%B3%95">最小表示法</a></li>
+<li><a href="#manacher%E7%AE%97%E6%B3%95">manacher算法</a></li>
+<li><a href="#c-string%E7%B1%BB">C++ string类</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/博弈论/">
+              <h3 class="post-title">
+                博弈论
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

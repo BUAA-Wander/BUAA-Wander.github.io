@@ -1,0 +1,277 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>状压dp | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634390174283">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="状压dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="状压dp
+概述
+状压dp就是把自然语言中难以用1个数字表示的dp状态使用一个数字表示的dp。状压只是个把戏，关键还是在转移。转移的过程在思考时很正常，在实现的时候一般需要依托位运算，所以对于基本的位运算要比较清楚，并且要积累一些位运算本身的..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634390174283" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              状压dp
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-07-01
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="状压dp">状压dp</h1>
+<h2 id="概述">概述</h2>
+<p>状压dp就是把自然语言中难以用1个数字表示的dp状态使用一个数字表示的dp。状压只是个把戏，关键还是在转移。转移的过程在思考时很正常，在实现的时候一般需要依托位运算，所以对于基本的位运算要比较清楚，并且要积累一些位运算本身的坑点。</p>
+<h2 id="常见考法与技巧">常见考法与技巧</h2>
+<h3 id="棋盘型状压dp基于连通性的dp">棋盘型状压dp（基于连通性的dp）</h3>
+<p>这种类型的dp常常是需要我们往一个棋盘里面放棋子，存在相对禁止位置与绝对禁止位置，问我们至多能放多少个棋子/有多少种放棋子的方案。</p>
+<p>解决这种问题的一般思路是一行一行地递推，算出来前<code>i</code>行已经填好，且第<code>i</code>行的填法是<code>j</code>的这类方案（也有可能需要考虑更前面的行是怎么填的，这个根据题目的相对禁止位置规则来决定）最多能填多少/方案有多少。在递推的时候，枚举第<code>i - 1</code>行的状态，然后看看能否转移到第<code>i</code>行的<code>j</code>状态，能的话则计入贡献。</p>
+<p>这种类型的dp在实现的时候需要注意的细节就是确定<strong>哪些状态是合法状态，哪些转移是合法转移</strong>。我们一般可以预处理出所有的合法状态，在转移的时候只枚举每行的合法状态就好了。如果还想优化常数/方便转移（由于状压dp是指数复杂度，故很多时候我们不得不做这一点），我们甚至可以预处理出能够转移到某状态<code>j</code>的其他的所有合法状态，以邻接表的形式存储下来，这样我们的dp转移的时候会更好实现（由此我们也可以看出dp和图论之间的巨大联系）。</p>
+<h3 id="集合型状压dp">集合型状压dp</h3>
+<p>这种类型的状压dp需要我们记录的状态一般是之前我们做过了哪些操作/选过了哪些东西，而这些操作/东西的选法是被压成一个整数来表示的。最典型的例子便是<strong>哈密顿回路计数</strong>以及<strong>重复覆盖问题</strong>。</p>
+<p>以哈密顿回路计数为例子：</p>
+<blockquote>
+<p>有一张图，共有1-21这21个点，对于图中的任意两点<code>i</code>和<code>j</code>，当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>gcd</mi><mo>⁡</mo><mo>(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>)</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\gcd(i, j) = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span style="margin-right:0.01389em;">g</span>cd</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>时，<code>i</code>和<code>j</code>之间存在一条双向路径。求从1号点出发存在多少条哈密顿回路（从1号出发，访问其他各个点恰好一次，最终返回1号点）。</p>
+</blockquote>
+<p>参考代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 22;
+
+typedef long long ll;
+
+vector&lt;int&gt; g[N];
+
+ll dp[N][(1 &lt;&lt; N)], n;
+
+ll gcd(ll a, ll b) {
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+
+void print(int u, int state) {
+    printf(&quot;(%d, &quot;, u);
+    for (int i = 0; i &lt; n; i++) {
+        printf(&quot;%d&quot;, state &amp; 1);
+        state &gt;&gt;= 1;
+    }
+    printf(&quot;)\n&quot;);
+}
+
+void dfs(int u, int state) {
+    // print(u, state);
+	
+    if (state == 0) {
+        if (u == 1) {
+            dp[u][0] = 1;
+        } else {
+            dp[u][0] = 0;
+        }
+        return;
+    }
+	
+    if (dp[u][state] &gt;= 0) {
+        return;
+    }
+	
+    dp[u][state] = 0;
+    for (int i = 0; i &lt; (int) g[u].size(); i++) {
+        int j = g[u][i];
+        if (((state &gt;&gt; (j - 1)) &amp; 1) != 0) {
+            int s = (state &amp; (~(1 &lt;&lt; (j - 1))));
+            dfs(j, s);
+			
+            dp[u][state] += dp[j][s];
+        }
+    }
+}
+
+int main() {
+    cin &gt;&gt; n;
+	
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = i + 1; j &lt;= n; j++) {
+            if (gcd(i, j) == 1) {
+                g[i].push_back(j);
+                g[j].push_back(i);
+            }
+        }
+    }
+	
+    memset(dp, -1, sizeof dp);
+	
+    // 设dp[i][j]表示当前在点i，且之前走过的所有点的点集是j的点的集合
+    // 的走法数
+    // 采用记忆化搜索控制转移顺序
+    // 初始化dp[1][0] = 1， 其他的都为未计算，其他的dp[i][0]被要求计算时直接赋值0
+    // 最终关心的答案是dp[1][(1 &lt;&lt; n) - 1]
+	
+	
+    dfs(1, (1 &lt;&lt; n) - 1);
+	
+    printf(&quot;%lld\n&quot;, dp[1][(1 &lt;&lt; n) - 1]);
+	
+    return 0;
+}
+</code></pre>
+<p>这里我又写了记忆化，因为我想不太清楚到底应该按照什么样的循环顺序去递推。<s>dp优化你别过来呀</s></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E7%8A%B6%E5%8E%8Bdp">状压dp</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E8%80%83%E6%B3%95%E4%B8%8E%E6%8A%80%E5%B7%A7">常见考法与技巧</a>
+<ul>
+<li><a href="#%E6%A3%8B%E7%9B%98%E5%9E%8B%E7%8A%B6%E5%8E%8Bdp%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E6%80%A7%E7%9A%84dp">棋盘型状压dp（基于连通性的dp）</a></li>
+<li><a href="#%E9%9B%86%E5%90%88%E5%9E%8B%E7%8A%B6%E5%8E%8Bdp">集合型状压dp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/树形dp/">
+              <h3 class="post-title">
+                树形dp
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
