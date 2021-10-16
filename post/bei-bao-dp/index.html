@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>背包dp | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634380351728">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634381018319">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="背包dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -24,7 +24,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634380351728" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634381018319" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -400,14 +400,95 @@ int main() {
 <p>对于比较简单的有依赖背包问题，可以转化成分组背包来做，比如<a href="https://www.acwing.com/problem/content/489/"> 金明的预算方案</a> ：</p>
 <p>本题中主件最多有2个附件，所以我们其实可以轻松地枚举出每个物品组的所有决策，即啥都不选或者选主件且二进制枚举其他附件的选法。如果题目的数据范围做出修改，每个主件可以有很多附件，那么二进制枚举会导致超时。这个时候可以考虑按照分配给这个物品组的体积来划分要计算的问题，这样每个组内的状态就会从指数降低到线性（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">2^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span>到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">m + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，使用一个体积来表示一类选择方案）。</p>
 <p>参考代码如下：</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;using namespace std;typedef long long ll;// 每个物品的价格以及关心的价值typedef pair&lt;ll, ll&gt; PII;const int N = 32010, M = 70;PII master[N];bool is_master[N];vector&lt;PII&gt; annex[N];ll n, m, dp[N];int main() {    cin &gt;&gt; m &gt;&gt; n;    ll v, p, q, w;    for (int i = 1; i &lt;= n; i++) {        cin &gt;&gt; v &gt;&gt; p &gt;&gt; q;        if (q == 0) {            is_master[i] = true;            master[i] = {v, v * p};        } else {            annex[q].push_back({v, v * p});        }    }    for (int i = 1; i &lt;= n; i++) {        if (is_master[i]) {            for (int j = m; j &gt;= 0; j--) {                // 暴力枚举组内选法，类似于暴力做01背包                for (int k = 0; k &lt; (1 &lt;&lt; annex[i].size()); k++) {                    v = master[i].first, w = master[i].second;                    for (int l = 0; l &lt; 3; l++) {                        if (((k &gt;&gt; l) &amp; 1) != 0) {                            v += annex[i][l].first;                            w += annex[i][l].second;                        }                    }                    if (j &gt;= v) {                     	dp[j] = max(dp[j], dp[j - v] + w);                       }                }            }        }    }    cout &lt;&lt; dp[m] &lt;&lt; endl;    return 0;}
+<pre><code class="language-cpp">
+#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+// 每个物品的价格以及关心的价值
+typedef pair&lt;ll, ll&gt; PII;
+
+const int N = 32010, M = 70;
+
+PII master[N];
+bool is_master[N];
+vector&lt;PII&gt; annex[N];
+ll n, m, dp[N];
+
+int main() {
+    cin &gt;&gt; m &gt;&gt; n;
+
+    ll v, p, q, w;
+    for (int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; v &gt;&gt; p &gt;&gt; q;
+        if (q == 0) {
+            is_master[i] = true;
+            master[i] = {v, v * p};
+        } else {
+            annex[q].push_back({v, v * p});
+        }
+    }
+
+    for (int i = 1; i &lt;= n; i++) {
+        if (is_master[i]) {
+            for (int j = m; j &gt;= 0; j--) {
+                // 暴力枚举组内选法，类似于暴力做01背包
+                for (int k = 0; k &lt; (1 &lt;&lt; annex[i].size()); k++) {
+                    v = master[i].first, w = master[i].second;
+                    for (int l = 0; l &lt; 3; l++) {
+                        if (((k &gt;&gt; l) &amp; 1) != 0) {
+                            v += annex[i][l].first;
+                            w += annex[i][l].second;
+                        }
+                    }
+
+                    if (j &gt;= v) {
+                     	dp[j] = max(dp[j], dp[j - v] + w);   
+                    }
+                }
+            }
+        }
+    }
+
+    cout &lt;&lt; dp[m] &lt;&lt; endl;
+
+    return 0;
+}
+
 </code></pre>
 <h2 id="有依赖的背包树上背包">有依赖的背包/树上背包</h2>
 <p>物品之间存在一定的依赖关系，比如<code>b</code>依赖于<code>a</code>，那么可以单独买<code>a</code>，如果要买<code>b</code>则必须要购买<code>a</code>。一般来讲依赖关系组成一个森林。</p>
 <p>对于简单的有依赖背包问题（比如金明的预算方案），可以通过枚举决策，将其简单地转化为分组背包问题。但对于依赖比较多的背包，就必须使用树上背包的思路成批计算了。这里和基于枚举所有决策的分组背包的区别就在于这里是每次刷新一类（占用体积为<code>k</code>的那类）决策的最大值。</p>
 <p>代码实现的时候有很多细节需要注意。</p>
 <p>参考代码模板：</p>
-<pre><code class="language-cpp">void dfs(int u) {    for (int i = head[u]; i &gt;= 0; i = edge[i].nxt) {        int son = edge[i].to;        dfs(son);        // 先只考虑子树，只是给树根留出位置        // 这里之所以从大到小枚举体积，是因为实际上这里隐含着一个滚动数组        // 每次我们都是用前x棵子树的结果，去刷新前x + 1棵子树的结果        // 但是我们都是用dp[u]这一维来存储的        // 所以这里确实压掉了一维（子节点）        for (int j = m - v[u]; j &gt;= 0; j--) {            for (int k = 0; k &lt;= j; k ++) {                dp[u][j] = max(dp[u][j], dp[u][j - k] + dp[son][k]);            }        }    }    // 把树根加进去，这里是强制加，所以强制刷新而不是取max    for (int i = m; i &gt;= v[u]; i--) {        dp[u][i] = dp[u][i - v[u]] + w[u];    }    // 把不足以加入树根的结果清零    for (int i = 0; i &lt; v[u]; i++) {        dp[u][i] = 0;    }}
+<pre><code class="language-cpp">void dfs(int u) {
+    for (int i = head[u]; i &gt;= 0; i = edge[i].nxt) {
+        int son = edge[i].to;
+        dfs(son);
+
+        // 先只考虑子树，只是给树根留出位置
+        // 这里之所以从大到小枚举体积，是因为实际上这里隐含着一个滚动数组
+        // 每次我们都是用前x棵子树的结果，去刷新前x + 1棵子树的结果
+        // 但是我们都是用dp[u]这一维来存储的
+        // 所以这里确实压掉了一维（子节点）
+        for (int j = m - v[u]; j &gt;= 0; j--) {
+            for (int k = 0; k &lt;= j; k ++) {
+                dp[u][j] = max(dp[u][j], dp[u][j - k] + dp[son][k]);
+            }
+        }
+    }
+
+    // 把树根加进去，这里是强制加，所以强制刷新而不是取max
+    for (int i = m; i &gt;= v[u]; i--) {
+        dp[u][i] = dp[u][i - v[u]] + w[u];
+    }
+    // 把不足以加入树根的结果清零
+    for (int i = 0; i &lt; v[u]; i++) {
+        dp[u][i] = 0;
+    }
+}
 </code></pre>
 <h2 id="背包方案">背包方案</h2>
 <p>背包方案存在两个子问题：</p>
@@ -422,7 +503,56 @@ int main() {
 <li>当<code>dp</code>值和转移用到的值相等时，<code>g</code>累加。</li>
 </ul>
 <p>一个代码实现如下：</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;using namespace std;typedef long long ll;const int N = 1010, mod = 1e9 + 7;ll dp[N], g[N], n, m, v[N], w[N];int main() {    cin &gt;&gt; n &gt;&gt; m;    for (int i = 1; i &lt;= n; i++) {        cin &gt;&gt; v[i] &gt;&gt; w[i];    }    memset(dp, -0x3f, sizeof dp);    dp[0] = 0;    g[0] = 1;    for (int i = 1; i &lt;= n; i++) {        for (int j = m; j &gt;= v[i]; j--) {            if (dp[j] == dp[j - v[i]] + w[i]) {                g[j] += g[j - v[i]];            } else if (dp[j] &lt; dp[j - v[i]] + w[i]) {                g[j] = g[j - v[i]];            }            g[j] %= mod;            dp[j] = max(dp[j], dp[j - v[i]] + w[i]);        }    }    ll maxw = 0;    for (int i = 0; i &lt;= m; i++) {        maxw = max(maxw, dp[i]);    }    ll res = 0;    for (int i = 0; i &lt;= m; i++) {        if (maxw == dp[i]) {            res += g[i];            res %= mod;        }    }    cout &lt;&lt; res &lt;&lt; endl;    return 0;}
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+const int N = 1010, mod = 1e9 + 7;
+
+ll dp[N], g[N], n, m, v[N], w[N];
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+
+    for (int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; v[i] &gt;&gt; w[i];
+    }
+
+    memset(dp, -0x3f, sizeof dp);
+    dp[0] = 0;
+    g[0] = 1;
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = m; j &gt;= v[i]; j--) {
+            if (dp[j] == dp[j - v[i]] + w[i]) {
+                g[j] += g[j - v[i]];
+            } else if (dp[j] &lt; dp[j - v[i]] + w[i]) {
+                g[j] = g[j - v[i]];
+            }
+            g[j] %= mod;
+            dp[j] = max(dp[j], dp[j - v[i]] + w[i]);
+        }
+    }
+
+    ll maxw = 0;
+    for (int i = 0; i &lt;= m; i++) {
+        maxw = max(maxw, dp[i]);
+    }
+
+    ll res = 0;
+    for (int i = 0; i &lt;= m; i++) {
+        if (maxw == dp[i]) {
+            res += g[i];
+            res %= mod;
+        }
+    }
+
+    cout &lt;&lt; res &lt;&lt; endl;
+
+    return 0;
+}
 </code></pre>
 <h3 id="背包求具体方案">背包求具体方案</h3>
 <p>一般对具体方案没有特殊要求。这个时候直接用<code>mark[][]</code>数组记录转移就好了。</p>
@@ -431,7 +561,44 @@ int main() {
 <p>如果最开始反着推去dp，那么最后从<code>dp[1][m]</code>递归，考虑的顺序就是能不能选<code>1</code>，能不能选<code>2</code>，能不能选<code>3</code>…能不能选<code>n</code>，这样得到的才是最小的字典序的方案。</p>
 <p>在做<code>mark</code>标记的时候，反着dp的话，应该是能用当前物品就用当前物品。</p>
 <p>代码如下：</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;using namespace std;const int N = 1010;typedef long long ll;ll dp[N][N], mark[N][N], n, m, v[N], w[N];int main() {    cin &gt;&gt; n &gt;&gt; m;    for (int i = 1; i &lt;= n; i++) {        cin &gt;&gt; v[i] &gt;&gt; w[i];    }    for (int i = n; i &gt; 0; i--) {        for (int j = 0; j &lt;= m; j++) {            dp[i][j] = dp[i + 1][j];            if (j &gt;= v[i]) {                if (dp[i][j] &lt;= dp[i + 1][j - v[i]] + w[i]) {                    dp[i][j] = max(dp[i][j], dp[i + 1][j - v[i]] + w[i]);                    mark[i][j] = 1;                }            }        }    }    for (int i = 1, j = m; i &lt;= n; i++) {        if (mark[i][j] == 1) {            j -= v[i];            printf(&quot;%d &quot;, i);        }    }    return 0;}
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int N = 1010;
+
+typedef long long ll;
+
+ll dp[N][N], mark[N][N], n, m, v[N], w[N];
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+
+    for (int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; v[i] &gt;&gt; w[i];
+    }
+
+    for (int i = n; i &gt; 0; i--) {
+        for (int j = 0; j &lt;= m; j++) {
+            dp[i][j] = dp[i + 1][j];
+            if (j &gt;= v[i]) {
+                if (dp[i][j] &lt;= dp[i + 1][j - v[i]] + w[i]) {
+                    dp[i][j] = max(dp[i][j], dp[i + 1][j - v[i]] + w[i]);
+                    mark[i][j] = 1;
+                }
+            }
+        }
+    }
+
+    for (int i = 1, j = m; i &lt;= n; i++) {
+        if (mark[i][j] == 1) {
+            j -= v[i];
+            printf(&quot;%d &quot;, i);
+        }
+    }
+
+    return 0;
+}
 </code></pre>
 <p>背包dp完结撒花！</p>
 
