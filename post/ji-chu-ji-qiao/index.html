@@ -1,22 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://BUAA-Wander.github.io</id>
-    <title>WanderOvO</title>
-    <updated>2021-10-16T10:55:54.422Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://BUAA-Wander.github.io"/>
-    <link rel="self" href="https://BUAA-Wander.github.io/atom.xml"/>
-    <subtitle>WanderOvO&apos;s blog.</subtitle>
-    <logo>https://BUAA-Wander.github.io/images/avatar.png</logo>
-    <icon>https://BUAA-Wander.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2021, WanderOvO</rights>
-    <entry>
-        <title type="html"><![CDATA[基础技巧]]></title>
-        <id>https://BUAA-Wander.github.io/post/ji-chu-ji-qiao/</id>
-        <link href="https://BUAA-Wander.github.io/post/ji-chu-ji-qiao/">
-        </link>
-        <updated>2021-10-16T10:51:18.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="基础技巧">基础技巧</h1>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>基础技巧 | WanderOvO</title>
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634381748682">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="基础技巧 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="基础技巧
+
+略过看似基础内容的高水平读者，比略过看似复杂内容的低水平读者，可能要错失更多东西。-G.波利亚
+Base is not easy.
+并不复杂的基础技巧可以在各种地方灵活应用，所以从某种程度来说，这部分的应用是很难的。
+学过一定量..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BUAA-Wander.github.io">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634381748682" alt="">
+  </a>
+  <h1 class="site-title">
+    WanderOvO
+  </h1>
+  <p class="site-description">
+    WanderOvO's blog.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              基础技巧
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-16
+              </span>
+              <span>
+                57 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="基础技巧">基础技巧</h1>
 <blockquote>
 <p>略过看似基础内容的高水平读者，比略过看似复杂内容的低水平读者，可能要错失更多东西。-G.波利亚</p>
 <p>Base is not easy.</p>
@@ -1181,631 +1258,141 @@ int main() {
 <li>枚举一对，不如改成枚举一个，然后快速求出另一个</li>
 <li>需要分情况讨论，考虑是否可以通过一些变化，使得始终是某种情况成立，而不需要考虑另一种情况</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[背包dp]]></title>
-        <id>https://BUAA-Wander.github.io/post/bei-bao-dp/</id>
-        <link href="https://BUAA-Wander.github.io/post/bei-bao-dp/">
-        </link>
-        <updated>2021-10-16T10:31:04.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="背包dp">背包dp</h1>
-<p>背包类问题是一种<strong>有限制的选择问题</strong>，最后一般要最大或者最小化某个指标，或者单纯只是计数。</p>
-<p>下面先把三种简单的背包问题的滚动数组，循环顺序等实现上的细节讲明白，再考虑二进制以及单调队列等时间优化，最后介绍其他各类背包问题。</p>
-<p>大部分篇幅是老文了，小部分是新加的。</p>
-<h2 id="01背包">01背包</h2>
-<p>每种物品要么选择，要么不选择，期望最后总价值最大。</p>
-<h3 id="最基础解法">最基础解法</h3>
-<p>设<code>dp[i][j]</code>为从前<code>i</code>个物品中选，至多选择物品总体积为<code>j</code>的方案集合中的所能得到的最大价值。</p>
-<p>处理过程为：</p>
-<pre><code class="language-cpp">dp[0][0] = 0;
-for (int i = 1; i &lt;= n; i++) {
-    for (int j = 0; j &lt;= m; j++) {
-        dp[i][j] = dp[i - 1][j];
-        if (j &gt;= v[i]) {
-            dp[i][j] = max(dp[i][j], dp[i - 1][j - v[i]] + w[i]);
-        }
-    }
-}
-cout &lt;&lt; dp[n][m] &lt;&lt; endl;
-</code></pre>
-<p>可以画一下网格图，模拟一下循环，会发现<code>dp</code>过程中，<strong><code>dp[i][j]</code>用到的结果只是<code>dp[][]</code>数组的上一行</strong>。也就是说，递推过程中只用到了上一行这一行的计算结果，再往前的结果就没用了，所以不加任何优化的01背包枚举顺序不会影响结果。</p>
-<h3 id="滚动数组优化及其带来的问题">滚动数组优化及其带来的问题</h3>
-<p>如果省略<code>dp</code>的阶段维度，使用滚动数组优化01背包的空间：</p>
-<pre><code class="language-cpp">dp[0] = 0;
-for (int i = 1; i &lt;= n; i++) {
-    for (int j = m; j &gt;= v[i]; j--) {
-        dp[j] = max(dp[j], dp[j - v[i]] + w[i]);
-    }
-}
-cout &lt;&lt; dp[m] &lt;&lt; endl;
-</code></pre>
-<p>那么，由于只保留了一维数组，这个数组在<code>dp</code>进行过程中，一部分是第<code>i</code>阶段的结果，一部分是第<code>i - 1</code>阶段的结果，为了保证我们总是使用第<code>i - 1</code>阶段的结果去更新第<code>i</code>段的结果，所以我们必须保证先更新右边的，再更新左边的，所以必须从大到小枚举体积。</p>
-<p>有一些01背包的变种问题，比如<a href="https://www.acwing.com/problem/content/3420/">3417. 砝码称重 - AcWing题库</a>，该题状态转移的时候，<code>dp[i][j]</code>和<code>dp[i - 1][j + v]</code>以及<code>dp[i - 1][j - v]</code>还有<code>dp[i - 1][j]</code>都有关系，所以这个就不能原地做背包，至少要开两个数组，在<code>dp</code>开始之前先把上一个阶段的结果存到临时数组中，然后计算当前阶段，最后把当前阶段的结果拷贝到那个数组中，才可以实现空间优化。</p>
-<h3 id="稍有不同的状态定义的方式以及带来的问题">稍有不同的状态定义的方式以及带来的问题</h3>
-<p>有一种状态定义的方法是：设<code>dp[i][j]</code>为从前<code>i</code>个物品中选，体积<strong>恰好</strong>为<code>j</code>的方案集合中最大的价值。该状态定义和前面提到的状态定义的最大的不同就在于，<strong>恰好背包</strong>的状态不一定都是合法状态，但是前面的<strong>至多背包</strong>必然至少包含一个合法方案（什么都不选，不需要空间），这就导致前面的背包初始化全部为0，而恰好背包除了<code>dp[0][0] = 0</code>，其他的必须显式初始化为<code>-INF</code>，否则会出现非法状态刷新合法状态的错误。最后统计答案的时候，恰好背包必须遍历整个状态空间，找到所有合法状态，才能知道哪个是最优解。</p>
-<p>在一些基于01背包的问题中，有时候除了最大价值还要我们统计一些其他信息，这个时候使用恰好背包的状态定义方式会更方便。</p>
-<p>还有一种状态定义方式，适用于需要选择至少达到某个指标的的物品的问题，可以形象地理解为<strong>至少背包</strong>。这种问题一般是设<code>dp[i][j]</code>代表从前<code>i</code>个物品中选，使得指标至少达到<code>j</code>的所有方案组成的集合的某个属性（xx最大/最小）</p>
-<p><strong>至少背包</strong>的例题可以参考这一道：<a href="https://www.acwing.com/problem/content/1022/">潜水员</a></p>
-<p>以这个问题为例子，我们分析一下这种状态定义下的初始化，转移以及最后答案的组成：</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%8A%80%E5%B7%A7">基础技巧</a>
 <ul>
-<li>
-<p>先不使用滚动数组，设<code>dp[i][j][k]</code>代表从前<code>i</code>个气缸中选，氧气至少是<code>j</code>，氮气至少是<code>k</code>的气缸的最低重量。</p>
-</li>
-<li>
-<p>对于初始化</p>
+<li><a href="#%E4%BD%8D%E8%BF%90%E7%AE%97">位运算</a></li>
+<li><a href="#%E9%80%92%E6%8E%A8%E4%B8%8E%E9%80%92%E5%BD%92">递推与递归</a></li>
+<li><a href="#%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86">前缀和与差分</a><br>
+*
 <ul>
-<li>考虑<code>dp[0][0][0]</code>，代表从前<code>0</code>个气缸中取，两种气体都至少是<code>0</code>，那么显然最低重量就是不选，所以初始化成0就好了</li>
-<li>考虑<code>dp[i][0][0]</code>，<code>i &gt; 0</code>，显然最优方案也是不选，所以也初始化成<code>0</code></li>
-<li>其他的<code>dp[i][j][k]</code>，由于要求最小值，所以初始化成无穷大。</li>
+<li><a href="#%E5%89%8D%E7%BC%80%E5%92%8C">前缀和</a></li>
+<li><a href="#%E5%B7%AE%E5%88%86">差分</a></li>
 </ul>
 </li>
-<li>
-<p>对于转移</p>
+<li><a href="#%E4%BA%8C%E5%88%86">二分</a>
 <ul>
-<li><code>dp[i][j][k] = min(dp[i][j][k], dp[i - 1][j - a[i]][k - b[i]] + c[i])</code></li>
-<li>这里就有了一个很有意思的问题，考虑负数状态<code>dp[i][-1][-2]</code>，虽然下标出现负数会导致意想不到的后果，但是这个状态本身确实是合法的：至少是<code>-1</code>的话，<code>0</code>也是至少<code>-1</code>，<code>2</code>也是至少<code>-1</code>，所以这个状态里面可以有合法的方案。所以在转移的时候，枚举<code>j &lt; a[i], k &lt; b[i]</code>的状态是可以的。但是我们的代码中还是不可以出现负数呀，这里可以使用一个小技巧：由于至少是<code>-1</code>有意义的前提是其中有至少为<code>0</code>的方案，所以我们发现需要用到至少为某个负数的方案时，直接使用至少为<code>0</code>的就好了。</li>
-<li>综上，在循环的时候，可以把各项限制循环到<code>0</code>；在转移过程中，出现的负数状态全部用<code>0</code>状态替换就好了。</li>
+<li><a href="#%E6%8A%95%E6%9C%BA%E7%89%88%E4%BA%8C%E5%88%86">投机版二分</a></li>
+<li><a href="#%E9%9D%9E%E6%8A%95%E6%9C%BA%E4%BA%8C%E5%88%86%E6%A8%A1%E6%9D%BF%E4%B9%8B%E4%B8%80%E7%A4%BA%E4%BE%8B">非投机二分模板之一示例</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0lower_bound%E4%B8%8Eupper_bound">实现lower_bound与upper_bound</a></li>
+<li><a href="#stl-lower_bound%E4%B8%8Eupper_bound%E7%9A%84%E4%BD%BF%E7%94%A8">STL <code>lower_bound()</code>与<code>upper_bound()</code>的使用</a></li>
+<li><a href="#%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">二分答案的应用场景</a></li>
 </ul>
 </li>
-<li>
-<p>对于答案</p>
+<li><a href="#%E4%B8%89%E5%88%86">三分</a></li>
+<li><a href="#%E6%8E%92%E5%BA%8F">排序</a>
 <ul>
-<li>很显然了，因为状态定义和问题描述的形式一毛一样，所以直接就是最后一个状态。</li>
+<li><a href="#%E5%BF%AB%E6%8E%92">快排</a></li>
+<li><a href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="#%E5%A0%86%E6%8E%92%E5%BA%8F">堆排序</a></li>
+<li><a href="#%E4%B8%AD%E4%BD%8D%E6%95%B0">中位数</a></li>
+<li><a href="#stl-sort%E7%9A%84%E4%BD%BF%E7%94%A8">STL <code>sort()</code>的使用</a></li>
+</ul>
+</li>
+<li><a href="#%E5%80%8D%E5%A2%9E">倍增</a>
+<ul>
+<li><a href="#st%E8%A1%A8sparse-table">ST表（Sparse Table）</a></li>
+<li><a href="#%E5%80%8D%E5%A2%9Elca">倍增LCA</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B4%AA%E5%BF%83">贪心</a>
+<ul>
+<li><a href="#%E8%B4%AA%E5%BF%83%E8%A7%A3%E7%9A%84%E8%AF%81%E6%98%8E">贪心解的证明</a></li>
+<li><a href="#%E5%87%A0%E4%B8%AA%E5%85%B7%E4%BD%93%E4%BE%8B%E5%AD%90">几个具体例子</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%8C%E6%8C%87%E9%92%88">双指针</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4">基本步骤</a></li>
+<li><a href="#%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B">应用举例</a></li>
+</ul>
+</li>
+<li><a href="#%E9%AB%98%E7%B2%BE%E5%BA%A6">高精度</a>
+<ul>
+<li><a href="#%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%8A%A0%E6%B3%95">高精度加法</a></li>
+<li><a href="#%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%87%8F%E6%B3%95">高精度减法</a></li>
+<li><a href="#%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E6%B3%95">高精度乘法</a></li>
+<li><a href="#%E9%AB%98%E7%B2%BE%E5%BA%A6%E9%99%A4%E6%B3%95">高精度除法</a></li>
+<li><a href="#%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%8E%8B%E4%BD%8D">高精度压位</a></li>
+</ul>
+</li>
+<li><a href="#%E7%A6%BB%E6%95%A3%E5%8C%96">离散化</a></li>
+<li><a href="#%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6">区间合并</a></li>
+<li><a href="#%E6%9D%82%E9%A1%B9">杂项</a></li>
 </ul>
 </li>
 </ul>
-<p>代码如下：</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 
-using namespace std;
+              </div>
+            </div>
+          </article>
+        </div>
 
-const int V1 = 25, V2 = 85, N = 1010;
-
-typedef long long ll;
-
-ll dp[V1][V2], n, v1, v2, a[N], b[N], c[N];
-
-int main() {
-    cin &gt;&gt; v1 &gt;&gt; v2 &gt;&gt; n;
-    
-    for (int i = 1; i &lt;= n; i++) {
-        cin &gt;&gt; a[i] &gt;&gt; b[i] &gt;&gt; c[i];
-    }
-    
-    memset(dp, 0x3f, sizeof dp);
-    dp[0][0] = 0;
-    
-    for (int i = 1; i &lt;= n; i++) {
-        for (int j = v1; j &gt;= 0; j--) {
-            for (int k = v2; k &gt;= 0; k--) {
-                dp[j][k] = min(dp[j][k],
-                               dp[max(0ll, j - a[i])][max(0ll, k - b[i])] + c[i]);
-            }
-        }
-    }
-    
-    cout &lt;&lt; dp[v1][v2] &lt;&lt; endl;
-    
-    return 0;
-}
-</code></pre>
-<p>至此，01背包的原理上的疑点已经全部解决了。</p>
-<h2 id="完全背包">完全背包</h2>
-<p>完全背包问题中，所有物品可以选择任意数量，只要满足体积限制即可。</p>
-<h3 id="最基础解法-2">最基础解法</h3>
-<p>状态表示采用至多背包，则朴素解法是：</p>
-<p>考虑<code>dp[i][j]</code>，其可能由<code>dp[i - 1][j] dp[i - 1][j - v[i]] dp[i - 1][j - 2 * v[i]] ... dp[i - 1][j - s * v[i]]</code>转移过来，其中<code>s = j / v[i]</code>（这一点很重要）。</p>
-<p>空间的话，由于只和上一行的左边有关系，所以可以原地使用滚动数组优化。</p>
-<h3 id="时间复杂度的优化">时间复杂度的优化</h3>
-<p>这个玩意看起来需要枚举转移，但是实际上我们可以发现一定的规律：考虑<code>dp[i][j]</code>和<code>dp[i][j - v[i]]</code>之间的关系，会发现<code>dp[i][j] = max(dp[i - 1][j], dp[i][j - v[i]] + w[i])</code>，这个关系可以通过展开二者的计算表达式发现。注意到<code>dp[i - 1][j]</code>是老的值，但是在<code>dp[i][j]</code>的上一行正上方，<code>dp[i][j - v[i]]</code>是该阶段的新值，且**<code>j - v[i] &lt; j</code>（即需要使用左边的新状态）<strong>，所以，我们在算完全背包的时候，如果按照</strong>从小到大**的顺序枚举体积维度，那么只要两重循环就可以搞定，把滚动数组也加上就是：</p>
-<pre><code class="language-cpp">dp[0] = 0;
-for (int i = 1; i &lt;= n; i++) {
-    for (int j = v[i]; j &lt;= m; j++) {
-        dp[j] = max(dp[j], dp[j - v[i]] + w[i]);
-    }
-}
-cout &lt;&lt; dp[m] &lt;&lt; endl;
-</code></pre>
-<p>这个优化非常重要，在最基础的<code>dp</code>的优化中，可以通过观察刷新新状态所需要的老状态之间的关系，来借用一些已经存在的结果进行计算，优化复杂度。最常见的老状态之间的关系就是可以从某一个以较小的复杂度（比如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>）转移到另一个状态。</p>
-<p>由于最大的个数都是枚举到<code>j / v[i]</code>，所以才能用<code>dp[i][j - v[i]] + w[i]</code>代替后面那一串。</p>
-<h2 id="多重背包">多重背包</h2>
-<p>每个物品给出可供选择的数量<code>s[i]</code>，总体积不能超过限制。</p>
-<h3 id="最基础的解法">最基础的解法</h3>
-<p>仍然按照至多背包的状态设计。考虑状态转移，最朴素的转移方法是，考虑使用<code>dp[i - 1][j], dp[i - 1][j - v[i]] + w[i], dp[i - 1][j - 2 * v[i]] + 2 * w[i] ... dp[i - 1][j - s[i]*v[i]] + s[i] * w[i]</code>来更新<code>dp[i][j]</code>。</p>
-<h4 id="先循环谁">先循环谁</h4>
-<p>在不做任何优化的情况下，由于状态表示中引入了阶段这个维度，且由转移方程可以发现**<code>i</code>阶段只由<code>i - 1</code>阶段转移过来**，所以无论先枚举体积还是先枚举个数，无论是从小到大还是从大到小枚举，都不会对结果产生影响。</p>
-<p>万恶之源在于优化，没错说的就是你滚动数组，此处特指原地滚动数组。使用滚动数组之后，一定要注意原转移方程中<strong>当前状态是那些阶段的状态转移过来的</strong>，以此确定到底采用怎样的枚举顺序来保证既原地修改又使用正确的值转移。注意到<code>dp[i][j]</code>由其上一行的左半部分转移过来，所以理论上应该从大到小枚举体积，并且，**每次体积自减时，一定要保证这个时候这个体积的答案已经完全算完了！**所以，枚举选择几个的循环，应该放到枚举体积的循环里面，至于从大到小还是从小到大，倒是没有什么特别的要求了。</p>
-<p>以上，便是不对时间进行优化的情况下多重背包中值得注意的一些问题。</p>
-<h3 id="二进制拆分优化">二进制拆分优化</h3>
-<p>二进制优化的原理在于，考虑将<code>s[i]</code>分解成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup><mo>+</mo><msup><mn>2</mn><mn>1</mn></msup><mo>+</mo><msup><mn>2</mn><mn>2</mn></msup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msup><mn>2</mn><mi>p</mi></msup><mo>+</mo><mi>q</mi><mo>=</mo><mi>s</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">2^0+2^1+2^2+...+2^p+q=s[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> ，这是<code>p + 2</code>种物品，不管我们取0到<code>s[i]</code>中的哪个数目，这<code>p + 2</code>个物品都能拼凑出这种方案，且是以01背包的方式。倘若把所有的物品都做二进制拆分，那么只要做<strong>01背包</strong>就能解决问题了，复杂度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>V</mi><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mi>log</mi><mo>⁡</mo><mi>s</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">O(V\sum_{i = 1}^n \log s[i])</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.104002em;vertical-align:-0.29971000000000003em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">)</span></span></span></span> ，已经是一个很大的优化了。</p>
-<h4 id="为何如此拆分物品">为何如此拆分物品</h4>
-<p>有人说，为何要如此二进制拆分？直接把二进制位中不是0的那些取出来作为物品不好吗？下面我们将分别解答这些疑问。</p>
-<p>先说后者，假如有一个数是11，其二进制表示为1011，如果只拆成1000，10，1，那么0100这种情况就凑不出来，所以并不是随便一个二进制拆分就能保证计算的正确性的。那么为啥上面提到的二进制拆分就可以呢？考虑式子<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup><mo>+</mo><msup><mn>2</mn><mn>1</mn></msup><mo>+</mo><msup><mn>2</mn><mn>2</mn></msup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msup><mn>2</mn><mi>p</mi></msup><mo>+</mo><mi>q</mi><mo>=</mo><mi>s</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">2^0+2^1+2^2+...+2^p+q=s[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>，显然，左边的<code>p + 2</code>个物品一定能无压力地通过01背包组合出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mrow><mi>p</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{p + 1} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，那么<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mrow><mi>p</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2^{p + 1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span>到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">s[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>之间的这些数呐？如果必选<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span>的话，加上前面那些，那么可以无压力通过01背包组合出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span>到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mrow><mi>p</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>+</mo><mi>q</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{p + 1} + q - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>之间的数，而<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mrow><mi>p</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>+</mo><mi>q</mi><mo>−</mo><mn>1</mn><mo>=</mo><mi>s</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">2^{p + 1} + q - 1 = s[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>，所以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">s[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>之间的任何数（包括边界）都可以被这<code>p + 2</code>个物品通过01背包的规则组合出来，所以这种拆分是可以保证正确性的。</p>
-<h4 id="拆分物品的时机">拆分物品的时机</h4>
-<p>分两类，一类是读入的时候就显式拆分物品，另一类是<code>dp</code>过程中模拟拆分物品。前者的易错点都被后者包含了，所以我们只谈一谈<code>dp</code>过程中模拟拆分物品应该注意的地方。</p>
-<p>首先，考虑朴素情况下加滚动数组的解法，那个时候要求我们从大到小循环体积，并且选择物品的个数应该放到最内层进行枚举。由于现在我们做了拆分之后就是在做01背包，所以每个拆分之后的物品理论上应该作为<code>dp</code>中的一个阶段，只有本阶段算完了，才能算下一个阶段，所以应该先拆分好，再枚举体积做01背包，绝对不能先枚举体积再拆分物品，这样算下去动态规划的阶段就不对了。</p>
-<p>代码模板：</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-const int N = 1010, M = 2020;
-
-typedef long long ll;
-
-ll dp[M], n, m, v[N], w[N], s[N];
-
-int main() {
-    cin &gt;&gt; n &gt;&gt; m;
-    
-    for (int i = 1; i &lt;= n; i++) {
-        cin &gt;&gt; v[i] &gt;&gt; w[i] &gt;&gt; s[i];
-    }
-    
-    for (int i = 1; i &lt;= n; i++) {
-        int cnt = s[i];
-        int j = 1;
-        while (cnt - j &gt;= 0) {
-            for (int k = m; k &gt;= j * v[i]; k--) {
-                dp[k] = max(dp[k], dp[k - j * v[i]] + j * w[i]);
-            }
-            cnt -= j;
-            j &lt;&lt;= 1;
-        }
-        if (cnt &gt; 0) {
-            for (int k = m; k &gt;= cnt * v[i]; k--) {
-                dp[k] = max(dp[k], dp[k - cnt * v[i]] + cnt * w[i]);
-            }
-        }
-    }
-    
-    cout &lt;&lt; dp[m] &lt;&lt; endl;
-    
-    return 0;
-}
-</code></pre>
-<h3 id="单调队列优化">单调队列优化</h3>
-<p>一般地，可以使用单调队列优化的dp问题具有下面的特点：</p>
-<ul>
-<li>决策取值的上下界随着阶段的进行而单调变化</li>
-<li>每个决策在候选集合中被插入和删除都至多一次</li>
-</ul>
-<p>我们来看一下多重背包问题为什么具有这种特点。</p>
-<p>这里，我们假设背包容量足够大，以至于对于物品<code>i</code>来说，把全部的<code>c[i]</code>个都放进去都不至于超过容量。</p>
-<p>那么我们可以发现如下关系：</p>
-<pre><code>dp[i] = max(dp[i], dp[i - v[i]] + w[i], dp[i - 2 * v[i]] + 2 * w[i], ..., dp[i - c[i] * v[i]] + c[i] * w[i]);
-
-dp[i - v[i]] = max(dp[i - 2 * v[i]] + w[i], dp[i - 3 * v[i]] + 2 * w[i], ..., dp[i - (c[i] + 1) * v[i]] + c[i] * w[i]);
-</code></pre>
-<p>可以注意到，<code>dp[i]</code>和<code>dp[i - v[i]]</code>的转移方程中，若不考虑<code>w[i]</code>的偏移，那么可以转移到<code>dp[i]</code>的状态和可以转移到<code>dp[i - v[i]]</code>的状态刚好是多一个和少一个的关系：<code>dp[i]</code>比<code>dp[i - v[i]]</code>多一个前驱<code>dp[i - v[i]]</code>，少一个前驱<code>dp[i - (c[i] + 1) * v[i]]</code> ，且对于任意的<code>dp[i - c * v[i]]</code>， <code>1 &lt;= c &lt;= c[i]</code>，随着<code>c</code>的改变，决策的上下界是单调改变的，所以这个式子的计算是可以用单调队列来优化的。</p>
-<p>但是注意到，如果是顺序枚举容量，那么枚举完<code>j</code>之后是<code>j + 1</code>或者<code>j - 1</code>，不是<code>j + v[i]</code>或者<code>j - v[i]</code>，而<code>j + 1</code>和<code>j - 1</code>与<code>j</code>的决策集合甚至可能没有交集，这应该如何处理？注意到<code>j , j - v[i], j - 2 * v[i], ... j - c[i] * v[i]</code>对<code>v[i]</code>的余数相同，故可以按照余数<code>0</code>到<code>v[i] - 1</code>来分类，先枚举余数，再枚举转移，这样同一余数的状态就可以按照相邻的顺序被枚举到了。</p>
-<p>代码模板如下，细节都在代码中注释了：</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-const int N = 1010, M = 20020;
-
-typedef long long ll;
-
-ll dp[M], n, m, q[M], v[N], w[N], c[N];
-
-ll f(int u, int i, int k) {
-    return dp[u + k * v[i]] - k * w[i]; 
-}
-
-int main() {
-    cin &gt;&gt; n &gt;&gt; m;
-    
-    for (int i = 1; i &lt;= n; i++) {
-        cin &gt;&gt; v[i] &gt;&gt; w[i] &gt;&gt; c[i];
-    }
-    
-    for (int i = 1; i &lt;= n; i++) {
-        for (int u = 0; u &lt; v[i]; u++) {
-            int l = 1, r = 0;
-            int maxp = (m - u) / v[i];
-            
-            // 第一个要计算的是体积最大的状态
-            // 所以需要先往单调队列里面插入一些东西
-            // dp[u + p * v[i] = max(dp[u + k * v[i]] + (p - k) * w[i])  p - c[i] &lt;= k &lt;= p - 1
-            // 同类项合并一下
-            // dp[u + p * v[i]] = max(dp[u + k * v[i]] - k * w[i] + p * w[i]) 
-            // 由于最内层枚举的是k，所以维护的其实是关于f(k)的一个单调队列
-            // f(k) = dp[u + k * v[i]] - k * w[i] 
-            // 不要越界
-            for (int j = maxp - 1; j &gt;= max(0ll, maxp - c[i]); j--) {
-                while (l &lt;= r &amp;&amp; f(u, i, q[r]) &lt; f(u, i, j)) {
-                    r--;
-                }
-                q[++r] = j;
-            }
-            
-            // 从大到小枚举体积，进行状态转移
-            for (int p = maxp; p &gt;= 0; p--) {
-                // 排除过期的状态
-                while (l &lt;= r &amp;&amp; q[l] &gt; p - 1) {
-                    l++;
-                }
-                // 状态转移
-                if (l &lt;= r)
-                    dp[u + p * v[i]] = max(dp[u + p * v[i]], f(u, i, q[l]) + p * w[i]);
-                // 插入新的决策并维护单调性
-                if (p - c[i] - 1 &gt;= 0) {
-                    while (l &lt;= r &amp;&amp; f(u, i, q[r]) &lt; f(u, i, p - c[i] - 1)) {
-                        r--;
-                    }
-                    q[++r] = p - c[i] - 1;
-                }
-            }
-        }
-    }
-    
-    cout &lt;&lt; dp[m] &lt;&lt; endl;
-    
-    return 0;
-}
-</code></pre>
-<p>至此，最基础的三种背包问题的疑问就全部解决了。</p>
-<h2 id="混合背包">混合背包</h2>
-<p>上面三种背包混起来，当成多重背包处理一下即可。</p>
-<h2 id="多维费用背包">多维费用背包</h2>
-<p>需要注意到底有几个限制条件，每种限制条件都应该是<code>dp</code>状态中的一部分。</p>
-<p>没啥好说的，把状态维度多加点以表示不同的限制，循环多几层就好了。</p>
-<h2 id="分组背包">分组背包</h2>
-<p>同组内的物品只能选择一个，求满足条件下的最大价值。</p>
-<p>循环时枚举顺序的确定：</p>
-<ul>
-<li>一种理解思路是先阶段，再状态，最后决策，所以应该先枚举物品组，再枚举容量，最后枚举组内物品。</li>
-<li>另一种理解思路是假设枚举组之后直接枚举组内物品，最后枚举容量，那不就成了01背包了嘛，所以还是得先枚举容量。</li>
-</ul>
-<p>代码模板：</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-const int N = 110;
-
-int dp[N], n, m, t, s, v[N], w[N];
-
-int main() {
-    cin &gt;&gt; n &gt;&gt; m;
-    
-    // 枚举物品组
-    for (int i = 1; i &lt;= n; i++) {
-        cin &gt;&gt; s;
-        for (int j = 1; j &lt;= s; j++) {
-            cin &gt;&gt; v[j] &gt;&gt; w[j];
-        }
         
-        // 枚举状态
-        for (int j = m; j &gt;= 0; j--) {
-            // 枚举决策
-            for (int k = 1; k &lt;= s; k++) {
-                if (j &gt;= v[k]) {
-                    dp[j] = max(dp[j], dp[j - v[k]] + w[k]);
-                }
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BUAA-Wander.github.io/post/bei-bao-dp/">
+              <h3 class="post-title">
+                背包dp
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://BUAA-Wander.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
             }
-        }
-    }
-    
-    cout &lt;&lt; dp[m] &lt;&lt; endl;
-    return 0;
-}
-</code></pre>
-<p>扩展问题可能有每个物品组中可以拿不同数量的物品。这时候可以设计给每一组设计一个虚物品，必选，然后虚物品是其他所有物品的父亲，这样就转化成了树上背包/有依赖的背包问题。</p>
-<p>对于比较简单的有依赖背包问题，可以转化成分组背包来做，比如<a href="https://www.acwing.com/problem/content/489/"> 金明的预算方案</a> ：</p>
-<p>本题中主件最多有2个附件，所以我们其实可以轻松地枚举出每个物品组的所有决策，即啥都不选或者选主件且二进制枚举其他附件的选法。如果题目的数据范围做出修改，每个主件可以有很多附件，那么二进制枚举会导致超时。这个时候可以考虑按照分配给这个物品组的体积来划分要计算的问题，这样每个组内的状态就会从指数降低到线性（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">2^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span>到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">m + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，使用一个体积来表示一类选择方案）。</p>
-<p>参考代码如下：</p>
-<pre><code class="language-cpp">
-#include &lt;bits/stdc++.h&gt;
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
 
-using namespace std;
-
-typedef long long ll;
-
-// 每个物品的价格以及关心的价值
-typedef pair&lt;ll, ll&gt; PII;
-
-const int N = 32010, M = 70;
-
-PII master[N];
-bool is_master[N];
-vector&lt;PII&gt; annex[N];
-ll n, m, dp[N];
-
-int main() {
-    cin &gt;&gt; m &gt;&gt; n;
-
-    ll v, p, q, w;
-    for (int i = 1; i &lt;= n; i++) {
-        cin &gt;&gt; v &gt;&gt; p &gt;&gt; q;
-        if (q == 0) {
-            is_master[i] = true;
-            master[i] = {v, v * p};
-        } else {
-            annex[q].push_back({v, v * p});
-        }
-    }
-
-    for (int i = 1; i &lt;= n; i++) {
-        if (is_master[i]) {
-            for (int j = m; j &gt;= 0; j--) {
-                // 暴力枚举组内选法，类似于暴力做01背包
-                for (int k = 0; k &lt; (1 &lt;&lt; annex[i].size()); k++) {
-                    v = master[i].first, w = master[i].second;
-                    for (int l = 0; l &lt; 3; l++) {
-                        if (((k &gt;&gt; l) &amp; 1) != 0) {
-                            v += annex[i][l].first;
-                            w += annex[i][l].second;
-                        }
-                    }
-
-                    if (j &gt;= v) {
-                     	dp[j] = max(dp[j], dp[j - v] + w);   
-                    }
-                }
-            }
-        }
-    }
-
-    cout &lt;&lt; dp[m] &lt;&lt; endl;
-
-    return 0;
-}
-
-</code></pre>
-<h2 id="有依赖的背包树上背包">有依赖的背包/树上背包</h2>
-<p>物品之间存在一定的依赖关系，比如<code>b</code>依赖于<code>a</code>，那么可以单独买<code>a</code>，如果要买<code>b</code>则必须要购买<code>a</code>。一般来讲依赖关系组成一个森林。</p>
-<p>对于简单的有依赖背包问题（比如金明的预算方案），可以通过枚举决策，将其简单地转化为分组背包问题。但对于依赖比较多的背包，就必须使用树上背包的思路成批计算了。这里和基于枚举所有决策的分组背包的区别就在于这里是每次刷新一类（占用体积为<code>k</code>的那类）决策的最大值。</p>
-<p>代码实现的时候有很多细节需要注意。</p>
-<p>参考代码模板：</p>
-<pre><code class="language-cpp">void dfs(int u) {
-    for (int i = head[u]; i &gt;= 0; i = edge[i].nxt) {
-        int son = edge[i].to;
-        dfs(son);
-
-        // 先只考虑子树，只是给树根留出位置
-        // 这里之所以从大到小枚举体积，是因为实际上这里隐含着一个滚动数组
-        // 每次我们都是用前x棵子树的结果，去刷新前x + 1棵子树的结果
-        // 但是我们都是用dp[u]这一维来存储的
-        // 所以这里确实压掉了一维（子节点）
-        for (int j = m - v[u]; j &gt;= 0; j--) {
-            for (int k = 0; k &lt;= j; k ++) {
-                dp[u][j] = max(dp[u][j], dp[u][j - k] + dp[son][k]);
-            }
-        }
-    }
-
-    // 把树根加进去，这里是强制加，所以强制刷新而不是取max
-    for (int i = m; i &gt;= v[u]; i--) {
-        dp[u][i] = dp[u][i - v[u]] + w[u];
-    }
-    // 把不足以加入树根的结果清零
-    for (int i = 0; i &lt; v[u]; i++) {
-        dp[u][i] = 0;
-    }
-}
-</code></pre>
-<h2 id="背包方案">背包方案</h2>
-<p>背包方案存在两个子问题：</p>
-<ul>
-<li>背包最优方案计数</li>
-<li>一个具体的最优方案</li>
-</ul>
-<h3 id="背包最优方案计数">背包最优方案计数</h3>
-<p>只需要在维护<code>dp[i][j]</code>的同时，维护<code>g[i][j]</code>即可：</p>
-<ul>
-<li>当<code>dp</code>值被刷新的时候，<code>g</code>值被覆盖；</li>
-<li>当<code>dp</code>值和转移用到的值相等时，<code>g</code>累加。</li>
-</ul>
-<p>一个代码实现如下：</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-typedef long long ll;
-
-const int N = 1010, mod = 1e9 + 7;
-
-ll dp[N], g[N], n, m, v[N], w[N];
-
-int main() {
-    cin &gt;&gt; n &gt;&gt; m;
-
-    for (int i = 1; i &lt;= n; i++) {
-        cin &gt;&gt; v[i] &gt;&gt; w[i];
-    }
-
-    memset(dp, -0x3f, sizeof dp);
-    dp[0] = 0;
-    g[0] = 1;
-
-    for (int i = 1; i &lt;= n; i++) {
-        for (int j = m; j &gt;= v[i]; j--) {
-            if (dp[j] == dp[j - v[i]] + w[i]) {
-                g[j] += g[j - v[i]];
-            } else if (dp[j] &lt; dp[j - v[i]] + w[i]) {
-                g[j] = g[j - v[i]];
-            }
-            g[j] %= mod;
-            dp[j] = max(dp[j], dp[j - v[i]] + w[i]);
-        }
-    }
-
-    ll maxw = 0;
-    for (int i = 0; i &lt;= m; i++) {
-        maxw = max(maxw, dp[i]);
-    }
-
-    ll res = 0;
-    for (int i = 0; i &lt;= m; i++) {
-        if (maxw == dp[i]) {
-            res += g[i];
-            res %= mod;
-        }
-    }
-
-    cout &lt;&lt; res &lt;&lt; endl;
-
-    return 0;
-}
-</code></pre>
-<h3 id="背包求具体方案">背包求具体方案</h3>
-<p>一般对具体方案没有特殊要求。这个时候直接用<code>mark[][]</code>数组记录转移就好了。</p>
-<p>如果有特殊要求，比如需要输出字典序最小的方案，则需要仔细设计一下应该如何转移。</p>
-<p>正着循环物品来dp的话，由于最后的方案输出要从<code>dp[n][m]</code>往前递归，所以考虑的是能不能选<code>n</code>，能不能选<code>n - 1</code>，能不能选<code>n - 2</code>…能不能选<code>1</code>，显然这样考虑得到的不是字典序最小的。</p>
-<p>如果最开始反着推去dp，那么最后从<code>dp[1][m]</code>递归，考虑的顺序就是能不能选<code>1</code>，能不能选<code>2</code>，能不能选<code>3</code>…能不能选<code>n</code>，这样得到的才是最小的字典序的方案。</p>
-<p>在做<code>mark</code>标记的时候，反着dp的话，应该是能用当前物品就用当前物品。</p>
-<p>代码如下：</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-const int N = 1010;
-
-typedef long long ll;
-
-ll dp[N][N], mark[N][N], n, m, v[N], w[N];
-
-int main() {
-    cin &gt;&gt; n &gt;&gt; m;
-
-    for (int i = 1; i &lt;= n; i++) {
-        cin &gt;&gt; v[i] &gt;&gt; w[i];
-    }
-
-    for (int i = n; i &gt; 0; i--) {
-        for (int j = 0; j &lt;= m; j++) {
-            dp[i][j] = dp[i + 1][j];
-            if (j &gt;= v[i]) {
-                if (dp[i][j] &lt;= dp[i + 1][j - v[i]] + w[i]) {
-                    dp[i][j] = max(dp[i][j], dp[i + 1][j - v[i]] + w[i]);
-                    mark[i][j] = 1;
-                }
-            }
-        }
-    }
-
-    for (int i = 1, j = m; i &lt;= n; i++) {
-        if (mark[i][j] == 1) {
-            j -= v[i];
-            printf(&quot;%d &quot;, i);
-        }
-    }
-
-    return 0;
-}
-</code></pre>
-<p>背包dp完结撒花！</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux基础]]></title>
-        <id>https://BUAA-Wander.github.io/post/linux-ji-chu/</id>
-        <link href="https://BUAA-Wander.github.io/post/linux-ji-chu/">
-        </link>
-        <updated>2021-10-16T09:57:15.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="linux基础">Linux基础</h1>
-<h2 id="概述">概述</h2>
-<h2 id="基本命令">基本命令</h2>
-<p>不太用管，基本都会了。</p>
-<p>读书学习技术可能会介绍大部分技术，但是这大部分技术中的极小一部分才是我们经常用的，所以看书学习一个技术不是很好。</p>
-<p>跟着官网的入门教程进行学习比较好，之后可以用到之后边用边查。</p>
-<p>所有的千奇百怪的应用的前端的后面都有一个server，所以做一切项目的基础是后端对服务器的操作。大部分server是Linux系统。</p>
-<p>AcWing课程提供的是ubuntu（一种Linux的发行版）。</p>
-<p>实用主义。</p>
-<p>学习技术不能求全，学会常用的，然后现查就好了。</p>
-<h2 id="tmux">tmux</h2>
-<h2 id="vim">vim</h2>
-<h2 id="shell">shell</h2>
-<h2 id="管道">管道</h2>
-<h2 id="环境变量">环境变量</h2>
-<h2 id="其他常用指令">其他常用指令</h2>
-<h2 id="终端">终端</h2>
-<p>有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个主机（可能是物理的，也可能是虚拟的），终端就是一块屏幕。打开一个终端就是一个小黑框，这个终端和某个主机“连接了一根线”。如果打开多个终端，意思是打开了多个屏幕，这些终端可以连接到同一个主机上，在一个终端中对主机做一些修改，那么另外一个连接到同一个主机的终端上也是可以看到这个改变的。</p>
-<p>终端是联网的，可以连接到任何一个服务器（？）。比如使用ssh登录。</p>
-<p>关掉终端只是把屏幕关掉了，而主机是不会关掉的。但是关掉终端之后，你正在运行的程序会停止运行。</p>
-<blockquote>
-<p>如果使用的是tmux，那么退出之后程序也不会关掉。比如登录到你的服务器之后打开tmux，在里面下载docker，那么你关闭终端不会影响下载过程。</p>
-</blockquote>
-<p>所以只要有一个终端就可以了，我们只要学会如何使用终端，即学习终端中的各种命令，就能操作各种服务器。</p>
-<p>服务器向终端发送信息会占用带宽，如果是好多人用一个服务器且没有设置带宽限制的话会感觉到。</p>
-<h2 id="linux文件系统概述">Linux文件系统概述</h2>
-<p>根目录的名字为<code>/</code> ，<code>/</code> 就是一个文件夹。</p>
-<p><code>/</code> 文件夹下面可能会有 <code>bin</code> （里面放一些可执行文件，比如一些指令就是在这个里面，我们敲命令其实就是执行 <code>bin</code> 下面的对应名字的可执行文件），<code>etc</code> ，<code>lib</code>，<code>boot</code>，<code>home</code>（用户的家目录），<code>proc</code> 等各种各样的文件夹，acs acwing server</p>
-<p>登录之后看到的目录是 <code>home</code> 目录下的一个目录，如果这个服务器上不只有你一个用户，那么不同的用户在 <code>home</code> 的目录下有对应的目录名字。</p>
-<p>Linux下描述路径：</p>
-<ul>
-<li>绝对路径，从 <code>/</code> 开始描述</li>
-<li>相对路径，不以 <code>/</code> 开头就是相对路径。<code>.</code> 表示当前目录，<code>..</code> 表示上一级目录。</li>
-</ul>
-<p><code>~</code> 为家目录，是相对某个用户来说，比如 <code>/home/zcx</code> 就是 <code>zcx</code> 的家目录。</p>
-<h2 id="ssh">ssh</h2>
-<h3 id="ssh登录">ssh登录</h3>
-<h4 id="背景">背景</h4>
-<p>未来工作的时候我们可能会用到多个服务器，比如有管web的服务器，有管评测机的服务器等。有些时候我们需要到这些服务器上做一些开发和维护，这个时候我们就可以使用ssh进行服务器的免密登录（需要先配置一下）。</p>
-<p><code>user</code> <code>hostname</code> <code>password</code>，租用服务器之后一般会获得这三个信息。</p>
-<p><code>hostname</code> 一般来说是一个 ip 地址。</p>
-<h4 id="登录服务器">登录服务器</h4>
-<p>使用命令 <code>ssh user@hostname</code> 即可实现登录。如果是第一次登陆的话，可能会提醒我们从来没有登陆过这个服务器，这是因为我们从来没见过这个服务器的 ip 地址的哈希值（如果之前登陆过的话，那么这个哈希值会存储到 <code>~/.ssh/known_hosts</code> 这个文件里面）。</p>
-<p>如果没有配置免密码登录，那么每次登录的时候都需要使用密码才可以登录。</p>
-<p>完成之后，我们就进入了一个全新的服务器。</p>
-<p>使用 <code>exit</code> 或者 <code>ctrl + d</code> 命令可以退出这个服务器。</p>
-<p><code>ssh</code> 登录的时候使用的端口默认为 <code>22</code> ，可以用 <code>-p number</code> 来指定端口号。</p>
-<h4 id="配置文件">配置文件</h4>
-<p>如果感觉每次登录的时候需要敲 <code>user@hostname</code> 太长了且背不下来，那么可以创建一个配置文件，给这个服务器创建一个别名。</p>
-<p>配置文件名叫 <code>config</code> ，需要放在 <code>~/.ssh/</code> 目录下。<code>config</code> 配置文件的内部的信息的格式是：</p>
-<pre><code>Host myserver1
-	HostName IP地址或者域名
-	User 用户名
-	
-Host myserver2
-	HostName IP地址或者域名
-	User 用户名
-</code></pre>
-<h4 id="使用密钥免密登录">使用密钥免密登录</h4>
-<p><code>ssh</code> 使用的是 <code>rsa</code> 密钥。</p>
-<p>如果之前没有生成过密钥，那么需要使用命令 <code>ssh-keygen</code> 命令生成密钥和公钥，都放在 <code>~/.ssh</code> 目录下。其中 <code>id_rsa</code> 是密钥，<code>id_rsa.pub</code> 是公钥。</p>
-<p>如果想免密登录哪个服务器，那么只需要把这个公钥复制到那台服务器的 <code>~/.ssh</code> 目录下的 <code>authorized_keys</code> 文件中。</p>
-<p>这样就可以直接通过 <code>ssh server_name</code> 登录到对应的服务器了。</p>
-<h3 id="scp传文件">scp传文件</h3>
-<p>命令格式 <code>scp src dst</code> ，把 <code>src</code> 位置的文件复制到 <code>dst</code> 里面。</p>
-<p>复制文件夹的话，可以使用 <code>-r</code> 参数，但是要放到 <code>scp</code> 后面紧接着。</p>
-<p><code>src</code> 如果是本地的，那只需要写正常的路径就好了。</p>
-<p><code>dst</code> 如果是其他服务器，那就特殊一点，需要先加上 <code>server_name:</code> ，然后再跟上这个 <code>server</code> 内的地址才可以。</p>
-<p>比如 <code>scp -r ~/tmp server1:~/</code> ，意思就是把我现在所在的服务器上的 <code>~/tmp</code> 目录传到 <code>server1</code> 上的 <code>~/</code> 目录下。</p>
-<p><code>src</code> 是远程服务器，<code>dst</code> 是本地服务器同理。</p>
-<p>如果 <code>src</code> 和 <code>dst</code> 都不是本地，可以先把 <code>src</code> 拷贝到本地，然后再拷贝到 <code>dst</code> 里面。直接拷贝虽然也可以，但是需要有一些权限。</p>
-<p>scp传文件的一个重要应用就是把远程服务器的开发环境做一个配置，比如把 vim 和 tmux 的配置文件拷贝上去。</p>
-<p>比如 <code>scp ~/.vimrc server1:~/</code> 就可以把本地的 <code>.vimrc</code> 拷贝到 server1 服务器上。</p>
-<h2 id="git">git</h2>
-<h3 id="背景-2">背景</h3>
-<h3 id="几个基本概念">几个基本概念</h3>
-<p>可以把代码（也可以是其他你工作中用到的文件）的每个版本看成一个结点，这样的话代码的所有版本就可以根据其修改过程形成一颗树。（可持久化）</p>
-<h3 id="指令">指令</h3>
-<p><code>git log</code> 打印从初始到 <code>HEAD</code> 指针的这条路径的版本信息。</p>
-<h2 id="thrift">thrift</h2>
-<h2 id="云服务器的购买与环境配置">云服务器的购买与环境配置</h2>
-<p>跑通比完美更重要。</p>
-<h3 id="云服务器的选择">云服务器的选择</h3>
-<p>如果是学生机的话，似乎别无选择，很多东西都给定死了。我的阿里云服务器默认是2核2GB的，Ubuntu 20.04 LTS，每个月9元，给了公网ip，有一个默认密码。</p>
-<p>如果不是学生机的话，TODO。</p>
-<h3 id="环境配置">环境配置</h3>
-<p>主要是一些比较基础的环境配置。对于具体的开发环境，我们会使用 <code>docker</code> 。</p>
-<h4 id="免密登录">免密登录</h4>
-<p>这部分在 <code>ssh</code> 中讲过。</p>
-<p>把本机的 <code>id_rsa.pub</code> 中的内容复制到服务器的 <code>.ssh/authorized_keys</code> 里即可。</p>
-<p>然后回到本机，给服务器起一个别名，放到 <code>.ssh/config</code> 里面，以后可以直接别名登录。</p>
-<blockquote>
-<p>我在bash里面尝试了多次起别名，但是都失败了，但是在AC Terminal 和 windows terminal 上都成功了，很迷惑。</p>
-</blockquote>
-<h4 id="vim和tmux配置">vim和tmux配置</h4>
-<p>这部分在 <code>ssh</code> 中也讲过，使用 <code>scp</code> 命令把配置文件从本机拷贝到服务器上即可。</p>
-<p>在之后如果要开发的话，就可以去配置 <code>docker</code> 了。</p>
-<h2 id="docker">docker</h2>
-<p>一般开发不是直接在毛坯服务器上开发，而是再加一层中间层，在这个中间层开发。</p>
-]]></content>
-    </entry>
-</feed>
+    </script>
+  </body>
+</html>
