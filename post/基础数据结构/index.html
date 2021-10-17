@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>基础数据结构 | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634463158334">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634470971848">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="基础数据结构 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -27,7 +27,7 @@ Base is not easy.
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634463158334" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634470971848" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -572,13 +572,13 @@ using namespace std;
 const int N = 2e4 + 9;
 const int SIZE = 1e5 + 9;
 
-int trie[SIZE][30], idx, cnt[SIZE];
+int trie[SIZE][30], idx, cnt[SIZE], root;
 bool ed[SIZE];
 int n;
 
 // 根节点和空结点用0表示
 void insert(char str[]) {
-    int p = 0;
+    int p = root;
     for (int i = 0; str[i] != '\0'; i++) { 
         int ch = str[i] - 'a'; //算出来该走哪条边
         if (trie[p][ch] == 0) { // 下个结点不存在就从内存池中分配一个
@@ -590,7 +590,7 @@ void insert(char str[]) {
 }
 
 int query(char str[]) {
-    int p = 0; 
+    int p = root; 
     for (int i = 0; str[i] != '\0'; i++) {
         int ch = str[i] - 'a';
         if (trie[p][ch] == 0) {
@@ -604,6 +604,7 @@ int query(char str[]) {
 int main() {
     char op[2], str[SIZE];
     scanf(&quot;%d&quot;, &amp;n);
+    int root = ++idx;
     for (int i = 1; i &lt;= n; i++) {
         scanf(&quot;%s %s&quot;, op, str);
         if (op[0] == 'I') {
@@ -618,7 +619,7 @@ int main() {
 <p>这份代码中拥有几个值得探讨的细节：</p>
 <ul>
 <li>本题中，我们使用了<code>cnt</code>数组，来表示<strong>从根走到该结点的字符串曾经被插入的个数</strong>。可以注意到，我们只在最后一位增加了次数，原因就是防止出现前缀匹配的情况。比如空树中插入字符串<code>abc</code>，查询<code>ab</code>字符串的次数，虽然<code>ab</code>没有被插入过，但是它是之前插入的字符串的前缀，所以如果我们在插入时把路径上所有经过的结点的<code>cnt</code>值都增加的话，那么会出现上面的错误。类似地，如果中间结点不是终点但统计了次数，删除字符串时，可能也会出现插入了<code>abc</code>但是删除<code>ab</code>串却可以成功执行的错误情况。</li>
-<li>实现<code>Trie</code>树时，我们把<code>0</code>号结点当作初始根节点，并且以<code>trie[i][j]</code>存储的值为<code>0</code>来表示树上不能走这条边，所以<code>idx</code>应该使用前置加法。</li>
+<li>实现<code>Trie</code>树时，我们把<code>1</code>号结点当作初始根节点，并且以<code>trie[i][j]</code>存储的值为<code>0</code>来表示树上不能走这条边，所以<code>idx</code>应该使用前置加法。之所以使用 <code>1</code> 作为根，其原因会在可持久化数据结构中说明。</li>
 </ul>
 <p>下面再专门介绍一下<code>01Trie</code>:</p>
 <p><code>01Trie</code>，常用来解决数的异或问题，且常用到贪心的思想去在树上走想要的路径（异或问题的贪心也不一定非得用到这个数据结构，有时候就是单纯统计每位1出现的奇偶）。这里常用的贪心一般是从高位到低位的贪心，为了保证正确性，<strong>一般我们要在前面补上前导0以保证对齐</strong>。</p>
