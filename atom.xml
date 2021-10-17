@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://BUAA-Wander.github.io</id>
     <title>WanderOvO</title>
-    <updated>2021-10-17T12:22:08.202Z</updated>
+    <updated>2021-10-17T12:37:51.203Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://BUAA-Wander.github.io"/>
     <link rel="self" href="https://BUAA-Wander.github.io/atom.xml"/>
@@ -16,6 +16,10 @@
         <link href="https://BUAA-Wander.github.io/post/ke-chi-jiu-hua-shu-ju-jie-gou/">
         </link>
         <updated>2021-10-17T09:32:30.000Z</updated>
+        <summary type="html"><![CDATA[<p>可持久化原理，可持久化Trie，可持久化线段树（主席树）。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>可持久化原理，可持久化Trie，可持久化线段树（主席树）。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[树状数组优化dp]]></title>
@@ -23,6 +27,10 @@
         <link href="https://BUAA-Wander.github.io/post/shu-zhuang-shu-zu-you-hua-dp/">
         </link>
         <updated>2021-10-16T13:42:17.000Z</updated>
+        <summary type="html"><![CDATA[<p>权值树状数组优化LIS问题。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>权值树状数组优化LIS问题。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[网格型线性dp]]></title>
@@ -30,6 +38,10 @@
         <link href="https://BUAA-Wander.github.io/post/wang-ge-xing-xian-xing-dp/">
         </link>
         <updated>2021-10-16T13:41:58.000Z</updated>
+        <summary type="html"><![CDATA[<p>TODO</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>TODO</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[序列型线性dp]]></title>
@@ -37,6 +49,10 @@
         <link href="https://BUAA-Wander.github.io/post/xu-lie-xing-xian-xing-dp/">
         </link>
         <updated>2021-10-16T13:41:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>TODO</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>TODO</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[状态机dp]]></title>
@@ -44,6 +60,10 @@
         <link href="https://BUAA-Wander.github.io/post/zhuang-tai-ji-dp/">
         </link>
         <updated>2021-10-16T13:41:20.000Z</updated>
+        <summary type="html"><![CDATA[<p>需要细致划分状态，状态转移很像DFA的一种dp</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>需要细致划分状态，状态转移很像DFA的一种dp</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[平衡树]]></title>
@@ -51,6 +71,10 @@
         <link href="https://BUAA-Wander.github.io/post/ping-heng-shu/">
         </link>
         <updated>2021-10-16T13:40:33.000Z</updated>
+        <summary type="html"><![CDATA[<p>普通二叉搜索树，Treap，TODO</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>普通二叉搜索树，Treap，TODO</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[最短路及其应用]]></title>
@@ -58,6 +82,10 @@
         <link href="https://BUAA-Wander.github.io/post/zui-duan-lu-ji-qi-ying-yong-/">
         </link>
         <updated>2021-10-16T13:40:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>最短路算法总结，建图，最长路，负环，差分约束，最短路径树/图，最短路计数。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>最短路算法总结，建图，最长路，负环，差分约束，最短路径树/图，最短路计数。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[树上问题]]></title>
@@ -65,6 +93,10 @@
         <link href="https://BUAA-Wander.github.io/post/shu-shang-wen-ti/">
         </link>
         <updated>2021-10-16T13:39:45.000Z</updated>
+        <summary type="html"><![CDATA[<p>TODO</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>TODO</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[图的连通性问题]]></title>
@@ -72,6 +104,10 @@
         <link href="https://BUAA-Wander.github.io/post/tu-de-lian-tong-xing-wen-ti/">
         </link>
         <updated>2021-10-16T13:39:25.000Z</updated>
+        <summary type="html"><![CDATA[<p>Tarjan系列算法解决各种连通性问题。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Tarjan系列算法解决各种连通性问题。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[扫描线]]></title>
@@ -79,5 +115,9 @@
         <link href="https://BUAA-Wander.github.io/post/sao-miao-xian/">
         </link>
         <updated>2021-10-16T13:39:04.000Z</updated>
+        <summary type="html"><![CDATA[<p>扫描线的原理，线段树优化扫描线。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>扫描线的原理，线段树优化扫描线。</p>
+]]></content>
     </entry>
 </feed>

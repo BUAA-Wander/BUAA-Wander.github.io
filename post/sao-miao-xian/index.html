@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>扫描线 | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634473326545">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634474266077">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="扫描线 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -11,11 +11,11 @@
 
 
 
-    <meta name="description" content="扫描线
-从直观上讲，扫描线算法就是拿一条线，扫过整个图形，从而计算出图形的周长或面积。
-最经典的例子：平面上有很多个矩形，矩形的长宽要么平行于xxx轴，要么平行于yyy轴，矩形可以互相重叠，问这些矩形覆盖了多大的面积。
+    <meta name="description" content="扫描线的原理，线段树优化扫描线。
 
-如图就是一组符合要..." />
+扫描线
+从直观上讲，扫描线算法就是拿一条线，扫过整个图形，从而计算出图形的周长或面积。
+最经典的例子：平面上有很多个矩形，矩形的长宽要么平行于xxx轴，要么平行于yyy轴，矩形可以互相重叠，问这些矩形覆盖..." />
     <meta name="keywords" content="数据结构" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -25,7 +25,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634473326545" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634474266077" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -96,7 +96,9 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h1 id="扫描线">扫描线</h1>
+                <p>扫描线的原理，线段树优化扫描线。</p>
+<!--more-->
+<h1 id="扫描线">扫描线</h1>
 <p>从直观上讲，扫描线算法就是拿一条线，扫过整个图形，从而计算出图形的周长或面积。</p>
 <p>最经典的例子：平面上有很多个矩形，矩形的长宽要么平行于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>轴，要么平行于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>轴，矩形可以互相重叠，问这些矩形覆盖了多大的面积。</p>
 <figure data-type="image" tabindex="1"><img src="https://BUAA-Wander.github.io/post-images/%E6%89%AB%E6%8F%8F%E7%BA%BF.png" alt="扫描线" loading="lazy"></figure>

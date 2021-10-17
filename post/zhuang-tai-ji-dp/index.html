@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>状态机dp | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634473326545">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634474266077">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="状态机dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -11,11 +11,12 @@
 
 
 
-    <meta name="description" content="状态机dp
+    <meta name="description" content="需要细致划分状态，状态转移很像DFA的一种dp
+
+状态机dp
 基本概念
 此处的状态机dp，特指那些状态转移时同一个阶段有很多种状态的dp。
-举个例子，比如股票买卖中，同一个阶段就会有当前不持有股票，当前持有股票，当前刚出售股票处于冷却期这么几个状态。
-在发现可以用dp解决某个题目的时候，如..." />
+举个例子，比如股票买卖中，同一个阶段就会有当前不持有股票，当前持有股票，当前刚出售股票处于冷却期这么..." />
     <meta name="keywords" content="DP" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -25,7 +26,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634473326545" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634474266077" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -96,7 +97,9 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h1 id="状态机dp">状态机dp</h1>
+                <p>需要细致划分状态，状态转移很像DFA的一种dp</p>
+<!--more-->
+<h1 id="状态机dp">状态机dp</h1>
 <h2 id="基本概念">基本概念</h2>
 <p>此处的状态机dp，特指那些状态转移时同一个阶段有很多种状态的dp。</p>
 <p>举个例子，比如股票买卖中，同一个阶段就会有当前不持有股票，当前持有股票，当前刚出售股票处于冷却期这么几个状态。</p>

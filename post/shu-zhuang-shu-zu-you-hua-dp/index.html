@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>树状数组优化dp | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634473326545">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634474266077">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="树状数组优化dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -11,13 +11,14 @@
 
 
 
-    <meta name="description" content="LIS的权值树状数组O(nlog⁡n)O(n\log n)O(nlogn)做法
+    <meta name="description" content="权值树状数组优化LIS问题。
+
+LIS的权值树状数组O(nlog⁡n)O(n\log n)O(nlogn)做法
 可能需要的前置知识：
 
 O(n2)O(n^2)O(n2)的dp做法。
 树状数组的概念，更新和查找前缀的操作。
-听说过权值线段树/权值树状数组这种思想/操作。
-离..." />
+听说过权值线段树/..." />
     <meta name="keywords" content="DP" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -27,7 +28,7 @@ O(n2)O(n^2)O(n2)的dp做法。
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634473326545" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634474266077" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -98,7 +99,9 @@ O(n2)O(n^2)O(n2)的dp做法。
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h1 id="lis的权值树状数组onlog-n做法">LIS的权值树状数组<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>做法</h1>
+                <p>权值树状数组优化LIS问题。</p>
+<!--more-->
+<h1 id="lis的权值树状数组onlog-n做法">LIS的权值树状数组<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>做法</h1>
 <p>可能需要的前置知识：</p>
 <ul>
 <li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的dp做法。</li>

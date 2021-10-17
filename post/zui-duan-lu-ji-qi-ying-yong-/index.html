@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>最短路及其应用 | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634473326545">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634474266077">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="最短路及其应用 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -11,11 +11,12 @@
 
 
 
-    <meta name="description" content="最短路及其应用
+    <meta name="description" content="最短路算法总结，建图，最长路，负环，差分约束，最短路径树/图，最短路计数。
+
+最短路及其应用
 最短路算法
 bfs
-一般用于不带权的图，由于不带权，所以只需要数边数，这个时候就可以直接使用 bfs 去得到最短路长度以及最短路。复杂度 O(n+m)O(n + m)O(n+m)
-有时候可能会遇到多源无权图最短路，这个时候可..." />
+一般用于不带权的图，由于不带权，所以只需要数边数，这个时候就可以直接使用 bfs 去得到最短路长度以及最短路。复杂度 O(n+..." />
     <meta name="keywords" content="图论" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -25,7 +26,7 @@ bfs
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634473326545" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634474266077" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -96,7 +97,9 @@ bfs
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h1 id="最短路及其应用">最短路及其应用</h1>
+                <p>最短路算法总结，建图，最长路，负环，差分约束，最短路径树/图，最短路计数。</p>
+<!--more-->
+<h1 id="最短路及其应用">最短路及其应用</h1>
 <h2 id="最短路算法">最短路算法</h2>
 <h3 id="bfs">bfs</h3>
 <p>一般用于不带权的图，由于不带权，所以只需要数边数，这个时候就可以直接使用 <code>bfs</code> 去得到最短路长度以及最短路。复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n + m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span></p>

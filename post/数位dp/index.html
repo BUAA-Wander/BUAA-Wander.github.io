@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>数位dp | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634473326545">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634474266077">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="数位dp | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -11,9 +11,9 @@
 
 
 
-    <meta name="description" content="数位dp
-数位dp的基本思路
+    <meta name="description" content="数位dp的基本思路
 
+数位dp
 此类问题一般是求某个区间内满足某个数的个数。统计这种问题用到的数学思想是按数位分类讨论。
 对于一个数 nnn ，假设其在十进制表示下为 ak−1ak−2...a1a0a_{k - 1}a_{k - 2}......" />
     <meta name="keywords" content="DP" />
@@ -25,7 +25,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634473326545" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634474266077" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -96,9 +96,9 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h1 id="数位dp">数位dp</h1>
-<p>数位dp的基本思路</p>
+                <p>数位dp的基本思路</p>
 <!--more-->
+<h1 id="数位dp">数位dp</h1>
 <p>此类问题一般是求某个区间内满足某个数的个数。统计这种问题用到的数学思想是按数位分类讨论。</p>
 <p>对于一个数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> ，假设其在十进制表示下为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><msub><mi>a</mi><mrow><mi>k</mi><mo>−</mo><mn>2</mn></mrow></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msub><mi>a</mi><mn>1</mn></msub><msub><mi>a</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">a_{k - 1}a_{k - 2}...a_1a_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">−</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，考虑数字  <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi><mi>a</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">val</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 中出现的次数：</p>
 <p>从高位向低位遍历 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> ：</p>

@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>可持久化数据结构 | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634473326545">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634474266077">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="可持久化数据结构 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -11,10 +11,12 @@
 
 
 
-    <meta name="description" content="可持久化数据结构
+    <meta name="description" content="可持久化原理，可持久化Trie，可持久化线段树（主席树）。
+
+可持久化数据结构
 一个数据结构可持久化的条件是：该数据结构在操作的时候不会发生拓扑结构的变化。
 可持久化数据结构能解决的问题：记录该数据结构的历史版本，支持对历史版本的操作。
-可持久化数据结构的原理：只记录某个版本和前一个版本不一样的地方。..." />
+可..." />
     <meta name="keywords" content="数据结构" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -24,7 +26,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634473326545" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634474266077" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -84,7 +86,7 @@
                 2021-10-17
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
               
                 <a href="https://BUAA-Wander.github.io/tag/O6aP8RbZQ2/" class="post-tag">
@@ -95,7 +97,9 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h1 id="可持久化数据结构">可持久化数据结构</h1>
+                <p>可持久化原理，可持久化Trie，可持久化线段树（主席树）。</p>
+<!--more-->
+<h1 id="可持久化数据结构">可持久化数据结构</h1>
 <p>一个数据结构可持久化的条件是：该数据结构在操作的时候不会发生拓扑结构的变化。</p>
 <p>可持久化数据结构能解决的问题：记录该数据结构的历史版本，支持对历史版本的操作。</p>
 <p>可持久化数据结构的原理：只记录某个版本和前一个版本不一样的地方。如果该数据结构每次改变的结点很少，那么前面提到的记录方法的效率就会很高。</p>
