@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>可持久化数据结构 | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634470971848">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634473326545">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="可持久化数据结构 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -12,10 +12,10 @@
 
 
     <meta name="description" content="可持久化数据结构
-一个数据结构可持久化的条件是：该数据结构在操作的时候不会发生拓扑序的变化。
+一个数据结构可持久化的条件是：该数据结构在操作的时候不会发生拓扑结构的变化。
 可持久化数据结构能解决的问题：记录该数据结构的历史版本，支持对历史版本的操作。
-可持久化数据结构的原理：只记录某个版本和前一个版本不一样的地方。如..." />
-    <meta name="keywords" content="" />
+可持久化数据结构的原理：只记录某个版本和前一个版本不一样的地方。..." />
+    <meta name="keywords" content="数据结构" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -24,7 +24,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634470971848" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634473326545" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -84,18 +84,45 @@
                 2021-10-17
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://BUAA-Wander.github.io/tag/O6aP8RbZQ2/" class="post-tag">
+                  # 数据结构
+                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
                 <h1 id="可持久化数据结构">可持久化数据结构</h1>
-<p>一个数据结构可持久化的条件是：该数据结构在操作的时候不会发生拓扑序的变化。</p>
+<p>一个数据结构可持久化的条件是：该数据结构在操作的时候不会发生拓扑结构的变化。</p>
 <p>可持久化数据结构能解决的问题：记录该数据结构的历史版本，支持对历史版本的操作。</p>
 <p>可持久化数据结构的原理：只记录某个版本和前一个版本不一样的地方。如果该数据结构每次改变的结点很少，那么前面提到的记录方法的效率就会很高。</p>
 <h2 id="可持久化trie">可持久化Trie</h2>
+<h3 id="构建">构建</h3>
+<p>创建一棵空树，代表第 <code>0</code> 个版本。</p>
+<h3 id="插入">插入</h3>
+<p>以插入字符串为例子：</p>
+<ul>
+<li>
+<p>首先，需要开一个新的结点，表示<strong>新版本的根</strong>，假设当前是第 <code>i</code> 个版本，那么就是 <code>root[i] = ++idx</code>。</p>
+</li>
+<li>
+<p>上一个版本的根结点显然是 <code>root[i - 1]</code>，不妨用 <code>p</code> 表示我们在版本 <code>i - 1</code> 上走过的结点的 <code>id</code> ，<code>q</code> 表示我们在版本 <code>i</code> 上走过的结点的 <code>id</code>。</p>
+</li>
+<li>
+<p>假如 <code>p</code> 不为空，那么需要先把 <code>p</code> 结点的所有儿子赋值给 <code>q</code> 的对应的儿子，然后把字符串当前位置代表的指针修改了，指向一个新开的结点；如果 <code>p</code> 为空，那么就直接把字符串当前位置表示的边指向一个新开的结点即可。然后 <code>p = trie[p][ch]</code>，<code>q = trie[q][ch]</code>，其中 <code>ch</code> 表示当前字符串的字符表示的边。</p>
+<blockquote>
+<p>这里注意一个细节，如果 <code>p</code> 为空，那么在我们实现时当然会有所有的 <code>trie[p][ch] = 0</code>，所以往下走的时候 <code>p</code> 一定一直都是空，所以就一直不会发生复制的情况，保证了复杂度。</p>
+</blockquote>
+</li>
+<li>
+<p>走到字符串的尽头，就可以结束了。</p>
+</li>
+</ul>
+<p>如果需要在插入的过程中需要同时刷新以每个结点为根的子树的信息，可能需要使用递归插入的形式实现来保证先更新子树再更新根（不同于之前的一个循环跑下来就完成插入）。</p>
+<h3 id="查询">查询</h3>
 <h2 id="可持久化线段树主席树">可持久化线段树（主席树）</h2>
 
               </div>
@@ -103,7 +130,13 @@
                 <ul class="markdownIt-TOC">
 <li><a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">可持久化数据结构</a>
 <ul>
-<li><a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96trie">可持久化Trie</a></li>
+<li><a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96trie">可持久化Trie</a>
+<ul>
+<li><a href="#%E6%9E%84%E5%BB%BA">构建</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5">插入</a></li>
+<li><a href="#%E6%9F%A5%E8%AF%A2">查询</a></li>
+</ul>
+</li>
 <li><a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%BB%E5%B8%AD%E6%A0%91">可持久化线段树（主席树）</a></li>
 </ul>
 </li>
