@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>扫描线 | WanderOvO</title>
-<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634458447447">
+<link rel="shortcut icon" href="https://BUAA-Wander.github.io/favicon.ico?v=1634463158334">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BUAA-Wander.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="扫描线 | WanderOvO - Atom Feed" href="https://BUAA-Wander.github.io/atom.xml">
@@ -25,7 +25,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://BUAA-Wander.github.io">
-  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634458447447" alt="">
+  <img class="avatar" src="https://BUAA-Wander.github.io/images/avatar.png?v=1634463158334" alt="">
   </a>
   <h1 class="site-title">
     WanderOvO
@@ -99,7 +99,7 @@
                 <h1 id="扫描线">扫描线</h1>
 <p>从直观上讲，扫描线算法就是拿一条线，扫过整个图形，从而计算出图形的周长或面积。</p>
 <p>最经典的例子：平面上有很多个矩形，矩形的长宽要么平行于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>轴，要么平行于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>轴，矩形可以互相重叠，问这些矩形覆盖了多大的面积。</p>
-<figure data-type="image" tabindex="1"><img src="../pic/%E6%89%AB%E6%8F%8F%E7%BA%BF.png" alt="扫描线" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://BUAA-Wander.github.io/post-images/%E6%89%AB%E6%8F%8F%E7%BA%BF.png" alt="扫描线" loading="lazy"></figure>
 <p>如图就是一组符合要求的矩形，假设我们要计算的就是这个的面积。</p>
 <p>我们考虑用一条垂直于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>轴的直线，从所有矩形中最左边那条边开始向右移动，一直到最右边的那条边，则这条直线和被覆盖区域存在一些交点，并且在一定范围内，这些交点的纵坐标是不变的。例如，图中标注<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的横轴部分，在这一段移动直线的时候，纵向的覆盖始终是不变的，所以可以直接长<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span></span></span></span>宽去统计贡献。</p>
 <p>接下来考虑到底在什么条件下纵向的覆盖长度不变。通过看图可以发现，<strong>每当扫描线经过一条矩形的垂直于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>轴的边的时候，覆盖就可能改变</strong>。具体来说，<strong>经过某个矩形的左边的时候，一般会增加覆盖（不增加可能是因为之前就覆盖过了），经过某个矩形的右边的时候，可能会减少覆盖（不减少可能是因为还有其他矩形在覆盖）</strong>。这样不变量以及变化时机就都找到了。</p>
